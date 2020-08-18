@@ -1,10 +1,10 @@
 import { useAsync, useCachedAsync } from 'common/use-async'
-import { getApps, getTypeNames, getTypes } from 'dynamic/awe-library/api'
+import { getApps, getTypeNames, getTypes } from 'dynamic/awe-library/lib/api'
 import noop from 'common/noop'
 import { useRefresh } from 'common/useRefresh'
 import { useLocalEvent } from 'common/use-event'
 import { initialize } from 'common/offline-data-service/behaviour-cache'
-import { getType } from 'dynamic/awe-library/api'
+import { getType } from 'dynamic/awe-library/lib/api'
 
 export function useTypeList(refreshId) {
     return useCachedAsync(
