@@ -63,7 +63,7 @@ export async function getPublishedVersionOfType(type) {
         console.error('NOT FOUND', type)
         return null
     }
-    let versionId = loaded?.currentVersion[window.mode || 'live'] ?? null
+    let versionId = loaded?.currentVersion?.[window.mode || 'live'] ?? null
     if (!versionId) {
         const toReturn = JSON.parse(JSON.stringify(loaded))
         delete toReturn.versions
