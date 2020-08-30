@@ -1,19 +1,20 @@
 /**
- * @module
+ * @module dynamic/awe-library/document-type-context
  */
 import {createContext, useContext} from 'react'
 
 
 /**
  * @interface IDocumentTypeContext
- * An interface into the currently edited document and
- * methods to support it.
+ * @description An interface into the currently edited document and
+ * methods to support it. You can get this through <code>useDocumentTypeContext()</code>
  * @property {object} type - the whole of the currently edited definition
  * @property {function(void)} save - call to save the current definition
  * @property {function(void)} refresh - call to refresh the whole document view
  * @property {function(void)} undo - call to undo the last operation
  * @property {function(void)} redo - call to redo the last undone operation
  * @property {function(definition)} update - call to replace the document definition with another
+ * @see {@link module:dynamic/awe-library/document-type-context.useDocumentTypeContext}
  */
 
 

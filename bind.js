@@ -1,5 +1,5 @@
 /**
- * @module
+ * @module dynamic/awe-library/bind
  */
 
 /**

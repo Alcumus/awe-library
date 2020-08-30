@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>common/offline-data-service/index.js - awe-library</title>
+    
+    
+    
+    
+    
+    <meta property="og:title" content="awe-library"/>
+    <meta property="og:type" content="docs"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="awe-library"/>
+    <meta property="og:url" content=""/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-common_offline-data-service.html">common/offline-data-service</a><ul class='methods'><li data-type='method'><a href="module-common_offline-data-service.html#.del">del</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.get">get</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.hydrateDocument">hydrateDocument</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.list">list</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.prepareDocument">prepareDocument</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.set">set</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.useRecord">useRecord</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.useRecordOrCreate">useRecordOrCreate</a></li><li data-type='method'><a href="module-common_offline-data-service.html#~getCount">getCount</a></li></ul></li><li><a href="module-common_offline-data-service_records.html">common/offline-data-service/records</a><ul class='methods'><li data-type='method'><a href="module-common_offline-data-service_records.html#.getRecords">getRecords</a></li><li data-type='method'><a href="module-common_offline-data-service_records.html#.useRecords">useRecords</a></li><li data-type='method'><a href="module-common_offline-data-service_records.html#.useRecordsForType">useRecordsForType</a></li><li data-type='method'><a href="module-common_offline-data-service_records.html#.useStreamedResults">useStreamedResults</a></li><li data-type='method'><a href="module-common_offline-data-service_records.html#.useStreamedResultsForType">useStreamedResultsForType</a></li></ul></li><li><a href="module-common_use-async.html">common/use-async</a><ul class='methods'><li data-type='method'><a href="module-common_use-async.html#.useCachedAsync">useCachedAsync</a></li><li data-type='method'><a href="module-common_use-async.html#.useCurrent">useCurrent</a></li><li data-type='method'><a href="module-common_use-async.html#.useCurrentState">useCurrentState</a></li><li data-type='method'><a href="module-common_use-async.html#~useAsync">useAsync</a></li></ul></li><li><a href="module-dynamic_awe-library_bind.html">dynamic/awe-library/bind</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_bind.html#.bind">bind</a></li></ul></li><li><a href="module-dynamic_awe-library_document-type-context.html">dynamic/awe-library/document-type-context</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_document-type-context.html#.useDocumentTypeContext">useDocumentTypeContext</a></li></ul></li><li><a href="module-dynamic_awe-library_fields.html">dynamic/awe-library/fields</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_fields.html#.getFieldList">getFieldList</a></li><li data-type='method'><a href="module-dynamic_awe-library_fields.html#.getTypeFromField">getTypeFromField</a></li><li data-type='method'><a href="module-dynamic_awe-library_fields.html#.useFieldList">useFieldList</a></li><li data-type='method'><a href="module-dynamic_awe-library_fields.html#.useQuestion">useQuestion</a></li><li data-type='method'><a href="module-dynamic_awe-library_fields.html#~sendMessage">sendMessage</a></li></ul></li><li><a href="module-dynamic_awe-library_generic-list-entry.html">dynamic/awe-library/generic-list-entry</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_generic-list-entry.html#.genericListEntry">genericListEntry</a></li></ul></li><li><a href="module-dynamic_awe-library_lookup-fields.html">dynamic/awe-library/lookup-fields</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_lookup-fields.html#.lookup">lookup</a></li></ul></li><li><a href="module-dynamic_awe-library_query.html">dynamic/awe-library/query</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_query.html#.convertToText">convertToText</a></li><li data-type='method'><a href="module-dynamic_awe-library_query.html#.Query">Query</a></li><li data-type='method'><a href="module-dynamic_awe-library_query.html#.QueryCascade">QueryCascade</a></li></ul></li><li><a href="module-dynamic_awe-library_question-type-def.html">dynamic/awe-library/question-type-def</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_question-type-def.html#.questionTypeDef">questionTypeDef</a></li><li data-type='method'><a href="module-dynamic_awe-library_question-type-def.html#~allTypes">allTypes</a></li></ul></li><li><a href="module-dynamic_awe-library_use-types.html">dynamic/awe-library/use-types</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.getPublishedVersionOfType">getPublishedVersionOfType</a></li><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.getTypeAndInitialise">getTypeAndInitialise</a></li><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.useApps">useApps</a></li><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.useType">useType</a></li><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.useTypeList">useTypeList</a></li><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.useTypes">useTypes</a></li></ul></li><li><a href="module-dynamic_awe-library_utils.html">dynamic/awe-library/utils</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.basicField">basicField</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.behaviour">behaviour</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.classification">classification</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.decorate">decorate</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.decorateFields">decorateFields</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.deepFields">deepFields</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.eventSource">eventSource</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.extractFieldName">extractFieldName</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.fieldBelongsLocally">fieldBelongsLocally</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.fieldNameIs">fieldNameIs</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.getFields">getFields</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.getStates">getStates</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.getTypeFor">getTypeFor</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.hints">hints</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.isNotBlank">isNotBlank</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.isStandardField">isStandardField</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.isStoredInRecord">isStoredInRecord</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.legalDbCharacters">legalDbCharacters</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.legalFieldNameCharacters">legalFieldNameCharacters</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.logErrorOnLongCall">logErrorOnLongCall</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.optionLabel">optionLabel</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.questionCaption">questionCaption</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.questionType">questionType</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.returnValue">returnValue</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.tab">tab</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.tabs">tabs</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.topLevelField">topLevelField</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.trackComponent">trackComponent</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.unique">unique</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.use">use</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.useField">useField</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.useFields">useFields</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.useGroupByFields">useGroupByFields</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.useTables">useTables</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.whenQuestionHasHint">whenQuestionHasHint</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.whenQuestionMatches">whenQuestionMatches</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.whenQuestionTypeIs">whenQuestionTypeIs</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.whenTrackComponentIs">whenTrackComponentIs</a></li></ul></li></ul><h3>Interfaces</h3><ul><li><a href="BehaviourDefinition.html">BehaviourDefinition</a></li><li><a href="DeepFieldDefinition.html">DeepFieldDefinition</a></li><li><a href="Document.html">Document</a></li><li><a href="DocumentDefinition.html">DocumentDefinition</a></li><li><a href="DocumentRecord.html">DocumentRecord</a></li><li><a href="FieldDefinition.html">FieldDefinition</a></li><li><a href="HintList.html">HintList</a></li><li><a href="ListOptions.html">ListOptions</a></li><li><a href="module-dynamic_awe-library_document-type-context-IDocumentTypeContext.html">IDocumentTypeContext</a></li><li><a href="module-dynamic_awe-library_fields-BehaviourKeys.html">BehaviourKeys</a></li><li><a href="module-dynamic_awe-library_lookup-fields-FieldLookup.html">FieldLookup</a></li><li><a href="module-dynamic_awe-library_query-QueryApi.html">QueryApi</a></li><li><a href="module-dynamic_awe-library_query-QueryCascadeApi.html">QueryCascadeApi</a></li><li><a href="module-dynamic_awe-library_query-QueryDefinition.html">QueryDefinition</a></li><li><a href="module-dynamic_awe-library_query-RefreshFunction.html">RefreshFunction</a></li><li><a href="module-dynamic_awe-library_use-types-DocumentRecord.html">DocumentRecord</a></li><li><a href="PropertySheetComponents.html">PropertySheetComponents</a></li><li><a href="QuestionTypeDef.html">QuestionTypeDef</a></li><li><a href="TableDefinition.html">TableDefinition</a></li><li><a href="TrackComponentDefinition.html">TrackComponentDefinition</a></li><li><a href="WhereDefinition.html">WhereDefinition</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DeepFieldDictionary">DeepFieldDictionary</a></li><li><a href="global.html#HintFunction">HintFunction</a></li><li><a href="global.html#HintPredicate">HintPredicate</a></li><li><a href="global.html#QuestionPredicateFunction">QuestionPredicateFunction</a></li><li><a href="global.html#RetrieveFunction">RetrieveFunction</a></li><li><a href="global.html#TabPredicate">TabPredicate</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">common/offline-data-service/index.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module common/offline-data-service
+ */
+
+import { useRef, useState } from 'react'
+import events from 'alcumus-local-events'
+
+import path from 'file-loader?name=scripts/[name].[hash].js!jsstore/dist/jsstore.worker.min.js'
+import pathIE from 'file-loader?name=scripts/[name].[hash].js!jsstore/dist/jsstore.worker.ie.min.js'
+import * as JsStore from 'jsstore'
+import debounce from 'lodash/debounce'
+import isEmpty from 'lodash/isEmpty'
+import { LRUCache } from './lru'
+
+import { ensureArray } from 'common/ensure-array'
+import { handle, raise, raiseAsync } from 'common/events'
+import { store } from 'common/global-store'
+import { getActiveClient } from 'common/global-store/api'
+import { showNotification } from 'common/modal'
+import { define, parameter, retrieve } from 'common/process'
+import { ready as requestReady } from 'common/request'
+import { navigate } from 'common/routing'
+import useAsync from 'common/use-async'
+import { useLocalEvent } from 'common/use-event'
+import { useRefresh } from 'common/useRefresh'
+import { getItem, setItem, using } from 'common/using-local-storage-key'
+import './behaviour-cache'
+import { initializeSync } from 'common/offline-data-service/behaviour-cache'
+import { prepareQuery } from 'common/offline-data-service/query'
+import { uiReady } from 'common/ui-ready'
+import { filterAsync } from 'js-coroutines'
+import eachLimit from 'async/eachLimit'
+import { cloneDeep } from 'mingo/util'
+import { isDebugger } from 'common/debugger'
+import { parameter as queryParameter } from 'common/query-params'
+
+const securityReady = new Promise((resolve) => {
+    handle('refresh-apps', resolve)
+})
+
+const MAX_RETRIES = 50
+const HYDRATE_LIMIT = 50
+
+export function getStandardMappings() {
+    let standardMappings = {}
+    raise('get-query-fn-mappings', standardMappings)
+    return standardMappings
+}
+
+let cache = new LRUCache(1000, {
+    mapValue: (v) => JSON.parse(JSON.stringify(v)),
+})
+
+store.set({ aweSync: false })
+
+const getRecord = retrieve('data.record.get', 'record', parameter('recordId'), parameter('track'))
+
+export function cacheLocalOnly(document) {
+    cache.set(document._id, document)
+}
+
+const deleteRecord = define('data.record.delete', ({ required, before }) => {
+    required('recordId')
+    before(({ recordId }) => {
+        idbCon.remove({ from: 'records', where: { id: recordId } })
+        cache.del(recordId)
+    })
+})
+
+const readAll = define('data.retrieve.all', ({ required, optional, returns }) => {
+    required('tableId')
+    optional('chunk')
+    returns('records')
+    returns('chunk')
+})
+
+export const setRecord = define('data.record.set', ({ required, before }) => {
+    required('updatedRecord')
+    before(prepareDocument)
+})
+
+const typeVersions = {}
+
+/**
+ * Given a record, that has previously been prepared for storage
+ * (the behaviours removed and replaced with a small reference
+ * to the underlying document type) this finds the type and
+ * makes the document whole again ready for processing.
+ *
+ * The retrieved document is initialized and ready to
+ * perform behaviour actions.
+ *
+ * @param {Document} record - the record to hydrate
+ * @returns {Promise&lt;Document>} a promise for the rehydrated
+ * document
+ */
+export async function hydrateDocument(record) {
+    if (!record) return null
+    await securityReady
+    const toHydrate = record._settings?.$id
+    if (toHydrate) {
+        const state = record._settings.$state
+        let key = `${toHydrate}:${record._version}`
+        let version = typeVersions[key]
+        if (!version) {
+            const type = await get(toHydrate, true, true)
+
+            if (!type) {
+                showNotification(`Hydration base "${toHydrate}" not found`)
+                return null
+            }
+            const content = type.versions.find((v) => v.name === record._version)?.content
+            let retrievedType
+            if (!content) {
+                retrievedType = JSON.parse(JSON.stringify(type))
+            } else {
+                retrievedType = JSON.parse(content)
+            }
+            version = {
+                _settings: retrievedType,
+            }
+            version._behaviours = version._settings._behaviours
+            delete version._settings._behaviours
+            typeVersions[key] = version
+        }
+        record._settings = cloneDeep(version._settings)
+        record._behaviours = cloneDeep(version._behaviours)
+        record._behaviours._state = state
+    }
+    initializeSync(record)
+    return record
+}
+
+/**
+ * @interface Document
+ * @global
+ * @implements DocumentDefinition
+ * @description
+ * An object that has associated behaviours and state,
+ * it references an underlying document type and stores
+ * the data that the user input
+ */
+
+/**
+ * Prepares a document for database storage, this removes
+ * all of the behaviours and replaces them with a reference
+ * to the underlying document type that creates them.  It
+ * also stores the current state of the document.
+ * @param {Document} record - the record to prepare
+ * @returns {Document} the record having been modified
+ */
+export function prepareDocument(record) {
+    if (record &amp;&amp; record._version &amp;&amp; record._settings &amp;&amp; record._settings._id) {
+        const output = JSON.parse(JSON.stringify(record))
+        if (output._settings) {
+            output._settings = {
+                $id: record._settings._id,
+                $state: record._behaviours._state,
+            }
+        }
+        delete output._behaviours
+        return output
+    }
+    return record
+}
+
+export const getRecords = retrieve('data.record.get.multiple', 'records', parameter('recordIds'), parameter('track'))
+
+export const getList = retrieve(
+    'data.record.list',
+    'records',
+    parameter('database'),
+    parameter('table'),
+    parameter('where'),
+    parameter('options')
+)
+
+/**
+ * @interface WhereDefinition
+ * @global
+ * @description A mongo db style where clause using
+ * an object and keys to describe a query
+ */
+
+/**
+ * ONLINE ONLY - retrieves the number of records that match
+ * a where clause
+ * @function getCount
+ * @param {string} database - the database of the table
+ * @param {string} table - the table to query
+ * @param {WhereDefinition} where - the query to count
+ * @returns {Promise&lt;number>} a promise for the number of records
+ */
+export const getCount = retrieve(
+    'data.record.count',
+    'count',
+    parameter('database'),
+    parameter('table'),
+    parameter('where')
+)
+
+let idbCon
+
+export async function clean() {
+    await idbCon.dropDb()
+    await initJsStore()
+}
+
+events.on('change-active-client', clean)
+//Comio
+const cacheDatabase = {
+    name: 'localCache',
+    tables: [
+        {
+            name: 'records',
+            columns: {
+                id: {
+                    primaryKey: true,
+                    notNull: true,
+                    dataType: 'string',
+                },
+                type: {
+                    dataType: 'string',
+                    notNull: true,
+                },
+                client: {
+                    dataType: 'string',
+                },
+                tags: {
+                    dataType: 'array',
+                    multiEntry: true,
+                },
+                typeForClient: {
+                    keyPath: ['client', 'type'],
+                },
+                parent: {
+                    dataType: 'string',
+                },
+            },
+        },
+    ],
+}
+
+function isIE11() {
+    return navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > -1
+}
+
+async function initJsStore() {
+    try {
+        // eslint-disable-next-line no-console
+        console.log('Start Database')
+        await requestReady
+        const worker = new Worker(isIE11() ? pathIE : path)
+        idbCon = new JsStore.Connection(worker)
+        const id = setTimeout(() => {
+            console.error('Database not started')
+        }, 10000)
+        // eslint-disable-next-line no-console
+        console.log('Started Database')
+        let result = await idbCon.initDb(cacheDatabase)
+        // eslint-disable-next-line no-console
+        console.log('Initialized Database', result)
+        await new Promise((resolve) => setTimeout(resolve, 100))
+        await idbCon.openDb(cacheDatabase.name)
+        // eslint-disable-next-line no-console
+        console.log('Database ready', cacheDatabase.name)
+
+        clearTimeout(id)
+    } catch (e) {
+        console.error(e)
+    }
+}
+
+handle('catchUpFailed', clearAll)
+
+export function checkInequality(one, two) {
+    const oneSerialized =
+        JSON.stringify(one, replacer) +
+        JSON.stringify({
+            $invalid: one?.$invalid,
+            $state: one?._settings.$state || one?._behaviours._state,
+        })
+    const twoSerialized =
+        JSON.stringify(two, replacer) +
+        JSON.stringify({
+            $invalid: two?.$invalid,
+            $state: two?._settings.$state || two?._behaviours._state,
+        })
+    return oneSerialized !== twoSerialized
+
+    function replacer(k, v) {
+        if (k.startsWith('$')) return undefined
+        if (k === '_behaviours') return undefined
+        if (k === '_settings') return undefined
+        if (k === '_stateChangedAt') return undefined
+        return v
+    }
+}
+
+/**
+ * A hook to get a record or create it if it does not
+ * exist
+ * @param {string} id - the id of the record (must include the full Alcumus database/table part)
+ * @param {boolean} [track] - whether the record should be locally cached if possible
+ * @returns {Document|null} returns the document when available, null before
+ */
+export function useRecordOrCreate(id, track) {
+    const [defaultValue] = useState(() => ({ _id: id }))
+    return useRecord(id, track) || defaultValue
+}
+
+/**
+ * A hook to retrieve a record
+ * @param {string} id - the id of the record
+ * @param {boolean} [track] - whether the record should be locally cached if possible
+ * @returns {Document} - a record from the db
+ */
+export function useRecord(id, track) {
+    const returnValue = useRef(null)
+    if (Object.isObject(id)) returnValue.current = id
+    const refresh = useRefresh()
+    useLocalEvent(`data.updated.${id}`, () => {
+        returnValue.current = null
+        refresh()
+    })
+    return useAsync(
+        async () => {
+            if (Object.isObject(id)) {
+                returnValue.current = id
+                return id
+            }
+            await uiReady()
+            if (!id) return null
+            let result = await get(id, track)
+            returnValue.current = result
+            return result
+        },
+        returnValue.current,
+        JSON.stringify(id, refresh.id)
+    )
+}
+
+/**
+ * Deletes a record from the db. Note you
+ * can also delete a record by setting a _deleted property of it to 1
+ * @param {string} id - the id of the record
+ * @returns {Promise&lt;void>} a promise for the deletion being complete
+ */
+export function del(id) {
+    return deleteRecord(id)
+}
+
+/**
+ * Stores a document in the database. We don't often do this
+ * on the client as we expect AWE processing to do it on our
+ * behalf. But for other kinds of document this will work.
+ * @param {Document} record - the record to store
+ * @param {boolean} [cache=false] - whether we should cache the record
+ * @param {boolean} [now=false] - if true the record is immediately stored, otherwise it is queued
+ * @returns {Promise&lt;Document>} a promise for the storage of the document
+ */
+export async function set(record, cache = false, now = false) {
+    await ready
+    record = prepareDocument(record)
+    if (cache) await cacheRecords(record, true)
+    if (!now) {
+        await using(
+            'alcumus.set-queue',
+            async (queue) => {
+                return [...queue, record]
+            },
+            []
+        )
+        processQueue()
+    } else {
+        await setRecord(record)
+    }
+    return record
+}
+
+export async function getVersions(...ids) {
+    return Promise.all(
+        ids.flat(Infinity).map(async (id) => {
+            let results = (
+                await idbCon.select({
+                    from: 'records',
+                    where: {
+                        id,
+                    },
+                })
+            ).filter((r) => r &amp;&amp; r.data)
+            if (results.length) {
+                return { id, __: results[0].data.__ }
+            } else {
+                return { id }
+            }
+        })
+    )
+}
+
+/**
+ * Retrieve a document.  The primary retrieval order will be: local memory
+ * cache, local db cache, the server unless overridden using the &lt;code>localOnly&lt;/code>
+ * parameter.
+ * @param {string} id - the id of the record to retrieve
+ * @param {boolean} [track=true] - whether to cache the record and then track it as it changes on the server
+ * @param {boolean} [raw=false] - if true the retrieved document is NOT hydrated, otherwise it is prepared for execution
+ * @param {string|boolean} [localOnly=false] -
+ * a flag to override the processing of the documents location.
+ *
+ * Possible values are 'false' the document will be retrieved locally
+ * if available, 'server' the document must be retrieved from the server
+ * and if we are offline it will fail and 'server-preferred' we retrieve
+ * from the server if we are online, otherwise a local copy will do.
+ * @returns {Promise&lt;Document|null>} a promise for the retrieved document
+ */
+export async function get(id, track = true, raw = false, localOnly = false) {
+    if (!id || !isDatabaseId(id)) throw new Error(`Invalid id: ${JSON.stringify(id)}`)
+    await securityReady
+    await ready
+    if (!id) {
+        throw new Error('Cannot request a null id')
+    }
+    let existing = cache.get(id)
+
+    if (localOnly !== 'server' &amp;&amp; existing &amp;&amp; !existing.$invalid) {
+        existing = JSON.parse(JSON.stringify(existing))
+        if (
+            existing.client === 'undefined' ||
+            !existing.client ||
+            existing.client === '@WORK' ||
+            existing.client === getActiveClient()
+        ) {
+            return raw ? existing : await hydrateDocument(existing)
+        } else {
+            navigate('/')
+            throw new Error(`Cannot access with active client ${getActiveClient()} !== ${existing.client}`)
+        }
+    }
+    try {
+        let results
+        try {
+            results = (
+                await idbCon.select({
+                    from: 'records',
+                    where: {
+                        id,
+                    },
+                })
+            ).filter((r) => r &amp;&amp; r.data)
+        } catch (e) {
+            results = []
+        }
+
+        if (
+            (localOnly !== 'server-preferred' || !navigator.onLine) &amp;&amp;
+            localOnly !== 'server' &amp;&amp;
+            results.length &amp;&amp;
+            results[0].data
+        ) {
+            existing = results[0].data
+            if (!existing.$invalid || !navigator.onLine) {
+                if (track) {
+                    cache.set(id, results[0].data)
+                }
+
+                if (
+                    existing.client === 'undefined' ||
+                    !existing.client ||
+                    existing.client === '@WORK' ||
+                    existing.client === getActiveClient()
+                ) {
+                    return raw ? existing : await hydrateDocument(existing)
+                } else {
+                    navigate('/').catch(console.error)
+                    console.error(`Cannot access with active client ${getActiveClient()} !== ${existing.client}`)
+                    return null
+                }
+            }
+        }
+        let record
+        if (navigator.onLine &amp;&amp; (!localOnly || localOnly === 'server' || localOnly === 'server-preferred')) {
+            record = await getRecord(id, track)
+            if (track &amp;&amp; record) {
+                cache.set(id, record.data)
+                try {
+                    await idbCon.insert({
+                        into: 'records',
+                        upsert: true,
+                        values: [record]
+                            .map((d) => ({
+                                ...d,
+                                data: prepareDocument(d.data),
+                            }))
+                            .filter((r) => r &amp;&amp; !r.data.serverOnly),
+                    })
+                } catch (e) {
+                    console.error('Update record error', record)
+                    console.error(e)
+                }
+            }
+        }
+        if (!record) return null
+        record = raw ? record.data : await hydrateDocument(record.data)
+        !raw &amp;&amp; (await raiseAsync(`hydrate.${id.split(':')[1]}`, record))
+        return record
+    } catch (e) {
+        console.error(e)
+        return null
+    }
+}
+
+/**
+ * @interface ListOptions
+ * @global
+ * @description The options when retrieving a list
+ * @property {number} [skip=0] the number of records to skip
+ * @property {number} [take] the number of records to take
+ * @property {Array&lt;string>} [orderStmt] - either an array of strings
+ * that represent the columns to sort on (starting with '-' for descending order)
+ */
+
+/**
+ * @interface DocumentRecord
+ * @global
+ * @description a wrapped document record
+ * @property {Document} data - the document
+ * @property {string} id - the id of the document
+ * @property {string} type - the type of the document
+ */
+
+/**
+ * Retrieves a list of matching documents.  This function prefers
+ * the server if we are online and uses a local backup if we are not.
+ *
+ * Note that this retrieves the outer wrapper of the record, the
+ * actual record is contained in the &lt;code>data&lt;/code> parameter
+ * @param {string} database - the database of the table
+ * @param {string} table - the table to retrieve data from
+ * @param {WhereDefinition} [where={}] - a query to apply
+ * @param {ListOptions} [options={}] - options for the retrieval
+ * @returns {Promise&lt;Array&lt;DocumentRecord>>}
+ */
+export async function list(database, table, where = {}, options = {}) {
+    await ready
+
+    where = options.includeDeleted
+        ? where
+        : { $or: [{ _deleted: null }, { _deleted: 0 }, { _deleted: false }], ...where }
+    let { track = true } = options
+    if (options.fields) track = false
+    if (!top.forceOffline &amp;&amp; navigator.onLine) {
+        const records =
+            (await getList(database, table, where, {
+                ...options,
+                track,
+            })) || []
+        if (track &amp;&amp; records) {
+            cacheRecords(records)
+        }
+        return records
+    } else {
+        const client = getActiveClient()
+        const tag = where.$tag
+        const clauses = { ...cleanKeys(where) }
+        delete clauses.$tag
+        let query = await prepareQuery(clauses, getStandardMappings())
+
+        const scan = {
+            typeForClient: [client, `${database}/${table}`],
+        }
+        if (tag) scan.tag = tag
+        let records = await idbCon.select({
+            from: 'records',
+            where: scan,
+        })
+        if (!isEmpty(clauses)) {
+            records = await filterAsync(records, (record) => query.test(record.data))
+        }
+        await eachLimit(records, HYDRATE_LIMIT, async (record) => {
+            await raiseAsync(`hydrate.${`${database}:${table}`}`, record)
+        })
+        return records
+    }
+}
+
+export let ready = initJsStore()
+let processing = false
+
+export async function cacheRecords(records, toDb = true) {
+    records = ensureArray(records)
+        .unique((r) => r._id || r.id)
+        .compact(true)
+    for (let i = 0; i &lt; records.length; i++) {
+        const record = records[i]
+        if (record._id) {
+            records[i] = {
+                id: record._id,
+                data: JSON.parse(JSON.stringify(record)),
+                type: record._id.split(':')[1],
+                client: '' + (record._client || getActiveClient()),
+                tags: record._tags || [],
+                parent: record._parent || null,
+            }
+        }
+    }
+
+    records.forEach((record) => {
+        cache.set(record.id, record.data)
+    })
+
+    if (toDb) {
+        return await idbCon.insert({
+            into: 'records',
+            upsert: true,
+            values: records.filter((r) => r &amp;&amp; !r.data.serverOnly).map((item) => JSON.parse(JSON.stringify(item))),
+        })
+    }
+}
+
+const processChanges = debounce(
+    async function () {
+        if (processing) {
+            return processChanges()
+        }
+        try {
+            processing = true
+
+            let toProcess
+            while ((toProcess = Object.keys(getItem('retrieve_ids', {}))).length !== 0) {
+                store.set({ aweSync: true })
+                let toSync = toProcess.first(100)
+                let ids = getItem('retrieve_ids', {})
+                toSync.forEach((id) => {
+                    delete ids[id]
+                })
+                setItem('retrieve_ids', ids)
+                const toSendIds = await getVersions(toSync)
+                let records = (await getRecords(toSendIds, false)).filter((r) => r &amp;&amp; !r.data.serverOnly)
+                await cacheRecords(records)
+                for (let record of records) {
+                    raise(`data.updated.${record.id}`, record.id, record.data)
+                }
+            }
+        } catch (e) {
+            setTimeout(processChanges, 1000 * 5)
+        } finally {
+            store.set({ aweSync: false })
+            processing = false
+        }
+    },
+    500,
+    { maxWait: 30000 }
+)
+
+setInterval(processChanges, 60000)
+processChanges()
+
+export function addRetrieveId(id) {
+    let ids = getItem('retrieve_ids', {})
+    ids[id] = true
+    setItem('retrieve_ids', ids)
+    processChanges()
+}
+
+export function isRetrieving(id) {
+    let ids = getItem('retrieve_ids', {})
+    return ids[id]
+}
+
+export async function removeRetrieveId(id) {
+    let ids = getItem('retrieve_ids', {})
+    delete ids[id]
+    setItem('retrieve_ids', ids)
+    await idbCon.remove({ from: 'records', where: { id } })
+}
+
+export function isDatabaseId(id = '') {
+    if (typeof id !== 'string') return false
+    const colon = id.indexOf(':')
+    const lastColon = id.lastIndexOf(':')
+    const slash = id.indexOf('/')
+    const lastSlash = id.lastIndexOf('/')
+    return colon !== -1 &amp;&amp; colon === lastColon &amp;&amp; slash !== -1 &amp;&amp; lastSlash === slash &amp;&amp; slash > colon
+}
+
+export function isTableId(id = '') {
+    if (typeof id !== 'string') return false
+    const colon = id.indexOf(':')
+    const slash = id.indexOf('/')
+    const lastSlash = id.lastIndexOf('/')
+    return colon === -1 &amp;&amp; slash !== -1 &amp;&amp; lastSlash === slash
+}
+
+let sending = false
+
+function scan(array) {
+    let item
+    do {
+        item = array.shift()
+    } while (!item &amp;&amp; array.length)
+    return item
+}
+
+const processQueue = debounce(
+    async function processQueue() {
+        if (!navigator.onLine || sending) return setTimeout(processQueue, 5000)
+        try {
+            sending = true
+            await using(
+                'alcumus.set-queue',
+                async (queue) => {
+                    let retries = []
+                    let item
+                    do {
+                        item = scan(queue)
+                        if (item) {
+                            try {
+                                await setRecord(item)
+                            } catch (e) {
+                                item.__retries = (item.__retries || 0) + 1
+                                retries.push(item)
+                            }
+                        }
+                    } while (item)
+                    queue.push(...retries.filter((r) => r.__retries &lt; MAX_RETRIES))
+                },
+                []
+            )
+        } finally {
+            sending = false
+        }
+    },
+    200,
+    { maxWait: 1500 }
+)
+
+try {
+    window.addEventListener('online', processQueue)
+} catch (e) {
+    //Swallow
+}
+
+setInterval(processQueue, 30000)
+
+async function cacheTable(id) {
+    let chunk = undefined
+    let records = null
+    do {
+        ;[records = [], chunk] = await readAll(id, chunk)
+        await cacheRecords(records)
+        records.forEach((record) => {
+            raise(`data.updated.${record.id}`, record.id, record.data)
+        })
+    } while (chunk)
+}
+
+handle(
+    class Data {
+        async dataChanged({ id, client }) {
+            const shouldChange = { change: true, id, client }
+            // console.log({ shouldChange, id, client })
+            events.emit(`shouldload.${id}`, shouldChange)
+            if (shouldChange.change) {
+                addRetrieveId(id)
+            }
+        }
+
+        async aweAssociated(id) {
+            isDatabaseId(id) &amp;&amp; addRetrieveId(id)
+            isTableId(id) &amp;&amp; cacheTable(id).catch(console.error)
+        }
+
+        async aweDisassociated(id) {
+            isDatabaseId(id) &amp;&amp; (await removeRetrieveId(id))
+        }
+    }
+)
+
+function cleanKeys(where) {
+    let output = { ...where }
+    for (let key of Object.keys(where).filter((k) => k.includes('+'))) {
+        output[key.replace(/\+/g, '.')] = output[key]
+        delete output[key]
+    }
+    return output
+}
+
+async function clearAll() {
+    if (isDebugger()) return
+    // eslint-disable-next-line no-console
+    console.trace('Clear ALL')
+    await ready
+    if (isDebugger()) return
+    ready = runRestartDb()
+    async function runRestartDb() {
+        cache = new LRUCache(1000, {
+            mapValue: (v) => JSON.parse(JSON.stringify(v)),
+        })
+        await idbCon.dropDb()
+        await initJsStore()
+    }
+}
+
+if (queryParameter('dropAll')) {
+    // eslint-disable-next-line no-console
+    clearAll().then(() => console.log('Dropped'), console.error)
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Sun Aug 30 2020 12:58:11 GMT+0100 (British Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>

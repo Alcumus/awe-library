@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>common/use-async/index.js - awe-library</title>
+    <title>common/offline-data-service/records.js - awe-library</title>
     
     
     
@@ -43,7 +43,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">common/use-async/index.js</h1>
+    <h1 class="page-title">common/offline-data-service/records.js</h1>
     
 
     
@@ -54,373 +54,270 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @module common/use-async
+ * @module common/offline-data-service/records
  */
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 
-import PropTypes from 'prop-types'
-
-import isFunction from 'lodash/isFunction'
-import isObject from 'lodash/isObject'
-import { generate } from 'shortid'
-
-import { batch } from 'common/batched'
+import React, { useContext, useRef, useState } from 'react'
 import { useRefresh } from 'common/useRefresh'
-import { CenteredLoader } from 'common/utils/centered-loader'
-import LRU from 'lru-cache'
+import { get, list, useRecord } from 'common/offline-data-service/index'
+import { raiseAsync } from 'common/events'
+import { useCachedAsync } from 'common/use-async'
+import { initialize } from 'common/offline-data-service/behaviour-cache'
+import { uiReady } from 'common/ui-ready'
+import { generate } from 'shortid'
+import { useLocalEvent } from 'common/use-event'
 
-let incrementalId = 1
+const loadingIndicator = { _loading: true }
 
-export function importComponent(component) {
-    let loaded = false
-    let current = () => {}
-    return function Component(props) {
-        const Component = useAsync(async () => {
-            let result = current
-            if (!loaded) {
-                result = await component()
+export const StreamingContext = React.createContext(generate())
+
+function _useStreamedResults(database, table, where = {}, sort) {
+    const context = useContext(StreamingContext)
+    const cacheKey = `${database}:${table}:${context}`
+    const lastUpdate = useRef(Date.now())
+
+    const refresh = useRefresh().debounce(250)
+    const key = `${database}:${table}:${JSON.stringify(where)}-${lastUpdate.current}`
+
+    let [state, update] = useState(configure)
+    state.refresh = refresh
+    useLocalEvent('data.updated.*', refreshWhenThisTable)
+    if (!database || !table) {
+        return Object.assign(() => [], { state })
+    }
+    if (state.key !== key) {
+        state = configure(state)
+        update(state)
+    }
+    state.retrieve.state = state
+    return state.retrieve
+
+    function refreshWhenThisTable(id) {
+        if (!id) return
+        const [, source] = id.split(':')
+        const [updatedDb, updatedTb] = source.split('/')
+        if (updatedDb === database &amp;&amp; updatedTb === table) {
+            lastUpdate.current = Date.now()
+            refresh()
+        }
+    }
+
+    function configure(previous) {
+        const defaultCache = previous?.cache ?? new Map()
+        const cache = new Map()
+        const retrieving = new Set()
+        const state = {
+            key,
+            database,
+            table,
+            queried: false,
+            where,
+            cache,
+            retrieving,
+            blank: true,
+            maxStack: [],
+            maxRetrieving: Infinity,
+            maxRow: Infinity,
+            retrieve,
+            defaultCache,
+            cacheKey,
+        }
+        return state
+
+        function retrieve(first, last) {
+            const output = []
+            const retrieve = []
+            for (let r = first; r &lt; last; r++) {
+                if (!(r >= state.maxRow || r &lt; 0)) {
+                    if (r > state.maxRetrieving) {
+                        state.getMore = true
+                    }
+                    if (cache.has(r)) {
+                        output.push(cache.get(r))
+                    } else {
+                        if (!retrieving.has(r)) {
+                            retrieve.push(r)
+                            retrieving.add(r)
+                        }
+                        output.push(defaultCache.get(r) || loadingIndicator)
+                    }
+                }
             }
-            loaded = true
-            return result
-        }, current)
-        const Draw = useCallback(Component, [Component ? 1 : 0])
-        return &lt;Draw {...props} />
+            if (retrieve.length) {
+                let start = retrieve[0]
+                let end = retrieve[retrieve.length - 1]
+                let take = end - start + 1
+                queryFor(start, end, take).catch(console.error)
+            }
+            return output.compact()
+        }
+
+        async function queryFor(start, end) {
+            await uiReady()
+            state.maxStack.push(state.maxRetrieving || state.maxRow)
+            state.maxRetrieving = Math.min(end, state.maxRetrieving)
+            sort = Array.isArray(sort) &amp;&amp; sort.length === 0 ? undefined : sort || undefined
+            const take = end - start + 1
+            let results = (
+                await list(state.database, state.table, state.where, {
+                    skip: start,
+                    take,
+                    orderStmt: sort,
+                })
+            ).map('data')
+            state.queried = true
+            let rows = results.length
+            await raiseAsync('update-records', results)
+            results = results.filter((f) => !f.$invalid &amp;&amp; !f._deleted)
+            results.processed = true
+            state.maxRetrieving = state.maxStack.pop()
+            let r
+            for (r = 0; r &lt; results.length; r++) {
+                const result = results[r]
+                cache.set(start + r, result)
+                defaultCache.set(start + r, result)
+            }
+            if (rows &lt; take - 4) {
+                state.maxRow = Math.min(state.maxRow, start + results.length)
+            }
+            if (state.getMore) {
+                let first = Math.min(end + 1, state.maxRow)
+                let last = Math.min(end + 1 + (end - start + 1), state.maxRow)
+                state.getMore = false
+                if (first !== last) {
+                    queryFor(first, last, last - first + 1).catch(console.error)
+                }
+            }
+            state.refresh()
+        }
     }
 }
 
-const cache = new LRU(150)
+/**
+ * @function RetrieveFunction
+ * @global
+ * @description A function that retrieves records. This is
+ * returned from the streaming functions and reacts to the
+ * current state of retrieval.  Initially it will retrieve
+ * dummy records, of the number requested, later it will
+ * be populated with real values and will truncate if there
+ * aren't enough.
+ * @param {number} first - the first record to retrieve
+ * @param {number} count - the number of records to retrieve
+ * @returns {Array&lt;Document>} an array of records
+ */
 
-export function createKey(...ids) {
-    return ids
-        .flatten()
-        .map((i) => (Object.isObject(i) ? i?._id || i?.id || JSON.stringify(i) || 'N' : `${i || '-'}`))
-        .join(':')
-}
-
-export function useAsyncCached(promiseProducingFunction, defaultValue = null, cacheIds = [], refreshIds = []) {
-    const cacheId = createKey(cacheIds)
-    const refreshId = createKey(refreshIds, cacheIds)
-
-    return useAsync(
-        async () => {
-            const result = (await promiseProducingFunction()) || cache.get(cacheId)
-            cache.set(cacheId, result)
-            return result
-        },
-        cacheIds.length ? cache.get(cacheId) || defaultValue : defaultValue,
-        refreshId
-    )
+/**
+ * A hook that given a type definition or ID, creates a function that streams
+ * records from that database type
+ * @param {string|DocumentDefinition} type - the type to get records from
+ * @param {WhereDefinition} [where={}] - the query to apply
+ * @param {Array&lt;string>} [sort] - the sort fields for the records
+ * @param {function(Document):boolean} [filter] - an additional filter applied
+ * to retrieved records
+ * @returns {RetrieveFunction} the function to get the records
+ */
+export function useStreamedResultsForType(type, where, sort, filter) {
+    const typeDef = useRecord(type, true)
+    return useStreamedResults(typeDef?.database, typeDef?.table, where, sort, filter)
 }
 
 /**
- * A hook that allows you to create a function
- * that will be nulled when the current component
- * unmounts.  Calling the function after an unmount
- * will be a noop.
- * @param {function} fn - the function to be wrapped
- * @returns {function} a version of the function that is a
- * noop after the component unmounts
+ * A hook that given a database and table, creates a function that streams
+ * records
+ * @param {string} database - the database for the table
+ * @param {string} table - the table to stream records from
+ * @param {WhereDefinition} [where={}] - the query to apply
+ * @param {Array&lt;string>} [sort] - the sort fields for the records
+ * @param {function(Document):boolean} [filter] - an additional filter applied
+ * to retrieved records
+ * @returns {RetrieveFunction} the function to get the records
  */
-export function useCurrent(fn) {
-    let currentSetV = useRef()
-    currentSetV.current = fn
-    useLayoutEffect(() => {
-        return () => (currentSetV.current = null)
-    }, [])
-    return function (...params) {
-        currentSetV.current &amp;&amp; currentSetV.current(...params)
+export function useStreamedResults(database, table, where = {}, sort, filter) {
+    const retrieve = _useStreamedResults(database, table, where, sort)
+    return filter ? filterRetrieve : retrieve
+
+    function filterRetrieve(first, last) {
+        if (!retrieve.state.cache) return []
+        const values = Array.from(retrieve.state.cache.values())
+        if (!values.length) {
+            retrieve(first, last)
+            if (!retrieve.state.queried) {
+                return Array.from({ length: last - first + 1 }, (_, row) =>
+                    retrieve.state.defaultCache.get(first + row)
+                ).compact(true)
+            }
+            return []
+        }
+        let scan = values.filter(filter).slice(first, last)
+        if (scan.length !== first - last) {
+            retrieve(last, (last - first - scan.length) * 2 + last)
+        }
+        return scan
     }
 }
 
 /**
- * A hook that does the equivalent of React.useState, however
- * if the component unmounts, the set function of the
- * state will be a noop.  Helps with asyncs that later try to
- * update a component that has been unmounted.
- * @param {...*} [params] - parameters passed to useState
- * @returns {Array} - the same as React useState
+ * Gets records for a type definition or ID
+ * @param {string|DocumentDefinition} type - the type to get records from
+ * @param {WhereDefinition} [where={}] - the query to apply
+ * @param {Array&lt;string>} [sort] - the sort fields for the records
+ * @param {ListOptions} [options={}] - options for the retrieval
+ * @returns {Array&lt;Document>} retrieves the documents or [] until available
  */
-export function useCurrentState(...params) {
-    const [value, setValue] = useState(...params)
-    let currentSetV = useRef()
-    currentSetV.current = setValue
-    useLayoutEffect(() => {
-        return () => (currentSetV.current = null)
-    }, [])
-    return [
-        value,
-        function (...params) {
-            currentSetV.current &amp;&amp; currentSetV.current(...params)
-        },
-    ]
-}
-
-const testCache = new LRU(2000)
-let nextRefreshId = 0
-
-/**
- * A hook to use async data, with additional caching.  This
- * caching is designed to reduce flicker in the UI.  The
- * specific async is given a name and the results will
- * be cached globally and be supplied as the initial result
- * when it is used again.  Data may then be refreshed depending
- * on a separate run id.
- *
- * useCachedAsync needs handling with care so that you don't
- * accidentally use cached data from a different purpose. When
- * used appropriately it makes the UI much more responsive.
- *
- * @param {string} purpose - this should be a unique string to cache
- * data of a particular type
- * @param {function(...*) : Promise} promiseProducingFunction - the function
- * that will retrieve the async data
- * @param {*} [defaultValue] - a value to use when there is no cached data
- * @param {string} [refId=standard] - an id that indicates the cache key to use, this should
- * is used in conjunction with `purpose` to create a cache key
- * @param {string} [runId] - an id that indicates that even if the keys match
- * that the function should be run again and the data updated when
- * it is available
- * @returns {*} the results of the function, the cached value or the default value
- * as appropriate
- * @example
- export function useRecordsForType(type, where, sort, options) {
+export function useRecordsForType(type, where, sort, options) {
     return useCachedAsync(
-        'getRecords', // purpose of the async
-        async () => { // function to get the records
+        'getRecords',
+        async () => {
             if (!type) return []
             const typeDef = Object.isObject(type) ? type : await get(type)
             await initialize(typeDef)
             await raiseAsync('update-records', [typeDef])
             return getRecords(typeDef?.database, typeDef?.table, {}, sort, options)
         },
-        [], // default value if no cache
-        JSON.stringify({ type, where, sort, options }) // unique cache key when added to purpose
+        [],
+        JSON.stringify({ type, where, sort, options })
     )
 }
- */
-export function useCachedAsync(purpose, promiseProducingFunction, defaultValue = null, refId = 'standard', runId) {
-    const [instanceId] = useState(() => nextRefreshId++)
-    runId = runId || `_${instanceId}_`
-    const key = `${JSON.stringify(refId)}:${purpose}`
-    let [value, processed] = useAsync(
-        async function () {
-            return [await promiseProducingFunction(), true]
-        },
-        [testCache.get(key) || defaultValue, false],
-        JSON.stringify({
-            refId,
-            runId,
-        })
-    )
-    if (!processed) {
-        return testCache.get(key) || defaultValue
-    } else {
-        testCache.set(key, value)
-        return value
-    }
-}
-
-export const CancelAsync = Symbol('CancelAsync')
-
 
 /**
- * A hook to retrieve data from an async function.
- * @param {function(...*):Promise} promiseProducingFunction - the async function to run
- * @param {*} [defaultValue=null] - a default value to use until the function returns
- * @param {string} [refId=standard] - a value that indicates the resource and if it doesn't match, causes the function to run again
- * @returns {*} the result of the function or the default value as appropriate
- * @example
- const fields = useAsync(
- async () => {
-            const type = await getType(target.actionType)
-            await initialize(type)
-            return type.sendMessage('fields', [])
-        },
- [],
- target.actionType
- )
-
+ * A hook to get records for a database and table
+ * @param {string} database - the database for the table
+ * @param {string} table - the table to stream records from
+ * @param {WhereDefinition} [where={}] - the query to apply
+ * @param {Array&lt;string>} [sort] - the sort fields for the records
+ * @param {ListOptions} [options={}] - options for the retrieval
+ * @returns {Array&lt;Document>} retrieves the documents or [] until available
  */
-function useAsync(promiseProducingFunction, defaultValue = null, refId = 'standard') {
-    let [, setValue] = useState()
-    let currentSetV = useRef()
-    currentSetV.current = setValue
-    useLayoutEffect(() => {
-        return () => (currentSetV.current = null)
-    }, [])
-    // noinspection JSPrimitiveTypeWrapperUsage
-    let useId = isObject(refId) ? (refId.__id = refId.__id || generate()) : refId
-    let execute = useRef({ value: defaultValue })
-
-    if (useId !== execute.current.id) {
-        execute.current.id = useId
-        execute.current.value = defaultValue
-        let tempValue = promiseProducingFunction
-        promiseProducingFunction = !isFunction(promiseProducingFunction)
-            ? async () => tempValue
-            : promiseProducingFunction
-        Promise.resolve(promiseProducingFunction()).then(
-            (v) => {
-                if (v === CancelAsync) return
-                execute.current.value = v || defaultValue
-                batch(() => currentSetV.current &amp;&amp; currentSetV.current(incrementalId++))
-            },
-            () => {}
-        )
-    }
-    return execute.current.value
+export function useRecords(database, table, where, sort, options) {
+    return useCachedAsync(
+        'getRecords',
+        async () => {
+            return getRecords(database, table, where, sort, options)
+        },
+        [],
+        JSON.stringify({ database, table, where, sort, options })
+    )
 }
 
-function isAsync(fn, name) {
-    if (typeof fn !== 'function') return false
-    if (fn.constructor.name === 'AsyncFunction') return true
-    if (fn._isAsync) return true
-    if (fn._isAsync === false) return false
-    return !!(name &amp;&amp; !name.startsWith('on') &amp;&amp; fn.length === 0)
-}
-
-function returnNull() {
-    return null
-}
-
-export function Async({ children, component, load, error, fallback, sequence = Date.now(), ...props }) {
-    let exception, setException
-    let refresh
-    const results = useRef(new Array(load.length))
-    const isLoaded = useRef(true)
-    useEffect(() => {
-        return () => {
-            isLoaded.current = false
-        }
-    }, [])
-    const rendered = useRef()
-    children =
-        children ||
-        component ||
-        function () {
-            return &lt;span>Nothing to do&lt;/span>
-        }
-
-    function Content({ results }) {
-        return children(results)
-    }
-
-    function Embedded() {
-        const Fallback = fallback === null ? returnNull : fallback || (() => &lt;CenteredLoader />)
-        const Error = error || returnNull
-        refresh = useRefresh()
-        ;[exception, setException] = useState(null)
-        load = Array.isArray(load) ? load : [load]
-        if (exception) return &lt;Error error={exception} {...props} />
-        if (Fallback &amp;&amp; !results.current.wasSet) return &lt;Fallback {...props} />
-        return &lt;Content results={results.current} />
-    }
-
-    useEffect(() => {
-        ;(async function processAsync() {
-            try {
-                if (rendered.current !== sequence) {
-                    results.current = await Promise.all(load.map((l) => Promise.resolve(l(props))))
-                }
-                results.current.wasSet = true
-                isLoaded.current &amp;&amp; refresh()
-            } catch (e) {
-                setException(e)
-                console.error('Error in &lt;Async>: ' + e?.toString?.())
-                //eslint-disable-next-line no-console
-                console.log(component?.name, component, children)
-                //eslint-disable-next-line no-console
-                console.trace('error in async')
-            }
-        })()
-    })
-    return &lt;Embedded />
-}
-
-export function withAsyncProps(Component, Fallback) {
-    let id = 1
-    return (props) => {
-        const results = useRef({})
-        const total = useRef(0)
-
-        function Embedded() {
-            const ongoingProps = { ...props }
-            let [, refresh] = useState(0)
-            const done = useRef(false)
-            const toRemove = useRef([])
-            useEffect(() => {
-                return () => {
-                    refresh = null
-                }
-            }, [])
-            if (done.current === false) {
-                done.current = generate()
-                let async = Object.entries(props).filter(
-                    ([name, value]) => name !== 'refresh' &amp;&amp; typeof value === 'function' &amp;&amp; isAsync(value, name)
-                )
-                total.current = total.current || async.length
-                toRemove.current = async.map(([name]) => name)
-                for (const [name, value] of async) {
-                    let promise = value()
-                    if (!promise) {
-                        console.error('No result', name, Component)
-                    } else if (!promise.then) {
-                        console.error('Function is not thenable')
-                    } else {
-                        promise.then(
-                            (result) => {
-                                total.current = total.current - 1
-                                results.current[name] = result
-                                refresh &amp;&amp; refresh(id++)
-                            },
-                            (err) => {
-                                total.current = total.current - 1
-                                results.current[name + 'Error'] = err
-                                refresh &amp;&amp; refresh(id++)
-                            }
-                        )
-                    }
-                }
-            }
-            for (const remove of toRemove.current) {
-                delete ongoingProps[remove]
-            }
-            if (Fallback !== undefined &amp;&amp; total.current > 0) {
-                if (!Fallback) return null
-                return &lt;Fallback key={done.current} {...ongoingProps} {...results.current} />
-            } else {
-                return &lt;Component key={done.current} {...ongoingProps} {...results.current} />
-            }
-        }
-
-        return &lt;Embedded />
-    }
-}
-
-export function asyncProp(fn) {
-    if (fn) {
-        fn._isAsync = true
-        return fn
-    } else {
-        return fn
-    }
-}
-
-export function standard(fn) {
-    fn._isAsync = false
-    return fn
-}
-
-export { useAsync }
-export default useAsync
-
-Async.propTypes = {
-    children: PropTypes.any,
-    component: PropTypes.any,
-    error: PropTypes.any,
-    fallback: PropTypes.any,
-    load: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.func), PropTypes.func]).isRequired,
-    sequence: PropTypes.any,
+/**
+ * Gets records for a database and table
+ * @param {string} database - the database for the table
+ * @param {string} table - the table to stream records from
+ * @param {WhereDefinition} [where={}] - the query to apply
+ * @param {Array&lt;string>} [sort] - the sort fields for the records
+ * @param {ListOptions} [options={}] - options for the retrieval
+ * @returns {Promise&lt;Array&lt;Document>>} a promise for the documents
+ */
+export async function getRecords(database, table, where, sort, options = {}) {
+    const canSort = !Array.isArray(sort) || sort.length
+    await uiReady()
+    const results = (await list(database, table, where, { orderStmt: canSort ? sort : undefined, ...options })).map(
+        'data'
+    )
+    results.processed = true
+    await raiseAsync('update-records', results)
+    return results
 }
 </code></pre>
         </article>

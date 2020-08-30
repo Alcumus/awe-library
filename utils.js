@@ -1,5 +1,5 @@
 /**
- * @module
+ * @module dynamic/awe-library/utils
  */
 import events from 'alcumus-local-events'
 import { resolveValue, resolveValueAsFunction } from 'common/resolve-value'
@@ -73,6 +73,7 @@ export function legalFieldNameCharacters(v = '') {
 
 /**
  * @interface BehaviourDefinition
+ * @global
  * @description the definition of a behaviour for the UI
  * @param {string} behaviour - the unique name of the behaviour
  * @param {string} caption - a caption to use when displaying the behaviour
@@ -350,6 +351,9 @@ export function questionType(typesOrFunction) {
 
 /**
  * @interface TrackComponentDefinition
+ * @global
+ * @description a definition for a component that can appear
+ * on the tracks of a Chase behaviour
  * @property {React.Component} icon - the icon to use
  * @property {string} label - the label for the track component in lists
  * @property {string} description - a description of the purpose of the track component
@@ -434,12 +438,14 @@ export function questionCaption(question, type) {
 
 /**
  * @interface HintList
+ * @global
  * @description A list of hints for a target
  * @property {Array<string>} hints - a list of hints currently associated
  */
 
 /**
  * @callback HintPredicate
+ * @global
  * @description A call back to decide whether hints should be added to a list
  * @param {FieldDefinition} target - the item for which hints are being discovered
  * @param {HintList} info - the list of existing hints
@@ -448,6 +454,7 @@ export function questionCaption(question, type) {
 
 /**
  * @callback HintFunction
+ * @global
  * @description A function that returns the hints to associate with a question/field
  * @returns {Array<string>} an array of hints
  */
@@ -512,11 +519,13 @@ export function logErrorOnLongCall(fn, delay = 3000) {
 
 /**
  * @typedef {Object.string<string, FieldDefinition>} DeepFieldDictionary
+ * @global
  * @description a lookup of a field definition from it's property path syntax
  */
 
 /**
  * @interface DeepFieldDefinition
+ * @global
  * @description An object which describes the deep field data for a FieldDefinition
  * @property {Array<string>} path - the path to the current target, this is like property syntax but split into an array on '.'
  * @property {FieldDefinition} target - the current target of the deep field request
@@ -580,6 +589,7 @@ export function deepFields(predicate, deepFieldFn) {
 
 /**
  * @interface PropertySheetComponents
+ * @global
  * @description A structure that contains info about the components being added
  * @property {string} type - the string type of the current type of selection
  * @property {object} selected - the currently selected item
@@ -588,6 +598,7 @@ export function deepFields(predicate, deepFieldFn) {
 
 /**
  * @callback TabPredicate
+ * @global
  * @description A predicate that returns whether a tab should be added to the properties area
  * @param {string} type - the string type of the current selection, this is an arbitrary value that the
  * thing doing the selection sets.  It's 'question' for questions and 'group' for groups
@@ -601,9 +612,43 @@ export function deepFields(predicate, deepFieldFn) {
  * target of a selection.  The ThingBuilder UI can select
  * a wide range of things, and this allows the rendering of a
  * property page for any of them.
+ *
+ * There are a number of different things that you might want
+ * to add property editors for.  The most obvious is "question"
+ * but here are some others.
+ *
+ * <table>
+ *     <thead>
+ *         <tr>
+ *             <th>Type</th>
+ *             <th>Description</th>
+ *         </tr>
+ *     </thead>
+ *     <tbody>
+ *         <tr>
+ *             <td>formAction</td>
+ *             <td>An action displayed on the Activity editor screen</td>
+ *         </tr>
+ *         <tr>
+ *             <td>section</td>
+ *             <td>The group of questions on a form</td>
+ *         </tr>
+ *         <tr>
+ *             <td>published</td>
+ *             <td>A published version of a document</td>
+ *         </tr>
+ *         <tr>
+ *             <td>question</td>
+ *             <td>A question on a form</td>
+ *         </tr>
+
+ *     </tbody>
+ * </table>
+ *
+ *
  * @param {TabPredicate} predicate - a predicate to identify the criteria by which the subsequent components should be added
  * @param {...React.Component} Components - the components that should be used as property pages when the predicate succeeds
- * @see tab
+ * @see {@link module:dynamic/awe-library/utils.tab}
  */
 export function tabs(predicate, ...Components) {
     predicate = ensureArray(predicate)
@@ -636,7 +681,7 @@ export function tabs(predicate, ...Components) {
  * @param {TabPredicate} predicate - the predicate function to use
  * @param {React.Component} Component - the component to use if the predicate succeeds
  * @returns {function(*=): void} A function to add the tab when appropriate
- * @see tabs
+ * @see {@link module:dynamic/awe-library/utils.tabs}
  */
 export function tab(predicate, Component) {
     return (info) => {
@@ -680,6 +725,7 @@ export function whenTrackComponentIs(...trackType) {
 
 /**
  * @callback QuestionPredicateFunction
+ * @global
  * @param {QuestionTypeDef} type - the typedef of the question being tested
  * @param {FieldDefinition} instance - the current instance being tested
  * @returns {boolean} - true if the predicate is satisfied
@@ -826,6 +872,7 @@ export function returnValue(v) {
 
 /**
  * @interface TableDefinition
+ * @global
  * @description Describes a table in the database
  * @property {string} value - the database/table entry
  * @property {string} label - a human readable label for the entry

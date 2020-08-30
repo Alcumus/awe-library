@@ -1,5 +1,6 @@
 {
   "plugins": [
+    "plugins/markdown"
   ],
   "source": {
     "include": [
@@ -12,7 +13,9 @@
       "question-typedef.js",
       "use-types.js",
       "utils.js",
-      "../../common/use-async/index.js"
+      "../../common/use-async/index.js",
+      "../../common/offline-data-service/index.js",
+      "../../common/offline-data-service/records.js"
     ]
   },
   "opts": {
@@ -23,6 +26,7 @@
     "readme": "./README.md"
   },
   "docdash": {
+    "search": true,
     "typedefs": true,
     "sort": true,
     "meta": {

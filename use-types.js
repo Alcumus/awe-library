@@ -1,5 +1,5 @@
 /**
- * @module
+ * @module dynamic/awe-library/use-types
  */
 
 import { useAsync, useCachedAsync } from 'common/use-async'

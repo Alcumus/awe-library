@@ -1,5 +1,5 @@
 /**
- * @module
+ * @module dynamic/awe-library/generic-list-entry
  */
 import { ListItemAvatar } from '@material-ui/core'
 import Avatar from 'common/Avatar'

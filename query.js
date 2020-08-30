@@ -1,5 +1,5 @@
 /**
- * @module
+ * @module dynamic/awe-library/query
  */
 
 import PropTypes from 'prop-types'

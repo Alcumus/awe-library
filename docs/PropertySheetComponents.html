@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>common/use-async/index.js - awe-library</title>
+    <title>PropertySheetComponents - awe-library</title>
     
     
     
@@ -43,388 +43,203 @@
 
 <div id="main">
     
-    <h1 class="page-title">common/use-async/index.js</h1>
+    <h1 class="page-title">PropertySheetComponents</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * @module common/use-async
- */
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+        <h2>
+        PropertySheetComponents
+        </h2>
+        
+    
+</header>
 
-import PropTypes from 'prop-types'
+<article>
+    
+        <div class="container-overview">
+        
+            
 
-import isFunction from 'lodash/isFunction'
-import isObject from 'lodash/isObject'
-import { generate } from 'shortid'
+<dl class="details">
 
-import { batch } from 'common/batched'
-import { useRefresh } from 'common/useRefresh'
-import { CenteredLoader } from 'common/utils/centered-loader'
-import LRU from 'lru-cache'
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_utils.js.html">plugins-dynamic/awe-library/utils.js</a>, <a href="plugins-dynamic_awe-library_utils.js.html#line590">line 590</a>
+    </li></ul></dd>
+    
 
-let incrementalId = 1
+    
 
-export function importComponent(component) {
-    let loaded = false
-    let current = () => {}
-    return function Component(props) {
-        const Component = useAsync(async () => {
-            let result = current
-            if (!loaded) {
-                result = await component()
-            }
-            loaded = true
-            return result
-        }, current)
-        const Draw = useCallback(Component, [Component ? 1 : 0])
-        return &lt;Draw {...props} />
-    }
-}
+    
 
-const cache = new LRU(150)
+    
 
-export function createKey(...ids) {
-    return ids
-        .flatten()
-        .map((i) => (Object.isObject(i) ? i?._id || i?.id || JSON.stringify(i) || 'N' : `${i || '-'}`))
-        .join(':')
-}
+    
 
-export function useAsyncCached(promiseProducingFunction, defaultValue = null, cacheIds = [], refreshIds = []) {
-    const cacheId = createKey(cacheIds)
-    const refreshId = createKey(refreshIds, cacheIds)
+    
 
-    return useAsync(
-        async () => {
-            const result = (await promiseProducingFunction()) || cache.get(cacheId)
-            cache.set(cacheId, result)
-            return result
-        },
-        cacheIds.length ? cache.get(cacheId) || defaultValue : defaultValue,
-        refreshId
-    )
-}
+    
 
-/**
- * A hook that allows you to create a function
- * that will be nulled when the current component
- * unmounts.  Calling the function after an unmount
- * will be a noop.
- * @param {function} fn - the function to be wrapped
- * @returns {function} a version of the function that is a
- * noop after the component unmounts
- */
-export function useCurrent(fn) {
-    let currentSetV = useRef()
-    currentSetV.current = fn
-    useLayoutEffect(() => {
-        return () => (currentSetV.current = null)
-    }, [])
-    return function (...params) {
-        currentSetV.current &amp;&amp; currentSetV.current(...params)
-    }
-}
+    
 
-/**
- * A hook that does the equivalent of React.useState, however
- * if the component unmounts, the set function of the
- * state will be a noop.  Helps with asyncs that later try to
- * update a component that has been unmounted.
- * @param {...*} [params] - parameters passed to useState
- * @returns {Array} - the same as React useState
- */
-export function useCurrentState(...params) {
-    const [value, setValue] = useState(...params)
-    let currentSetV = useRef()
-    currentSetV.current = setValue
-    useLayoutEffect(() => {
-        return () => (currentSetV.current = null)
-    }, [])
-    return [
-        value,
-        function (...params) {
-            currentSetV.current &amp;&amp; currentSetV.current(...params)
-        },
-    ]
-}
+    
 
-const testCache = new LRU(2000)
-let nextRefreshId = 0
+    
 
-/**
- * A hook to use async data, with additional caching.  This
- * caching is designed to reduce flicker in the UI.  The
- * specific async is given a name and the results will
- * be cached globally and be supplied as the initial result
- * when it is used again.  Data may then be refreshed depending
- * on a separate run id.
- *
- * useCachedAsync needs handling with care so that you don't
- * accidentally use cached data from a different purpose. When
- * used appropriately it makes the UI much more responsive.
- *
- * @param {string} purpose - this should be a unique string to cache
- * data of a particular type
- * @param {function(...*) : Promise} promiseProducingFunction - the function
- * that will retrieve the async data
- * @param {*} [defaultValue] - a value to use when there is no cached data
- * @param {string} [refId=standard] - an id that indicates the cache key to use, this should
- * is used in conjunction with `purpose` to create a cache key
- * @param {string} [runId] - an id that indicates that even if the keys match
- * that the function should be run again and the data updated when
- * it is available
- * @returns {*} the results of the function, the cached value or the default value
- * as appropriate
- * @example
- export function useRecordsForType(type, where, sort, options) {
-    return useCachedAsync(
-        'getRecords', // purpose of the async
-        async () => { // function to get the records
-            if (!type) return []
-            const typeDef = Object.isObject(type) ? type : await get(type)
-            await initialize(typeDef)
-            await raiseAsync('update-records', [typeDef])
-            return getRecords(typeDef?.database, typeDef?.table, {}, sort, options)
-        },
-        [], // default value if no cache
-        JSON.stringify({ type, where, sort, options }) // unique cache key when added to purpose
-    )
-}
- */
-export function useCachedAsync(purpose, promiseProducingFunction, defaultValue = null, refId = 'standard', runId) {
-    const [instanceId] = useState(() => nextRefreshId++)
-    runId = runId || `_${instanceId}_`
-    const key = `${JSON.stringify(refId)}:${purpose}`
-    let [value, processed] = useAsync(
-        async function () {
-            return [await promiseProducingFunction(), true]
-        },
-        [testCache.get(key) || defaultValue, false],
-        JSON.stringify({
-            refId,
-            runId,
-        })
-    )
-    if (!processed) {
-        return testCache.get(key) || defaultValue
-    } else {
-        testCache.set(key, value)
-        return value
-    }
-}
+    
 
-export const CancelAsync = Symbol('CancelAsync')
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
 
 
-/**
- * A hook to retrieve data from an async function.
- * @param {function(...*):Promise} promiseProducingFunction - the async function to run
- * @param {*} [defaultValue=null] - a default value to use until the function returns
- * @param {string} [refId=standard] - a value that indicates the resource and if it doesn't match, causes the function to run again
- * @returns {*} the result of the function or the default value as appropriate
- * @example
- const fields = useAsync(
- async () => {
-            const type = await getType(target.actionType)
-            await initialize(type)
-            return type.sendMessage('fields', [])
-        },
- [],
- target.actionType
- )
 
- */
-function useAsync(promiseProducingFunction, defaultValue = null, refId = 'standard') {
-    let [, setValue] = useState()
-    let currentSetV = useRef()
-    currentSetV.current = setValue
-    useLayoutEffect(() => {
-        return () => (currentSetV.current = null)
-    }, [])
-    // noinspection JSPrimitiveTypeWrapperUsage
-    let useId = isObject(refId) ? (refId.__id = refId.__id || generate()) : refId
-    let execute = useRef({ value: defaultValue })
+    <h5 class="subsection-title">Properties:</h5>
 
-    if (useId !== execute.current.id) {
-        execute.current.id = useId
-        execute.current.value = defaultValue
-        let tempValue = promiseProducingFunction
-        promiseProducingFunction = !isFunction(promiseProducingFunction)
-            ? async () => tempValue
-            : promiseProducingFunction
-        Promise.resolve(promiseProducingFunction()).then(
-            (v) => {
-                if (v === CancelAsync) return
-                execute.current.value = v || defaultValue
-                batch(() => currentSetV.current &amp;&amp; currentSetV.current(incrementalId++))
-            },
-            () => {}
-        )
-    }
-    return execute.current.value
-}
+    
 
-function isAsync(fn, name) {
-    if (typeof fn !== 'function') return false
-    if (fn.constructor.name === 'AsyncFunction') return true
-    if (fn._isAsync) return true
-    if (fn._isAsync === false) return false
-    return !!(name &amp;&amp; !name.startsWith('on') &amp;&amp; fn.length === 0)
-}
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
-function returnNull() {
-    return null
-}
+        <th>Type</th>
 
-export function Async({ children, component, load, error, fallback, sequence = Date.now(), ...props }) {
-    let exception, setException
-    let refresh
-    const results = useRef(new Array(load.length))
-    const isLoaded = useRef(true)
-    useEffect(() => {
-        return () => {
-            isLoaded.current = false
-        }
-    }, [])
-    const rendered = useRef()
-    children =
-        children ||
-        component ||
-        function () {
-            return &lt;span>Nothing to do&lt;/span>
-        }
+        
 
-    function Content({ results }) {
-        return children(results)
-    }
+        
 
-    function Embedded() {
-        const Fallback = fallback === null ? returnNull : fallback || (() => &lt;CenteredLoader />)
-        const Error = error || returnNull
-        refresh = useRefresh()
-        ;[exception, setException] = useState(null)
-        load = Array.isArray(load) ? load : [load]
-        if (exception) return &lt;Error error={exception} {...props} />
-        if (Fallback &amp;&amp; !results.current.wasSet) return &lt;Fallback {...props} />
-        return &lt;Content results={results.current} />
-    }
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-    useEffect(() => {
-        ;(async function processAsync() {
-            try {
-                if (rendered.current !== sequence) {
-                    results.current = await Promise.all(load.map((l) => Promise.resolve(l(props))))
-                }
-                results.current.wasSet = true
-                isLoaded.current &amp;&amp; refresh()
-            } catch (e) {
-                setException(e)
-                console.error('Error in &lt;Async>: ' + e?.toString?.())
-                //eslint-disable-next-line no-console
-                console.log(component?.name, component, children)
-                //eslint-disable-next-line no-console
-                console.trace('error in async')
-            }
-        })()
-    })
-    return &lt;Embedded />
-}
+    <tbody>
+    
 
-export function withAsyncProps(Component, Fallback) {
-    let id = 1
-    return (props) => {
-        const results = useRef({})
-        const total = useRef(0)
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
 
-        function Embedded() {
-            const ongoingProps = { ...props }
-            let [, refresh] = useState(0)
-            const done = useRef(false)
-            const toRemove = useRef([])
-            useEffect(() => {
-                return () => {
-                    refresh = null
-                }
-            }, [])
-            if (done.current === false) {
-                done.current = generate()
-                let async = Object.entries(props).filter(
-                    ([name, value]) => name !== 'refresh' &amp;&amp; typeof value === 'function' &amp;&amp; isAsync(value, name)
-                )
-                total.current = total.current || async.length
-                toRemove.current = async.map(([name]) => name)
-                for (const [name, value] of async) {
-                    let promise = value()
-                    if (!promise) {
-                        console.error('No result', name, Component)
-                    } else if (!promise.then) {
-                        console.error('Function is not thenable')
-                    } else {
-                        promise.then(
-                            (result) => {
-                                total.current = total.current - 1
-                                results.current[name] = result
-                                refresh &amp;&amp; refresh(id++)
-                            },
-                            (err) => {
-                                total.current = total.current - 1
-                                results.current[name + 'Error'] = err
-                                refresh &amp;&amp; refresh(id++)
-                            }
-                        )
-                    }
-                }
-            }
-            for (const remove of toRemove.current) {
-                delete ongoingProps[remove]
-            }
-            if (Fallback !== undefined &amp;&amp; total.current > 0) {
-                if (!Fallback) return null
-                return &lt;Fallback key={done.current} {...ongoingProps} {...results.current} />
-            } else {
-                return &lt;Component key={done.current} {...ongoingProps} {...results.current} />
-            }
-        }
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
 
-        return &lt;Embedded />
-    }
-}
 
-export function asyncProp(fn) {
-    if (fn) {
-        fn._isAsync = true
-        return fn
-    } else {
-        return fn
-    }
-}
+            
+            </td>
 
-export function standard(fn) {
-    fn._isAsync = false
-    return fn
-}
+            
 
-export { useAsync }
-export default useAsync
+            
 
-Async.propTypes = {
-    children: PropTypes.any,
-    component: PropTypes.any,
-    error: PropTypes.any,
-    fallback: PropTypes.any,
-    load: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.func), PropTypes.func]).isRequired,
-    sequence: PropTypes.any,
-}
-</code></pre>
-        </article>
-    </section>
+            <td class="description last"><p>the string type of the current type of selection</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>selected</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the currently selected item</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Components</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;React.Component></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the components to render as property editors</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+            
+                <div class="description usertext"><p>A structure that contains info about the components being added</p></div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

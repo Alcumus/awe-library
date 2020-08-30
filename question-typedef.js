@@ -1,5 +1,5 @@
 /**
- * @module
+ * @module dynamic/awe-library/question-type-def
  */
 
 import memoize from 'memoizee'
@@ -23,6 +23,8 @@ export const lookupTypes = memoize(
 
 /**
  * @interface QuestionTypeDef
+ * @global
+ * @description
  * A type definition for a question, includes whether this item
  * is stored, the icon etc.
  *

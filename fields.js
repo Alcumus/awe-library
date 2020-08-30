@@ -1,5 +1,5 @@
 /**
- * @module
+ * @module dynamic/awe-library/fields
  */
 import { get } from 'common/offline-data-service'
 import { initialize } from 'alcumus-behaviours'
@@ -9,6 +9,7 @@ import { getTypeAndInitialise } from 'dynamic/awe-library/use-types'
 
 /**
  * @interface FieldDefinition
+ * @global
  * @description A definition of a field/question.  An object implementing this
  * interface may store lots of other information based on its type
  *
@@ -33,6 +34,7 @@ import { getTypeAndInitialise } from 'dynamic/awe-library/use-types'
 
 /**
  * @interface DocumentDefinition
+ * @global
  * @description The definition of a document or application type
  * @property {Behaviours} behaviours - the behaviours of this document
  * @property {string} name - the name of this definition

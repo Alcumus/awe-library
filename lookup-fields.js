@@ -1,5 +1,5 @@
 /**
- * @module
+ * @module dynamic/awe-library/lookup-fields
  */
 
 import memoize from 'memoizee'
