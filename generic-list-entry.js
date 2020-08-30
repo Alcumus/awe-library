@@ -1,3 +1,6 @@
+/**
+ * @module
+ */
 import { ListItemAvatar } from '@material-ui/core'
 import Avatar from 'common/Avatar'
 import { color } from 'common/standard-names'
@@ -7,6 +10,13 @@ import clsx from 'clsx'
 import Box from '@material-ui/core/Box'
 import {useSelection} from './lib/selection'
 
+/**
+ * Provides a generic implementation of a list entry for a behaviour
+ * @param {string} type - the name of the behaviour
+ * @param icon - the icon to use for the entry
+ * @param {string} caption - the caption to use for the entry
+ * @returns {function} a React Component to use as a list entry for the type
+ */
 export function genericListEntry ( type, icon, caption ) {
     ListEntry.propTypes = {
         instance: PropTypes.any,

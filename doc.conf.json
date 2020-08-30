@@ -1,0 +1,37 @@
+{
+  "plugins": [
+  ],
+  "source": {
+    "include": [
+      "bind.js",
+      "document-type-context.js",
+      "fields.js",
+      "generic-list-entry.js",
+      "lookup-fields.js",
+      "query.js",
+      "question-typedef.js",
+      "use-types.js",
+      "utils.js",
+      "../../common/use-async/index.js"
+    ]
+  },
+  "opts": {
+    "destination": "./docs/",
+    "recurse": true,
+    "encoding": "utf8",
+    "template": "./node_modules/docdash",
+    "readme": "./README.md"
+  },
+  "docdash": {
+    "typedefs": true,
+    "sort": true,
+    "meta": {
+      "title": "awe-library"
+    },
+    "openGraph": {
+      "title": "awe-library",
+      "type": "docs",
+      "site_name": "awe-library"
+    }
+  }
+}
