@@ -114,7 +114,7 @@ export function QueryCascade({ field, children, ...props }) {
 /**
  * @interface QueryDefinition
  * @global
-
+ * @description
  * A definition of a query for the Query component, allows
  * processing of queries down to sub levels and uses a MongoDb
  * style method of storage
@@ -149,6 +149,7 @@ export function convertToText(where) {
 /**
  * @interface RefreshFunction
  * @global
+ * @description
  * a function that is used to cause a redraw of part of the UI
  * @property {string} id - an id for the current refresh of the component
  * @property () - cause a refresh
