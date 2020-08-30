@@ -6,6 +6,7 @@ import {createContext, useContext} from 'react'
 
 /**
  * @interface IDocumentTypeContext
+ * @global
  * @description An interface into the currently edited document and
  * methods to support it. You can get this through <code>useDocumentTypeContext()</code>
  * @property {object} type - the whole of the currently edited definition

@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>HintList - awe-library</title>
+    <title>IDocumentTypeContext - awe-library</title>
     
     
     
@@ -43,7 +43,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">HintList</h1>
+    <h1 class="page-title">IDocumentTypeContext</h1>
     
 
     
@@ -56,7 +56,7 @@
 <header>
     
         <h2>
-        HintList
+        IDocumentTypeContext
         </h2>
         
     
@@ -73,7 +73,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins-dynamic_awe-library_utils.js.html">plugins-dynamic/awe-library/utils.js</a>, <a href="plugins-dynamic_awe-library_utils.js.html#line440">line 440</a>
+        <a href="plugins-dynamic_awe-library_document-type-context.js.html">plugins-dynamic/awe-library/document-type-context.js</a>, <a href="plugins-dynamic_awe-library_document-type-context.js.html#line7">line 7</a>
     </li></ul></dd>
     
 
@@ -103,6 +103,13 @@
 
     
 
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="module-dynamic_awe-library_document-type-context.html#.useDocumentTypeContext">module:dynamic/awe-library/document-type-context.useDocumentTypeContext</a></li>
+        </ul>
+    </dd>
     
 
     
@@ -136,13 +143,13 @@
 
         <tr>
             
-                <td class="name"><code>hints</code></td>
+                <td class="name"><code>type</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;string></span>
+<span class="param-type">object</span>
 
 
             
@@ -152,7 +159,122 @@
 
             
 
-            <td class="description last"><p>a list of hints currently associated</p></td>
+            <td class="description last"><p>the whole of the currently edited definition</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>save</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>call to save the current definition</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>refresh</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>call to refresh the whole document view</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>undo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>call to undo the last operation</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>redo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>call to redo the last undone operation</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>update</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>call to replace the document definition with another</p></td>
         </tr>
 
     
@@ -164,7 +286,8 @@
 
 
             
-                <div class="description usertext"><p>A list of hints for a target</p></div>
+                <div class="description usertext"><p>An interface into the currently edited document and
+methods to support it. You can get this through <code>useDocumentTypeContext()</code></p></div>
             
 
             
