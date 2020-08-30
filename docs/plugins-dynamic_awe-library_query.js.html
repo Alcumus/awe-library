@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>plugins-dynamic/awe-library/query.js - awe-library</title>
+    
+    
+    
+    
+    
+    <meta property="og:title" content="awe-library"/>
+    <meta property="og:type" content="docs"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="awe-library"/>
+    <meta property="og:url" content=""/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-common_use-async_index.html">common/use-async/index</a><ul class='methods'><li data-type='method'><a href="module-common_use-async_index.html#.useCachedAsync">useCachedAsync</a></li><li data-type='method'><a href="module-common_use-async_index.html#.useCurrent">useCurrent</a></li><li data-type='method'><a href="module-common_use-async_index.html#.useCurrentState">useCurrentState</a></li><li data-type='method'><a href="module-common_use-async_index.html#~useAsync">useAsync</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_bind.html">plugins-dynamic/awe-library/bind</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_bind.html#.bind">bind</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_document-type-context.html">plugins-dynamic/awe-library/document-type-context</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_document-type-context.html#.useDocumentTypeContext">useDocumentTypeContext</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_fields.html">plugins-dynamic/awe-library/fields</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_fields.html#.getFieldList">getFieldList</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_fields.html#.getTypeFromField">getTypeFromField</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_fields.html#.useFieldList">useFieldList</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_fields.html#.useQuestion">useQuestion</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_fields.html#~sendMessage">sendMessage</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_generic-list-entry.html">plugins-dynamic/awe-library/generic-list-entry</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_generic-list-entry.html#.genericListEntry">genericListEntry</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_lookup-fields.html">plugins-dynamic/awe-library/lookup-fields</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_lookup-fields.html#.lookup">lookup</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_query.html">plugins-dynamic/awe-library/query</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_query.html#.convertToText">convertToText</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_query.html#.Query">Query</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_query.html#.QueryCascade">QueryCascade</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_question-typedef.html">plugins-dynamic/awe-library/question-typedef</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_question-typedef.html#.questionTypeDef">questionTypeDef</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_question-typedef.html#~allTypes">allTypes</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_use-types.html">plugins-dynamic/awe-library/use-types</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_use-types.html#.getPublishedVersionOfType">getPublishedVersionOfType</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_use-types.html#.getTypeAndInitialise">getTypeAndInitialise</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_use-types.html#.useApps">useApps</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_use-types.html#.useType">useType</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_use-types.html#.useTypeList">useTypeList</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_use-types.html#.useTypes">useTypes</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_utils.html">plugins-dynamic/awe-library/utils</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.basicField">basicField</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.behaviour">behaviour</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.classification">classification</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.decorate">decorate</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.decorateFields">decorateFields</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.deepFields">deepFields</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.eventSource">eventSource</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.extractFieldName">extractFieldName</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.fieldBelongsLocally">fieldBelongsLocally</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.fieldNameIs">fieldNameIs</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.getFields">getFields</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.getStates">getStates</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.getTypeFor">getTypeFor</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.hints">hints</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.isNotBlank">isNotBlank</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.isStandardField">isStandardField</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.isStoredInRecord">isStoredInRecord</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.legalDbCharacters">legalDbCharacters</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.legalFieldNameCharacters">legalFieldNameCharacters</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.logErrorOnLongCall">logErrorOnLongCall</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.optionLabel">optionLabel</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.questionCaption">questionCaption</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.questionType">questionType</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.returnValue">returnValue</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.tab">tab</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.tabs">tabs</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.topLevelField">topLevelField</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.trackComponent">trackComponent</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.unique">unique</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.use">use</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.useField">useField</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.useFields">useFields</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.useGroupByFields">useGroupByFields</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.useTables">useTables</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.whenQuestionHasHint">whenQuestionHasHint</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.whenQuestionMatches">whenQuestionMatches</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.whenQuestionTypeIs">whenQuestionTypeIs</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.whenTrackComponentIs">whenTrackComponentIs</a></li></ul></li></ul><h3>Interfaces</h3><ul><li><a href="module-plugins-dynamic_awe-library_document-type-context-IDocumentTypeContext.html">IDocumentTypeContext</a></li><li><a href="module-plugins-dynamic_awe-library_fields-BehaviourKeys.html">BehaviourKeys</a></li><li><a href="module-plugins-dynamic_awe-library_fields-DocumentDefinition.html">DocumentDefinition</a></li><li><a href="module-plugins-dynamic_awe-library_fields-FieldDefinition.html">FieldDefinition</a></li><li><a href="module-plugins-dynamic_awe-library_lookup-fields-FieldLookup.html">FieldLookup</a></li><li><a href="module-plugins-dynamic_awe-library_query-QueryApi.html">QueryApi</a></li><li><a href="module-plugins-dynamic_awe-library_query-QueryCascadeApi.html">QueryCascadeApi</a></li><li><a href="module-plugins-dynamic_awe-library_query-QueryDefinition.html">QueryDefinition</a></li><li><a href="module-plugins-dynamic_awe-library_query-RefreshFunction.html">RefreshFunction</a></li><li><a href="module-plugins-dynamic_awe-library_question-typedef-QuestionTypeDef.html">QuestionTypeDef</a></li><li><a href="module-plugins-dynamic_awe-library_use-types-DocumentRecord.html">DocumentRecord</a></li><li><a href="module-plugins-dynamic_awe-library_utils-BehaviourDefinition.html">BehaviourDefinition</a></li><li><a href="module-plugins-dynamic_awe-library_utils-DeepFieldDefinition.html">DeepFieldDefinition</a></li><li><a href="module-plugins-dynamic_awe-library_utils-HintList.html">HintList</a></li><li><a href="module-plugins-dynamic_awe-library_utils-PropertySheetComponents.html">PropertySheetComponents</a></li><li><a href="module-plugins-dynamic_awe-library_utils-TableDefinition.html">TableDefinition</a></li><li><a href="module-plugins-dynamic_awe-library_utils-TrackComponentDefinition.html">TrackComponentDefinition</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">plugins-dynamic/awe-library/query.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module
+ */
+
+import PropTypes from 'prop-types'
+import React from 'react'
+import Box from '@material-ui/core/Box'
+import { Repeat } from 'common/repeat'
+import { StandardAutocomplete, StandardCheckBox, } from 'common/bound-components'
+import { Bound, useBoundContext } from 'common/component-utilities'
+import { Button, CardHeader, IconButton, InputAdornment, makeStyles, Menu, TextField } from '@material-ui/core'
+import { MdDelete, MdEdit } from 'react-icons/all'
+import { useModal } from 'common/modal'
+import { useRefresh } from 'common/useRefresh'
+import { StandardDialog } from 'common/Dialog'
+import { prevent } from 'common/prevent'
+import { ensureArray } from 'common/ensure-array'
+import PopupState, { bindMenu, bindTrigger } from 'material-ui-popup-state'
+import MenuItem from '@material-ui/core/MenuItem'
+import { ListItemBox } from 'common/ListItemBox'
+import { Handle, SortableList, SortableListItem } from 'common/sortable'
+import { arrayMoveWrapper } from 'common/array-move-in-place'
+import { fieldNameIs, useFields } from 'dynamic/awe-library/utils'
+import { Case, CaseElse, Switch } from 'common/switch'
+import { useTopic } from 'dynamic/awe-plugin/lib/topics'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import { setFromEvent } from 'common/set-from-event'
+import { useDocumentTypeContext } from 'dynamic/awe-library/document-type-context'
+import { basicField, fieldBelongsLocally } from 'dynamic/awe-library/utils'
+import noop from 'common/noop'
+import { useType } from 'dynamic/awe-library/use-types'
+
+const useStyles = makeStyles( ( theme ) => ({
+    holder: {
+        position: 'relative',
+        width: '100%',
+        overflow: 'hidden',
+    },
+    button: {
+        color: theme.palette.primary.main,
+        cursor: 'pointer',
+    },
+}))
+
+/**
+ * @interface QueryCascadeApi
+ * @description the parameters passed to a QueryCascade component. Other properties
+ * are passed on to the Query components used
+ * @property {string} field - the name of the field in which to store the definition
+ * @property {React.Component} [children] - additional content to render for each entry
+ */
+
+/**
+ * A cascade of query definitions.  The principle is that a record
+ * included in an earlier query is not available to subsequent queries.
+ * @param {QueryCascadeApi} props
+ * @returns {React.Component}
+ */
+export function QueryCascade({ field, children, ...props }) {
+    const { target, refresh } = useBoundContext()
+    Object.set(target, field, Object.get(target, field, true) || [])
+    const queries = Object.get(target, field, true)
+    return (
+        &lt;Box>
+            &lt;SortableList onSortEnd={arrayMoveWrapper(queries, refresh)} distance={10}>
+                &lt;Repeat collection={queries}>
+                    {(query, index) => {
+                        return (
+                            &lt;Bound target={query}>
+                                &lt;SortableListItem disableGutters={true} index={index}>
+                                    &lt;ListItemBox>
+                                        &lt;Box mr={1}>
+                                            &lt;Handle />
+                                        &lt;/Box>
+                                        &lt;Box flexGrow={1}>
+                                            &lt;Query {...props} field={'query'} />
+                                        &lt;/Box>
+                                        {children}
+                                        &lt;Box>
+                                            &lt;IconButton onClick={remove(index)} color={'secondary'}>
+                                                &lt;MdDelete />
+                                            &lt;/IconButton>
+                                        &lt;/Box>
+                                    &lt;/ListItemBox>
+                                &lt;/SortableListItem>
+                            &lt;/Bound>
+                        )
+                    }}
+                &lt;/Repeat>
+            &lt;/SortableList>
+            &lt;Box mt={2}>
+                &lt;Button onClick={addQuery} color={'primary'}>
+                    + Query
+                &lt;/Button>
+            &lt;/Box>
+        &lt;/Box>
+    )
+
+    function addQuery() {
+        queries.push({ query: {} })
+        refresh()
+    }
+
+    function remove(index) {
+        return function () {
+            queries.splice(index, 1)
+            refresh()
+        }
+    }
+}
+
+/**
+ * @interface QueryDefinition
+ * A definition of a query for the Query component, allows
+ * processing of queries down to sub levels and uses a MongoDb
+ * style method of storage
+ */
+
+/**
+ * Provided with a query definition from a Query component, this
+ * function creates a human readable definition of the query
+ * @param {QueryDefinition} where - the query to process
+ * @returns {string} a human readable version of the query
+ */
+export function convertToText(where) {
+    const list = where.$or || [where]
+    const output = list.map(where => {
+        if (!where || Object.isEmpty(where)) return ' (All) '
+        const conditions = Object.entries(where)
+            .filter((v) => !!toText(v[1]))
+            .map((v) => `${v[0]} ${toText(v[1])}`)
+        if (conditions.length === 1) {
+            return conditions[0]
+        } else {
+            return `(${conditions.join(' AND ')})`
+        }
+
+    })
+    if (output.length === 1 &amp;&amp; output[0].startsWith('(')) {
+        return output[0].slice(1, -1)
+    }
+    return output.join(' OR ')
+}
+
+/**
+ * @interface RefreshFunction
+ * a function that is used to cause a redraw of part of the UI
+ * @property {string} id - an id for the current refresh of the component
+ * @property () - cause a refresh
+ */
+
+/**
+ * @interface QueryApi
+ * @description the parameters passed to a Query component. Other properties
+ * are passed on to the Material UI TextField used
+ * @property {DocumentDefinition} type - the document or application type on which this query will operate
+ * @property {RefreshFunction} parentRefresh - a function passed that will refresh the parent of the component
+ * @property {Array&lt;FieldDefinition>} [fields] - optional list of fields to use, if omitted it is derived
+ * @property {string} fieldName - the field in which the query is stored
+ */
+
+/**
+ * Defines a query editing UI
+ * @param {QueryApi} props
+ * @returns {React.Component} A query editor
+ */
+export function Query({type, refresh: parentRefresh = noop, fields, field: fieldName = 'where', ...props}) {
+    LongQuery.propTypes = {
+        ok: PropTypes.any
+    }
+
+    const { save, target } = useBoundContext()
+    const { type: documentType } = useDocumentTypeContext()
+    const typeFields = useFields( type || documentType )
+    fields = (fields ? fields : (typeFields || []))
+    fields = fields.filter( fieldBelongsLocally( fields ) )
+    const modal = useModal( LongQuery )
+    let where = (target[fieldName] = target[fieldName] || {})
+    const classes = useStyles()
+    const refresh = useRefresh( save, parentRefresh )
+
+    let text = convertToText( where )
+    return (
+        &lt;TextField
+            {...props}
+            fullWidth
+            readOnly
+            multiline
+            variant="outlined"
+            value={text}
+            InputProps={{
+                endAdornment: (
+                    &lt;InputAdornment className={classes.button} onClick={prevent(edit)} position="end">
+                        &lt;MdEdit />
+                    &lt;/InputAdornment>
+                ),
+            }}
+        />
+    )
+
+    async function edit() {
+        if (await modal()) refresh()
+    }
+
+    function LongQuery({ ok }) {
+        Elements.propTypes = {
+            index: PropTypes.any,
+            where: PropTypes.any
+        }
+
+        const refresh = useRefresh( save )
+        const masterWhere = where
+        const list = where.$or ? where.$or : [where]
+
+        return (
+            &lt;StandardDialog
+                startButtonAdornment={
+                    !Object.isEmpty( list.slice( -1 )[0] ) &amp;&amp;
+                    &lt;Button onClick={addOr} color={'primary'} variant={'contained'}>
+                        OR
+                    &lt;/Button>
+                }
+                accept={'Done'}
+                contentProps={{dividers: false}}
+                onOk={ok}
+                title={props.label || 'Query'}
+            >
+                &lt;Bound target={target} refresh={refresh} save={save}>
+                    &lt;Box className={classes.holder}>
+                        &lt;Repeat collection={list} item={&lt;Elements/>} keyFn={(v, i) => i} pass={'where'}/>
+                    &lt;/Box>
+                &lt;/Bound>
+            &lt;/StandardDialog>
+        )
+
+        function addOr() {
+            if (where.$or) {
+                where.$or.push({})
+            } else {
+                where.$or = [{...where}, {}]
+            }
+            refresh()
+        }
+
+        function Elements({where, index}) {
+            ArrayField.propTypes = {
+                definition: PropTypes.any,
+                field: PropTypes.any
+            }
+
+            TopicField.propTypes = {
+                definition: PropTypes.any,
+                field: PropTypes.any
+            }
+
+            LookupField.propTypes = {
+                definition: PropTypes.any,
+                field: PropTypes.any
+            }
+
+            ChoiceField.propTypes = {
+                field: PropTypes.any,
+                options: PropTypes.any
+            }
+
+
+            const usedFields = Object.keys( where ).filter( ( f ) => !f.startsWith( '_' ) || f === 'id' || f === '_id' )
+            const availableFields = fields.filter( ( f ) => where[f.name] === undefined )
+            return (
+                &lt;Box flexGrow={1} clone mb={1}>
+                    &lt;Card variant={'outlined'}>
+                        {index > 0 &amp;&amp; (
+                            &lt;CardHeader
+                                title={'OR'}
+                                action={
+                                    &lt;Button color={'secondary'} onClick={removeOr( where )}>
+                                        DELETE
+                                    &lt;/Button>
+                                }
+                            />
+                        )}
+                        &lt;CardContent>
+                            &lt;Box className={classes.holder}>
+                                &lt;Repeat collection={usedFields} pass={'field'} keyFn={(v) => v} item={&lt;Field/>}/>
+                                &lt;AddField/>
+                            &lt;/Box>
+                        &lt;/CardContent>
+                    &lt;/Card>
+                &lt;/Box>
+            )
+
+            function removeOr(or) {
+                return function () {
+                    masterWhere.$or = masterWhere.$or.filter((f) => f !== or)
+                    refresh()
+                }
+            }
+
+            function Field({field}) {
+                const fieldDef = fields.find(fieldNameIs(field)) || {}
+                const options = (fieldDef?.choices || []).map((v) => `${v.value}`)
+
+                return (
+                    &lt;Box key={field} mt={2}>
+                        &lt;ListItemBox>
+                            &lt;Box flexGrow={1}>
+                                &lt;Switch value={{ fieldDef, options }}>
+                                    &lt;Case when={( { fieldDef } ) => fieldDef?.type === 'array'}>
+                                        &lt;ArrayField field={field} definition={fieldDef}/>
+                                    &lt;/Case>
+                                    &lt;Case when={( { fieldDef } ) => fieldDef?.topic}>
+                                        &lt;TopicField field={field} definition={fieldDef}/>
+                                    &lt;/Case>
+                                    &lt;Case when={( { fieldDef } ) => fieldDef?.lookupType}>
+                                        &lt;LookupField field={field} definition={fieldDef}/>
+                                    &lt;/Case>
+                                    &lt;Case when={( v ) => v.options?.length}>
+                                        &lt;ChoiceField options={options} field={field}/>
+                                    &lt;/Case>
+                                    &lt;CaseElse>
+                                        &lt;StandardTextEntry field={field}/>
+                                    &lt;/CaseElse>
+                                &lt;/Switch>
+                            &lt;/Box>
+                            &lt;Box ml={1}>
+                                &lt;IconButton onClick={remove( field )} color={'secondary'}>
+                                    &lt;MdDelete/>
+                                &lt;/IconButton>
+                            &lt;/Box>
+                        &lt;/ListItemBox>
+                    &lt;/Box>
+                )
+            }
+
+            function ArrayField ( { field, definition } ) {
+                const localRefresh = useRefresh( save )
+                const forms = documentType.sendMessage( 'getForms', [] ).groupBy( 'id' )
+                const activeForm = forms[definition.useForm]?.[0]
+                if (!activeForm) return null
+                const fields = returnFrom( activeForm.getFields ).filter( basicField() )
+                const value = where[field] = where[field] || { $elemMatch: {} }
+                return &lt;Bound target={value.$elemMatch} refresh={localRefresh}>
+                    &lt;Query fields={fields} label={field}/>
+                &lt;/Bound>
+
+                function returnFrom ( fn, ...params ) {
+                    const result = []
+                    fn( result, ...params )
+                    return result
+                }
+            }
+
+            function TopicField ( { field, definition } ) {
+                const { save } = useBoundContext()
+                const value = where[field]
+                const isSubQuery = Object.isObject( value )
+                const topic = useTopic( definition.topic )
+                const concern = topic?.concerns.find( ( c ) => c.name === ensureArray( definition.concern )[0] )
+                const type = concern?.defaultType
+                const typeDef = useType( type )
+                const canShowSubQuery = typeDef &amp;&amp; isSubQuery
+                const localRefresh = useRefresh(save)
+                return (
+                    &lt;Box display={'flex'} alignItems={'center'}>
+                        {!!typeDef &amp;&amp; (
+                            &lt;Box mr={1}>
+                                &lt;StandardCheckBox value={isSubQuery} label={'Query'} onChange={switchType}/>
+                            &lt;/Box>
+                        )}
+                        &lt;Box flexGrow={1}>
+                            {!canShowSubQuery &amp;&amp; !isSubQuery &amp;&amp; &lt;StandardTextEntry field={field}/>}
+                            {!!canShowSubQuery &amp;&amp; (
+                                &lt;Bound target={value.$joinsTo} refresh={localRefresh}>
+                                    &lt;Query type={type} label={field}/>
+                                &lt;/Bound>
+                            )}
+                        &lt;/Box>
+                    &lt;/Box>
+                )
+
+                function switchType() {
+                    if (isSubQuery) {
+                        where[field] = ''
+                    } else {
+                        where[field] = {
+                            $joinsTo: {
+                                table: `${typeDef.database}/${typeDef.table}`,
+                                where: {},
+                            },
+                        }
+                    }
+                    localRefresh()
+                }
+            }
+
+            function LookupField({field, definition}) {
+                const {save} = useBoundContext()
+                const value = where[field]
+                const isSubQuery = Object.isObject(value)
+                const typeDef = useType(definition.lookupType)
+                const canShowSubQuery = typeDef &amp;&amp; isSubQuery
+                const localRefresh = useRefresh(save)
+                return (
+                    &lt;Box display={'flex'} alignItems={'center'}>
+                        {!!typeDef &amp;&amp; (
+                            &lt;Box mr={1}>
+                                &lt;StandardCheckBox value={isSubQuery} label={'Query'} onChange={switchType}/>
+                            &lt;/Box>
+                        )}
+                        &lt;Box flexGrow={1}>
+                            {!canShowSubQuery &amp;&amp; !isSubQuery &amp;&amp; &lt;StandardTextEntry field={field}/>}
+                            {!!canShowSubQuery &amp;&amp; (
+                                &lt;Bound target={value.$joinsTo} refresh={localRefresh}>
+                                    &lt;Query type={type} label={field}/>
+                                &lt;/Bound>
+                            )}
+                        &lt;/Box>
+                    &lt;/Box>
+                )
+
+                function switchType() {
+                    if (isSubQuery) {
+                        where[field] = ''
+                    } else {
+                        where[field] = {
+                            $joinsTo: {
+                                table: `${typeDef.database}/${typeDef.table}`,
+                                where: {},
+                            },
+                        }
+                    }
+                    localRefresh()
+                }
+            }
+
+            function AddField() {
+                if (!availableFields) return null
+                return (
+                    &lt;PopupState variant="popover">
+                        {(popupState) => (
+                            &lt;Box mt={2} display={'flex'} width={'100%'}>
+                                &lt;Button variant="contained" color={'primary'} {...bindTrigger(popupState)}>
+                                    {Object.isEmpty(where) ? 'Start' : 'And'}
+                                &lt;/Button>
+                                &lt;Menu {...bindMenu(popupState)}>
+                                    {availableFields.sort().map((t) => {
+                                        return (
+                                            &lt;MenuItem onClick={add(t, popupState)} key={t.name}>
+                                                &lt;ListItemBox>
+                                                    &lt;Box flexGrow={1} mr={2}>
+                                                        {t.name}
+                                                    &lt;/Box>
+                                                &lt;/ListItemBox>
+                                            &lt;/MenuItem>
+                                        )
+                                    })}
+                                &lt;/Menu>
+                            &lt;/Box>
+                        )}
+                    &lt;/PopupState>
+                )
+            }
+
+            function remove(field) {
+                return function () {
+                    delete where[field]
+                    refresh()
+                }
+            }
+
+            function add(field, popupState) {
+                return function () {
+                    popupState.close()
+                    where[field.name] = field.lookupType || field.topic ? {  } : ''
+                    refresh()
+                }
+            }
+
+            function ChoiceField({options, field}) {
+                const {save} = useBoundContext()
+                const localRefresh = useRefresh(save)
+                return (
+                    &lt;StandardAutocomplete
+                        includeInputInList
+                        options={options}
+                        multiple
+                        field={fieldName}
+                        label={`Where ${field} is `}
+                        value={toText(where[field])
+                            .replace(/=/g, '')
+                            .split('|')
+                            .filter(Boolean)
+                            .map((c) => c.trim())
+                            .filter(Boolean)}
+                        onChange={((_, v) => {
+                            where[field] = toQuery(`= ${v.filter(Boolean).join(' | ')}`, toText(where[field]))
+                            localRefresh()
+                        })}
+                    />
+                )
+            }
+
+            function StandardTextEntry({field}) {
+                const {save} = useBoundContext()
+                const localRefresh = useRefresh(save)
+                return (
+                    &lt;TextField
+                        fullWidth
+                        variant={'outlined'}
+                        label={`Where ${field} is `}
+                        value={toText(where[field])}
+                        onChange={setFromEvent((v) => {
+                            where[field] = toQuery(v, toText(where[field]))
+                            localRefresh()
+                        })}
+                    />
+                )
+            }
+        }
+    }
+}
+
+const lookupOp = {
+    $like: '*=',
+    $eq: '=',
+    $gt: '>',
+    $lt: '&lt;',
+    $lte: '&lt;=',
+    $ne: '!=',
+    $nin: 'nin',
+    $in: '=',
+    $gte: '>=',
+    $regex: '%=',
+}
+
+const lookbackOp = {
+    '=': '$in',
+    '>': '$gt',
+    '&lt;': '$lt',
+    '&lt;=': '$lte',
+    '!=': '$ne',
+    nin: '$nin',
+    in: '$in',
+    like: '$like',
+    '>=': '$gte',
+    '%=': '$regex',
+    '*=': '$like',
+}
+
+function hasLength(v) {
+    return Array.isArray(v) ? v.length : !!v
+}
+
+function toText(v) {
+    if (typeof v === 'object') {
+        if (v.$joinsTo) {
+            return `[ ${Object.entries(v.$joinsTo.where)
+                .filter((v) => !!toText(v[1]))
+                .map((v) => `${v[0]} ${toText(v[1])}`)
+                .join(' AND ') || '(All)'} ]`
+        }
+        let key = Object.keys(v)[0]
+        let value = v[key]
+        return hasLength(value)
+            ? `${lookupOp[key] || '='} ${ensureArray(v[key]).join(' | ')}`
+            : lookupOp[key]?.trim()
+                ? `${lookupOp[key]} ${value || ''}`
+                : ''
+    } else if (v) {
+        if (Object.keys(lookbackOp).find(k=>k.startsWith(v))) {
+            return v
+        }
+        return `= ${v}`
+    } else {
+        return ''
+    }
+}
+
+function toQuery(v, last) {
+    if (Array.isArray(v)) {
+        v = `= ${v
+            .map((v) =>
+                v
+                    .replace(/=/g, '')
+                    .trim()
+                    .split(' | ')
+            )
+            .flatten()
+            .unique()
+            .join(' | ')}`
+    }
+    if (!v) return
+    let longer = v?.length >= last?.length
+    let parts = v?.split(' ').compact()
+    if (parts.length === 1) {
+        if (lookbackOp[parts[0]] || parts[0].length &lt; 2) {
+            return v
+        }
+        let op = Object.keys(lookbackOp)
+            .filter((f) => v.slice(0, f.length) === f &amp;&amp; v.length > f.length)
+            .sortBy((v) => -v.length)[0]
+        if (op) {
+            return { [lookbackOp[op]]: v.slice(op.length) }
+        }
+
+        let value = parts[0]
+        return value ? { $eq: value } : undefined
+    }
+    parts[1] = parts
+        .slice(1)
+        .compact()
+        .map((r) => r.replace(/=/, ' | '))
+        .join(' ')
+    const op = lookbackOp[parts[0]] || '$in'
+    if (op === '$in') {
+        return {
+            $in: parts[1]
+                .split('|')
+                .filter((c) => longer || c.length > 0)
+                .map((c) => c.trim())
+                .compact(),
+        }
+    }
+    return { [op]: parts[1] }
+}
+
+QueryCascade.propTypes = {
+    children: PropTypes.any,
+    field: PropTypes.any.isRequired
+}
+
+Query.propTypes = {
+  field: PropTypes.any,
+  fields: PropTypes.any,
+  label: PropTypes.any,
+  refresh: PropTypes.func,
+  type: PropTypes.any
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Sun Aug 30 2020 11:31:14 GMT+0100 (British Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

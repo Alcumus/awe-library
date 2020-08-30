@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>plugins-dynamic/awe-library/utils.js - awe-library</title>
+    
+    
+    
+    
+    
+    <meta property="og:title" content="awe-library"/>
+    <meta property="og:type" content="docs"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="awe-library"/>
+    <meta property="og:url" content=""/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-common_use-async_index.html">common/use-async/index</a><ul class='methods'><li data-type='method'><a href="module-common_use-async_index.html#.useCachedAsync">useCachedAsync</a></li><li data-type='method'><a href="module-common_use-async_index.html#.useCurrent">useCurrent</a></li><li data-type='method'><a href="module-common_use-async_index.html#.useCurrentState">useCurrentState</a></li><li data-type='method'><a href="module-common_use-async_index.html#~useAsync">useAsync</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_bind.html">plugins-dynamic/awe-library/bind</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_bind.html#.bind">bind</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_document-type-context.html">plugins-dynamic/awe-library/document-type-context</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_document-type-context.html#.useDocumentTypeContext">useDocumentTypeContext</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_fields.html">plugins-dynamic/awe-library/fields</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_fields.html#.getFieldList">getFieldList</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_fields.html#.getTypeFromField">getTypeFromField</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_fields.html#.useFieldList">useFieldList</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_fields.html#.useQuestion">useQuestion</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_fields.html#~sendMessage">sendMessage</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_generic-list-entry.html">plugins-dynamic/awe-library/generic-list-entry</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_generic-list-entry.html#.genericListEntry">genericListEntry</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_lookup-fields.html">plugins-dynamic/awe-library/lookup-fields</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_lookup-fields.html#.lookup">lookup</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_query.html">plugins-dynamic/awe-library/query</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_query.html#.convertToText">convertToText</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_query.html#.Query">Query</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_query.html#.QueryCascade">QueryCascade</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_question-typedef.html">plugins-dynamic/awe-library/question-typedef</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_question-typedef.html#.questionTypeDef">questionTypeDef</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_question-typedef.html#~allTypes">allTypes</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_use-types.html">plugins-dynamic/awe-library/use-types</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_use-types.html#.getPublishedVersionOfType">getPublishedVersionOfType</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_use-types.html#.getTypeAndInitialise">getTypeAndInitialise</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_use-types.html#.useApps">useApps</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_use-types.html#.useType">useType</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_use-types.html#.useTypeList">useTypeList</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_use-types.html#.useTypes">useTypes</a></li></ul></li><li><a href="module-plugins-dynamic_awe-library_utils.html">plugins-dynamic/awe-library/utils</a><ul class='methods'><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.basicField">basicField</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.behaviour">behaviour</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.classification">classification</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.decorate">decorate</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.decorateFields">decorateFields</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.deepFields">deepFields</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.eventSource">eventSource</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.extractFieldName">extractFieldName</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.fieldBelongsLocally">fieldBelongsLocally</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.fieldNameIs">fieldNameIs</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.getFields">getFields</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.getStates">getStates</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.getTypeFor">getTypeFor</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.hints">hints</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.isNotBlank">isNotBlank</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.isStandardField">isStandardField</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.isStoredInRecord">isStoredInRecord</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.legalDbCharacters">legalDbCharacters</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.legalFieldNameCharacters">legalFieldNameCharacters</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.logErrorOnLongCall">logErrorOnLongCall</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.optionLabel">optionLabel</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.questionCaption">questionCaption</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.questionType">questionType</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.returnValue">returnValue</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.tab">tab</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.tabs">tabs</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.topLevelField">topLevelField</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.trackComponent">trackComponent</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.unique">unique</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.use">use</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.useField">useField</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.useFields">useFields</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.useGroupByFields">useGroupByFields</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.useTables">useTables</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.whenQuestionHasHint">whenQuestionHasHint</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.whenQuestionMatches">whenQuestionMatches</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.whenQuestionTypeIs">whenQuestionTypeIs</a></li><li data-type='method'><a href="module-plugins-dynamic_awe-library_utils.html#.whenTrackComponentIs">whenTrackComponentIs</a></li></ul></li></ul><h3>Interfaces</h3><ul><li><a href="module-plugins-dynamic_awe-library_document-type-context-IDocumentTypeContext.html">IDocumentTypeContext</a></li><li><a href="module-plugins-dynamic_awe-library_fields-BehaviourKeys.html">BehaviourKeys</a></li><li><a href="module-plugins-dynamic_awe-library_fields-DocumentDefinition.html">DocumentDefinition</a></li><li><a href="module-plugins-dynamic_awe-library_fields-FieldDefinition.html">FieldDefinition</a></li><li><a href="module-plugins-dynamic_awe-library_lookup-fields-FieldLookup.html">FieldLookup</a></li><li><a href="module-plugins-dynamic_awe-library_query-QueryApi.html">QueryApi</a></li><li><a href="module-plugins-dynamic_awe-library_query-QueryCascadeApi.html">QueryCascadeApi</a></li><li><a href="module-plugins-dynamic_awe-library_query-QueryDefinition.html">QueryDefinition</a></li><li><a href="module-plugins-dynamic_awe-library_query-RefreshFunction.html">RefreshFunction</a></li><li><a href="module-plugins-dynamic_awe-library_question-typedef-QuestionTypeDef.html">QuestionTypeDef</a></li><li><a href="module-plugins-dynamic_awe-library_use-types-DocumentRecord.html">DocumentRecord</a></li><li><a href="module-plugins-dynamic_awe-library_utils-BehaviourDefinition.html">BehaviourDefinition</a></li><li><a href="module-plugins-dynamic_awe-library_utils-DeepFieldDefinition.html">DeepFieldDefinition</a></li><li><a href="module-plugins-dynamic_awe-library_utils-HintList.html">HintList</a></li><li><a href="module-plugins-dynamic_awe-library_utils-PropertySheetComponents.html">PropertySheetComponents</a></li><li><a href="module-plugins-dynamic_awe-library_utils-TableDefinition.html">TableDefinition</a></li><li><a href="module-plugins-dynamic_awe-library_utils-TrackComponentDefinition.html">TrackComponentDefinition</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">plugins-dynamic/awe-library/utils.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module
+ */
+import events from 'alcumus-local-events'
+import { resolveValue, resolveValueAsFunction } from 'common/resolve-value'
+import { questionTypeDef } from 'dynamic/awe-library/question-typedef'
+import { ensureArray } from 'common/ensure-array'
+import { getType, getTypes } from 'dynamic/awe-library/lib/api'
+import useAsync, { useCachedAsync } from 'common/use-async'
+import * as Behaviours from 'alcumus-behaviours'
+import React from 'react'
+import uniq from 'lodash/uniq'
+import { handle } from 'common/events'
+import { initialize } from 'common/offline-data-service/behaviour-cache'
+import { useRefresh } from 'common/useRefresh'
+import { useDocumentTypeContext } from './document-type-context'
+import { useLookup } from 'dynamic/awe-library/runtime/use-lookup'
+import { lookup } from 'dynamic/awe-library/runtime/lookup'
+import { uiReady } from 'common/ui-ready'
+import { getTopic } from 'dynamic/awe-library/runtime/topics'
+
+/**
+ * Retrieves a string type descriptor for a type or a type id.  This is used
+ * to get the correct visualiser for a type when editing. This at present only
+ * returns 'document' for documents and 'application' for applications.
+ * @param {string|DocumentDefinition} idOrType - the type to retrieve the id for
+ * @returns {string} a string representing the type from the db
+ */
+export function getTypeFor(idOrType) {
+    try {
+        const id = typeof idOrType === 'string' ? idOrType : idOrType._id
+        return id.split(':')[1].split('/')[1].split('-types')[0].toLowerCase()
+    } catch (e) {
+        console.error(e)
+        throw e
+    }
+}
+
+/**
+ * Return a name only containing legal database characters
+ * @param {string} v - the string to convert
+ * @returns {string} a converted string
+ */
+export function legalDbCharacters(v = '') {
+    return v.replace(/[^0-9A-Za-z_]+/gi, '')
+}
+
+/**
+ * Converts a string to a suitable option label by turning camel case and _ to spaces and titlizing the result
+ * @param {string} v - the name to convert
+ * @returns {string} - a human readable version of the string
+ */
+export function optionLabel(v = '') {
+    return v.spacify().titleize()
+}
+
+/**
+ * Converts a string to one that is legal for a field identifier
+ * @param {string} v - the string to convert
+ * @returns {string} the converted legal field name string
+ */
+export function legalFieldNameCharacters(v = '') {
+    return v.replace(/^_/, '').replace(/[^a-zA-Z0-9_]/g, '')
+}
+
+/**
+ * @callback BehaviourPredicate
+ * @description Declares a predicate that will determine whether a behaviour should be shown in the UI
+ * @param {Array&lt;BehaviourDefinition>} list - the current list of behaviours
+ * @param {DocumentDefinition} definition - the current definition of the document or application to which the behaviour may be added
+ * @returns {Boolean} truthy if the behaviour should be added
+ */
+
+/**
+ * @interface BehaviourDefinition
+ * @description the definition of a behaviour for the UI
+ * @param {string} behaviour - the unique name of the behaviour
+ * @param {string} caption - a caption to use when displaying the behaviour
+ * @param {string} [description] - a longer text description of the behaviour
+ * @param {React.Component} Icon - an icon to use for the behaviour
+ * @param {string} color - a colour to use for the behaviour
+ * @param {Object} [register] - the code to register for the behaviour - if omitted this should be registered directly with Alcumus Behaviours
+ */
+
+/**
+ * Declares a behaviour to the system so that it appears in the UI as one that
+ * can be added to a document or application.  Also if the definition contains a
+ * `register` member it will be used to register the behaviours code in addition.
+ * @param {BehaviourDefinition} definition - the definition to register
+ * @param {...BehaviourPredicate} predicates of predicates that indicates if the behaviour should be added in a context. Some
+ * helpers for this exist such as `unique()` which only allow one behaviour of this type to be used in a document. and `classification(type)` which
+ * allows the behaviour to only be added to documents or applications by specifying 'document' or 'application'
+ * @returns {*}
+ */
+export function behaviour(definition, ...predicates) {
+    const toRegister = definition.register
+    delete definition.register
+    if (toRegister) {
+        Behaviours.register(definition.behaviour, toRegister, true)
+    }
+    events.emit('newConfig', {
+        [definition.behaviour.toLowerCase()]: {
+            ...definition.config,
+            color: definition.color,
+            caption: definition.caption,
+        },
+    })
+    events.return('behaviours.awe', (list) => {
+        for (let predicate of predicates) {
+            if (!predicate(list, definition)) return
+        }
+
+        list.push(definition)
+    })
+    return definition
+}
+
+/**
+ * Helper predicate for behaviour definitions. Provides a list of types that should be used.
+ * Presently the only options are 'document' and 'application'
+ * @param {...string} types - the types to check
+ * @returns {function(*): boolean} a function which applies the predicate
+ * @example
+ behaviour(
+ {
+        behaviour: 'redisIndexer',
+        description: 'Allows you to specify fields to be indexed in Redis',
+        Icon,
+        caption: 'FindIT™ Index',
+        color: theme.palette.primary.main
+    },
+ unique(),
+ classification( 'document' )
+ )
+ */
+export function classification(...types) {
+    return (list) => {
+        return types.includes(list.type)
+    }
+}
+
+/**
+ * Helper predicate that ensures that only one instance of a behaviour can be added
+ * to a document
+ * @param {...string} [others] - other behaviours that would prevent this one from being added
+ * @returns {function(*=, *): *} a function to apply the predicate
+ */
+export function unique(...others) {
+    let rest = others.flatten()
+    return (list, definition) => {
+        return (
+            list &amp;&amp;
+            list.aweType &amp;&amp;
+            ![...rest, definition.behaviour].some((i) => !!list.aweType._behaviours.instances[i])
+        )
+    }
+}
+
+/**
+ * Decorates an object with other properties that will not be persisted and
+ * are read only
+ * @param {Object} obj - the object to decorate
+ * @param {Object} withProps - the properties to add
+ * @returns {Object} obj (which has been decorated)
+ */
+export function decorate(obj, withProps) {
+    for (let [key, value] of Object.entries(withProps)) {
+        Object.defineProperty(obj, key, {
+            get() {
+                return value
+            },
+            configurable: true,
+        })
+    }
+    return obj
+}
+
+async function processFields(type, purpose, seen = {}) {
+    let referenceType = await getType(type)
+    if (!referenceType) return []
+    await initialize(referenceType)
+    const fields = referenceType.sendMessage('fields', [], purpose)
+    const output = []
+    for (let field of fields) {
+        let subType = field.dataSource?.dataType || field.lookupType
+        if (field.topic) {
+            if (seen[field.topic] > 0) continue
+            seen[field.topic] = (seen[field.topic] || 0) + 1
+            const topic = await getTopic(field.topic)
+            const concern = topic.concerns.find((c) => c.name === ensureArray(field.concern)[0])
+            if (concern) {
+                subType = concern.defaultType
+            }
+        }
+        if (subType) {
+            const subFields = await processFields(subType, purpose, seen)
+            for (let subField of subFields) {
+                output.push({
+                    ...subField,
+                    field: `_info.${field.name}.rows[0].${subField.field}`,
+                    caption: `${field.name} > ${subField.caption}`,
+                })
+            }
+        } else {
+            if (!field.name.startsWith('_')) {
+                output.push({ caption: field.name, field: field.name, type })
+            }
+        }
+    }
+    return output
+}
+
+/**
+ * Decorates the fields list with their type and field definition
+ * @param {Array&lt;FieldDefinition>} fields
+ * @returns {Array&lt;FieldDefinition>} the fields array where each element has a $type for its type and $field for its typedef
+ */
+export async function decorateFields(fields) {
+    for (let field of fields) {
+        if (field.$type) continue
+        const $type = await getType(field.type)
+        const $field = lookup($type)[field.name]
+        decorate(field, { $type, $field })
+    }
+    return fields
+}
+
+Function.prototype.use = function (...params) {
+    const fn = this
+    return useCachedAsync(
+        this.name,
+        async () => {
+            return await fn(...params)
+        },
+        null,
+        JSON.stringify(params)
+    )
+}
+
+/**
+ * Uses a function as a cached async, the function name must be present and unique
+ * @param {Function} fn - a function to be used for cached async
+ * @param {...*} [params] - parameters for the function
+ * @returns {*} the cached async result of running the function
+ */
+export function use(fn, ...params) {
+    return useCachedAsync(
+        fn.name,
+        async () => {
+            return await fn(...params)
+        },
+        null,
+        JSON.stringify(params)
+    )
+}
+
+/**
+ * Returns a list of fields that can be used in a group by operation
+ * @param {DocumentDefinition} type
+ * @returns {Array&lt;FieldDefinition>} the fields which can be grouped by
+ */
+export function useGroupByFields(type) {
+    return getAndDecorate.use(type) || []
+
+    async function getAndDecorate() {
+        const fields = (await processFields(type, 'groupBy')) || []
+        return await decorateFields(fields)
+    }
+}
+
+/**
+ * Retrieves all the fields of a type
+ * @param {DocumentDefinition} type
+ * @returns {Promise&lt;Array&lt;FieldDefinition>>} the fields of the type
+ */
+export async function getFields(type) {
+    let referenceType = typeof type === 'object' ? type : await getType(type)
+    await initialize(referenceType)
+    return referenceType.sendMessage('fields', [])
+}
+
+/**
+ * Retrieve the typedef of a field by name from the current document as a hook
+ * @param {string} fieldName
+ * @returns {FieldDefinition} the definition of the field
+ */
+export function useField(fieldName) {
+    const lookup = useLookup()
+    return lookup[fieldName]
+}
+
+/**
+ * Uses all of the fields of a type, optionally including those from related records
+ * @param {DocumentDefinition|string} type - the type whose fields should be retrieved
+ * @param {boolean} deep - true if related fields should be returned
+ */
+export function useFields(type, deep = false) {
+    return useAsync(
+        // `getFieldsForType${deep}`,
+        async () => {
+            if (!type) return deep ? [{}, {}] : []
+            await uiReady()
+            let referenceType = Object.isObject(type) ? type : await getType(type)
+            await initialize(referenceType)
+            await referenceType.sendMessage('refresh')
+            if (deep) {
+                const result = {}
+                const linkFields = {}
+                await referenceType.sendMessage('deepFields', result, linkFields)
+                return [result, linkFields]
+            } else {
+                const result = []
+                await referenceType.sendMessage('fields', result)
+                return result
+            }
+        },
+        deep ? [{}, {}] : [],
+        type
+        // Date.now() / 15000 | 0
+    )
+}
+
+/**
+ * Retrieves the typedef of a field/question from its type string
+ * @param {string|function(): string|Array&lt;string>|function(): Array&lt;string>} typesOrFunction - the type or types of
+ * which we should retrieve the definitions
+ */
+export function questionType(typesOrFunction) {
+    events.return('awe.question-types', resolveValueAsFunction(typesOrFunction))
+
+    let types = ensureArray(resolveValue(typesOrFunction) || [])
+    for (let type of types) {
+        events.emit('newConfig', {
+            [type.value.toLowerCase()]: {
+                caption: type.label,
+                color: type.color,
+                sort: type.sort,
+                map: type.map,
+                icon: type.icon,
+            },
+        })
+    }
+}
+
+/**
+ * @callback ConfigFunction
+ * @description A function to configure a new instance of a component
+ * @param {object} instance - the instance to be configured
+ */
+
+/**
+ * @interface TrackComponentDefinition
+ * @property {React.Component} icon - the icon to use
+ * @property {string} label - the label for the track component in lists
+ * @property {string} description - a description of the purpose of the track component
+ * @property {ConfigFunction} [config] - a function that can be used to configure a new instance of the component
+ * @property {string} color - the colour to use for the component
+ * @property {string} value - the unique name of the component
+ */
+
+/**
+ * A function that registers providers of Chase "track" components
+ * so that they can be added to the track in the user interface
+ * @param {TrackComponentDefinition} typesOrFunction - the definition of the track component
+ * @example
+ trackComponent({
+    value: 'assignTask',
+    label: 'Assign Task',
+    description: 'Assigns a task to a topic',
+    icon: &lt;GoTasklist />,
+    config(task) {
+        task.fulfilment = {
+            type: FULFILMENT_TYPES[0],
+        }
+    },
+    color: theme.palette.primary.main,
+})
+ */
+export function trackComponent(typesOrFunction) {
+    handle('awe.track-components', function (list) {
+        list.push(...ensureArray(resolveValueAsFunction(typesOrFunction)()))
+    })
+
+    let types = ensureArray(resolveValue(typesOrFunction) || [])
+    for (let type of types) {
+        events.emit('newConfig', {
+            [type.value.toLowerCase()]: {
+                caption: type.label,
+                color: type.color,
+                sort: type.sort,
+                map: type.map,
+                icon: type.icon,
+            },
+        })
+    }
+}
+
+/**
+ * Specifically for use with the Chase behaviour, this registers a component
+ * as being able to make a list of events.  For instance it could represent
+ * an external system that emitted its own events, and this would be a way
+ * in which the Chase behaviour knew that they could be waited for.
+ * @param {string} type - type of events
+ * @param {Function} eventSource - a function that will be called with the existing context to get the events
+ */
+export function eventSource(type, eventSource) {
+    handle(`awe.event-source.${type}`, function (list, item, owner) {
+        let result = eventSource({ item, owner }, list)
+        if (Array.isArray(result)) {
+            list.push(...result.filter((f) => !!f))
+        } else if (typeof result === 'object') {
+            list.push(...Object.values(result).filter((f) => !!f))
+        }
+    })
+}
+
+/**
+ * Helper function that tries to extract a caption for a question if one hasn't been provided
+ * @param {FieldDefinition} question - the question whose caption should be created
+ * @param {QuestionTypeDef} [type] - the already resolved type if available
+ * @returns {string} the caption for the question
+ */
+export function questionCaption(question, type) {
+    type = type || questionTypeDef(question)
+    return (
+        (type.caption ? type.caption(question) : undefined) ||
+        question.question.replace(/\s*&lt;p>&lt;\/p>\s*/g, '') ||
+        question.inputLabel ||
+        question.name ||
+        type.captionValue ||
+        type.label
+    )
+}
+
+/**
+ * @interface HintList
+ * @description A list of hints for a target
+ * @property {Array&lt;string>} hints - a list of hints currently associated
+ */
+
+/**
+ * @callback HintPredicate
+ * @description A call back to decide whether hints should be added to a list
+ * @param {FieldDefinition} target - the item for which hints are being discovered
+ * @param {HintList} info - the list of existing hints
+ * @returns {boolean} true if the hints should be added
+ */
+
+/**
+ * @callback HintFunction
+ * @description A function that returns the hints to associate with a question/field
+ * @returns {Array&lt;string>} an array of hints
+ */
+
+/**
+ * Registers a hint producing function.  The function is called
+ * to supply hints for a question type in the UI.  Hints act as
+ * simple switches to enable extension functionality or alternate
+ * versions of the UI for rendering questions.  Hints are strings
+ * that describe a property of the FieldDefinition - so they normally
+ * only contain legal characters for JavaScript identifiers.
+ * @param {HintPredicate|string} predicate - a predicate to decide whether the hints should be added, either a function or the question type as a string
+ * @param {Array&lt;string>|HintFunction} hintsOrFn - an array of hints or a function to produce an array of hints
+ */
+export function hints(predicate, hintsOrFn) {
+    hintsOrFn = resolveValueAsFunction(hintsOrFn)
+    setTimeout(() => {
+        events.on('awe.question-hints', function (event, info) {
+            if (typeof predicate === 'function') {
+                if (predicate.call(info.target, info.target, info)) {
+                    info.hints.push.apply(
+                        info.hints,
+                        Array.isArray(hintsOrFn) ? hintsOrFn : hintsOrFn.call(info.target)
+                    )
+                }
+            } else {
+                if (predicate === info.target.type) {
+                    info.hints.push.apply(
+                        info.hints,
+                        Array.isArray(hintsOrFn) ? hintsOrFn : hintsOrFn.call(info.target)
+                    )
+                }
+            }
+        })
+    })
+}
+
+/**
+ * Support function that logs if a call takes more than a specified
+ * amount of time to return
+ * @param {function} fn - the function to wrap
+ * @param {number} [delay=3000] - the time in m/s that the function should execute in less than
+ * @returns {function} a wrapped version of fn that will log if it takes more than the delay
+ */
+export function logErrorOnLongCall(fn, delay = 3000) {
+    return async function (...params) {
+        const id = setTimeout(problem, delay)
+        try {
+            await fn(...params)
+        } catch (e) {
+            console.error(e)
+        } finally {
+            clearTimeout(id)
+        }
+
+        function problem() {
+            // eslint-disable-next-line no-console
+            console.trace('timeout', ...params)
+        }
+    }
+}
+
+/**
+ * @typedef {Object.string&lt;string, FieldDefinition>} DeepFieldDictionary
+ * @description a lookup of a field definition from it's property path syntax
+ */
+
+/**
+ * @interface DeepFieldDefinition
+ * @description An object which describes the deep field data for a FieldDefinition
+ * @property {Array&lt;string>} path - the path to the current target, this is like property syntax but split into an array on '.'
+ * @property {FieldDefinition} target - the current target of the deep field request
+ * @property {DeepFieldDictionary} dictionary - a dictionary of all property paths to their definitions (including '.') - this is automatically populated from base fields
+ * @property {DeepFieldDictionary} linkFields - a dictionary of all property paths to their definitions (including '.') - this is automatically populated from link fields
+ * @property {boolean} addBaseField - set this to true to add the current target as a base field
+ * @property {boolean} addLinkField - set this to true to add the current target as a link field (it's value is the ID of a linked record)
+ */
+
+/**
+ * @callback DeepFieldPredicate
+ * @description a callback that decides if there is a deep field list
+ * for a particular target
+ * @param {FieldDefinition} target
+ * @param {DeepFieldDefinition} info
+ */
+
+/**
+ * @callback DeepFieldFunction
+ * @description a callback that is provided with information on a
+ * definition and reacts by setting addBaseField and addLinkField properties
+ * to indicate how the question/field should be treated.
+ * @param {FieldDefinition} target - the target question being considered
+ * @param {DeepFieldDefinition} info - the info about the current context that
+ * should be updated to adjust the field specified.
+ */
+
+/**
+ * Discovers the "Deep" fields from a question type.  This is called
+ * to find related columns and make their metadata available and also
+ * to identify local columns that contain user entered data.  If
+ * a question represents a record in a different table for instance,
+ * a responder to this registration would be required to gather the
+ * relevant metadata.  The deep field function returns whether the
+ * current question should form part of the "base" in this case the
+ * field itself has a meaningful local value the user would be interested in
+ * or a "link" linkage, in which case the data is
+ * in another record and the value is the ID of that record, that should
+ * not be shown to the user.  The result is returned through the properties
+ * of the configuration
+ * @param {string|DeepFieldPredicate} predicate
+ * @param {DeepFieldFunction} deepFieldFn
+ */
+export function deepFields(predicate, deepFieldFn) {
+    deepFieldFn = resolveValueAsFunction(deepFieldFn)
+    setTimeout(() => {
+        events.on('awe.deep-fields', async function (event, info) {
+            if (info.path.length > 2) return
+            if (typeof predicate === 'function') {
+                if (predicate.call(info.target, info.target, info)) {
+                    await logErrorOnLongCall(deepFieldFn)(info)
+                }
+            } else {
+                if (predicate === info.target.type) {
+                    await logErrorOnLongCall(deepFieldFn)(info)
+                }
+            }
+        })
+    })
+}
+
+/**
+ * @interface PropertySheetComponents
+ * @description A structure that contains info about the components being added
+ * @property {string} type - the string type of the current type of selection
+ * @property {object} selected - the currently selected item
+ * @property {Array&lt;React.Component>} Components - the components to render as property editors
+ */
+
+/**
+ * @callback TabPredicate
+ * @description A predicate that returns whether a tab should be added to the properties area
+ * @param {string} type - the string type of the current selection, this is an arbitrary value that the
+ * thing doing the selection sets.  It's 'question' for questions and 'group' for groups
+ * @param {object} selected - whatever the user has currently selected
+ * @param {PropertySheetComponents} info - a structure which contains the current selected tabs for the selection
+ * @returns {boolean} returns truthy to have the Components specified added to the property editor
+ */
+
+/**
+ * Registers one or more property editors for the current
+ * target of a selection.  The ThingBuilder UI can select
+ * a wide range of things, and this allows the rendering of a
+ * property page for any of them.
+ * @param {TabPredicate} predicate - a predicate to identify the criteria by which the subsequent components should be added
+ * @param {...React.Component} Components - the components that should be used as property pages when the predicate succeeds
+ * @see tab
+ */
+export function tabs(predicate, ...Components) {
+    predicate = ensureArray(predicate)
+    predicate.forEach((predicate) => {
+        setTimeout(() => {
+            for (let Component of Components.flatten()) {
+                events.on('awe.editor.tabs', function (event, info) {
+                    if (typeof predicate === 'function') {
+                        if (predicate.call(info.selected, info.type, info.selected, info)) {
+                            if (!info.Components.find((c) => c.toString() === Component.toString()))
+                                info.Components.push(Component)
+                        }
+                    } else {
+                        if (predicate === info.type) {
+                            if (!info.Components.find((c) => c.toString() === Component.toString()))
+                                info.Components.push(Component)
+                        }
+                    }
+                })
+            }
+        })
+    })
+}
+
+/**
+ * A helper function to use in behaviours to add additional editor
+ * tabs for a field/question or other type.  This enables a behaviour
+ * to extend the standard global properties of anything. The result
+ * is a function that can be used as the "editorTabs" method of a behaviour.
+ * @param {TabPredicate} predicate - the predicate function to use
+ * @param {React.Component} Component - the component to use if the predicate succeeds
+ * @returns {function(*=): void} A function to add the tab when appropriate
+ * @see tabs
+ */
+export function tab(predicate, Component) {
+    return (info) => {
+        if (typeof predicate === 'function') {
+            if (predicate(info.type, info.selected, info)) {
+                if (!info.Components.find((c) => c.toString() === Component.toString())) info.Components.push(Component)
+            }
+        } else {
+            if (predicate === info.type) {
+                if (!info.Components.find((c) => c.toString() === Component.toString())) info.Components.push(Component)
+            }
+        }
+    }
+}
+
+/**
+ * A helper function that creates a predicate for questions of
+ * a specific type or types
+ * @param {...string} questionType - the types of question that will
+ * pass the predicate
+ * @returns {function} a predicate function matching the specification
+ */
+export function whenQuestionTypeIs(...questionType) {
+    return (type, selected) => {
+        return type === 'question' &amp;&amp; questionType.includes(selected.type)
+    }
+}
+
+/**
+ * A helper function that creates a predicate for track components
+ * with specific type or types
+ * @param {...string} trackType - the types that should match
+ * @returns {function} a predicate function for track components with the
+ * provided types
+ */
+export function whenTrackComponentIs(...trackType) {
+    return (type, selected) => {
+        return type === 'track' &amp;&amp; trackType.includes(selected.type)
+    }
+}
+
+/**
+ * @callback QuestionPredicateFunction
+ * @param {QuestionTypeDef} type - the typedef of the question being tested
+ * @param {FieldDefinition} instance - the current instance being tested
+ * @returns {boolean} - true if the predicate is satisfied
+ */
+
+/**
+ * Creates a predicate function for questions that succeed with a
+ * predicate which is supplied with the typedef and the
+ * instance (this is a helper function to wrap a common way
+ * of testing questions).
+ * @param {QuestionPredicateFunction} predicate - the predicate to use
+ * @returns {function} a predicate function for questions matching
+ * the helper predicate
+ */
+export function whenQuestionMatches(predicate = () => true) {
+    return (type, selected) => {
+        return type === 'question' &amp;&amp; predicate(questionTypeDef(selected), selected)
+    }
+}
+
+/**
+ * A helper to create a predicate for questions that have a specific
+ * hint set
+ * @param {string} hint - the hint that must be set
+ * @returns {function} a predicate for questions with the specified
+ * hint
+ */
+export function whenQuestionHasHint(hint) {
+    return (type, selected) => {
+        return type === 'question' &amp;&amp; selected?.hints?.[hint]
+    }
+}
+
+/**
+ * Returns whether an item with a name is blank or if the parameter
+ * is a string, tests that it is not blank
+ * @param {string|FieldDefinition} fieldOrName
+ * @returns {boolean} true if the name or string is not blank
+ */
+export function isNotBlank(fieldOrName) {
+    return (fieldOrName &amp;&amp; fieldOrName.name &amp;&amp; !!fieldOrName.name.trim()) || (fieldOrName &amp;&amp; typeof fieldOrName === 'string' &amp;&amp; !!fieldOrName.trim())
+}
+
+/**
+ * Extracts the name of a field
+ * @param {FieldDefinition} field
+ * @returns {string} the name
+ */
+export function extractFieldName(field) {
+    return field &amp;&amp; field.name
+}
+
+/**
+ * Helper to create a function which tests if a field is defined on the
+ * initial document, rather than through a sub document or
+ * sub element of the document.
+ * @param {function(FieldDefinition): boolean} [fn] - optional additional field check function passed the field
+ * @returns {function(FieldDefinition): boolean} a function that
+ * tests a field for a sub field
+ */
+export function basicField(fn = () => true) {
+    return function (item) {
+        return !/(^\$|_)|(\.\$|_)/.test(typeof item === 'string' ? item : item.name) &amp;&amp; fn(item)
+    }
+}
+
+/**
+ * Creates a function that returns whether a field is local
+ * to the current document.  Provided with a set of fields
+ * it inspects the types and handles array fields and subForms
+ * appropriately.
+ * @param {Array&lt;FieldDefinition>} fields - the fields which are
+ * part of the current document
+ * @returns {function(FieldDefinition): boolean} a function that returns
+ * true for locally located fields
+ */
+export function fieldBelongsLocally(fields) {
+    const lookup = fields.groupBy('name')
+    return function (field) {
+        const name = typeof field === 'string' || field?.name
+        if (!name) return false
+        switch (lookup[name]?.[0]?.type) {
+            case 'subForm':
+            case 'array':
+                return false
+        }
+        const parts = name.split('.')
+        if (parts.length === 1) return true
+        switch (lookup[parts[0]]?.[0]?.type) {
+            case 'subForm':
+            case 'array':
+                return true
+        }
+        return false
+    }
+}
+
+/**
+ * A filter that tests a field and returns true if the field is
+ * at the top level of a chain
+ * @param {string|FieldDefinition} field - the field to be tested
+ * @returns {boolean} true if the field tested is a top level field
+ */
+export function topLevelField(field) {
+    return (field &amp;&amp; field.name &amp;&amp; !field.name.includes('.')) || (field &amp;&amp; typeof field === 'string' &amp;&amp; !field.includes('.'))
+}
+
+/**
+ * Helper function to create a predicate which tests that a field name
+ * matches a defined one.
+ * @param {string} name - the name that should be tested for
+ * @returns {function(*): boolean} a predicate that tests
+ * for the supplied name
+ */
+export function fieldNameIs(name) {
+    return function (f) {
+        return f &amp;&amp; f.name === name
+    }
+}
+
+/**
+ * Provided with an instance or a document, return all of the
+ * available states for it
+ * @param {DocumentDefinition|object} instance - the instance to test
+ * @returns {Array&lt;string>} the available states
+ */
+export function getStates(instance) {
+    const { type } = useDocumentTypeContext()
+    return uniq(
+        instance.sendMessage('availableStates', [type.defaultState || 'default'], instance.document, instance).flatten()
+    ).filter(isNotBlank)
+}
+
+/**
+ * Support dummy function that just returns the value it is passed,
+ * this is useful as the default value of parameters that supply
+ * projection functions
+ * @param {*} v - value
+ * @returns {*} the value is returned without modification
+ */
+export function returnValue(v) {
+    return v
+}
+
+/**
+ * @interface TableDefinition
+ * @description Describes a table in the database
+ * @property {string} value - the database/table entry
+ * @property {string} label - a human readable label for the entry
+ * @property {Array&lt;FieldDefinition>} fields - all of the fields in the table
+ * @property {Array&lt;string>} types - the list of document types that can write to the table
+ */
+
+/**
+ * A hook which returns all of the database/table combinations
+ * for the current in context types (for the current client and
+ * global)
+ * @param {string} [id] - an id that is used to decide if a refresh is required
+ * @returns {Array&lt;TableDefinition>} the tables and their fields
+ */
+export function useTables(id) {
+    const refresh = !id &amp;&amp; useRefresh()
+    return useCachedAsync(
+        'getTables',
+        async () => {
+            const types = await getTypes()
+            const groups = types
+                .filter((t) => !!t.database &amp;&amp; !!t.table)
+                .groupBy((type) => `${type.database.toLowerCase()}/${type.table.toLowerCase()}`)
+            const results = await Promise.all(
+                Object.keys(groups).map(async (key) => {
+                    const list = groups[key].map('name').join(', ')
+                    const fields = []
+                    for (let item of groups[key]) {
+                        await initialize(item)
+                        item.sendMessage('fields', fields)
+                    }
+                    const ref = groups[key][0]
+                    return {
+                        value: key,
+                        label: `${ref.database} / ${ref.table} (${list})`,
+                        fields,
+                        types: groups[key],
+                    }
+                })
+            )
+            return Object.assign(results.sortBy('label'), { _loaded: true })
+        },
+        [],
+        id,
+        refresh.id
+    )
+}
+
+/**
+ * Helper to check whether a field is a standard field
+ * @param {FieldDefinition} field - the field to test
+ * @returns {boolean} true if the field is standard
+ */
+export function isStandardField(field) {
+    return field &amp;&amp; field.name &amp;&amp; !/^[$_]/.test(field.name)
+}
+
+/**
+ * Returns if a field definition is stored in the database
+ * @param {FieldDefinition} field - the field to check
+ * @returns {boolean} true if the field is stored
+ */
+export function isStoredInRecord(field) {
+    return !!field.name
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Sun Aug 30 2020 11:31:14 GMT+0100 (British Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
