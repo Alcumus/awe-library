@@ -27,14 +27,18 @@ import { getTypeAndInitialise } from 'dynamic/awe-library/use-types'
  * @global
  * @description  The behaviours associated with a type
  * @property {BehaviourKeys} instances - an object containing the instances of behaviours associated with a type, the key is the behaviour name and the value is an array of instances of that behaviour
- *
+ */
+
+/**
  * @function Behaviours#sendMessage
  * @description Call the specified function on any methods attached
  * to behaviours on the document
  * @param {string} message - the name of the message to send
  * @param {...*} [params] - the parameter for the method
  * @returns {*} the result of calling the method on all of the behaviours
- *
+ */
+
+/**
  * @function Behaviours#sendMessageAsync
  * @description Call the specified function on any methods attached
  * to behaviours on the document and return a promise for the value

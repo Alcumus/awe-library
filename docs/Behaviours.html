@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>dynamic/awe-library/bind - awe-library</title>
+    <title>Behaviours - awe-library</title>
     
     
     
@@ -43,7 +43,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">dynamic/awe-library/bind</h1>
+    <h1 class="page-title">Behaviours</h1>
     
 
     
@@ -55,6 +55,9 @@
 
 <header>
     
+        <h2>
+        Behaviours
+        </h2>
         
     
 </header>
@@ -63,6 +66,105 @@
     
         <div class="container-overview">
         
+            
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_fields.js.html">plugins-dynamic/awe-library/fields.js</a>, <a href="plugins-dynamic_awe-library_fields.js.html#line25">line 25</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>instances</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">BehaviourKeys</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>an object containing the instances of behaviours associated with a type, the key is the behaviour name and the value is an array of instances of that behaviour</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+            
+                <div class="description usertext"><p>The behaviours associated with a type</p></div>
             
 
             
@@ -92,7 +194,7 @@
 
     
 
-    <h4 class="name" id=".bind"><span class="type-signature">(static) </span>bind<span class="signature">(props)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="sendMessage"><span class="type-signature"></span>sendMessage<span class="signature">(message, &hellip;params<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {*}</span></h4>
 
     
 
@@ -104,7 +206,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins-dynamic_awe-library_bind.js.html">plugins-dynamic/awe-library/bind.js</a>, <a href="plugins-dynamic_awe-library_bind.js.html#line30">line 30</a>
+        <a href="plugins-dynamic_awe-library_fields.js.html">plugins-dynamic/awe-library/fields.js</a>, <a href="plugins-dynamic_awe-library_fields.js.html#line32">line 32</a>
     </li></ul></dd>
     
 
@@ -144,10 +246,8 @@
 
 
 <div class="description usertext">
-    <p>Create a function to binds the property functions on an object to the current this pointer.</p>
-<p>This function is often used in behaviours as the definition of the <code>initialized</code> method to
-ensure that the necessary methods of a behaviour are correctly bound to the this so it can
-be used to access the behaviour definition while coding the implementation.</p>
+    <p>Call the specified function on any methods attached
+to behaviours on the document</p>
 </div>
 
 
@@ -156,25 +256,6 @@ be used to access the behaviour definition while coding the implementation.</p>
 
 
 
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>register(
- 'examplePerQuestionBehaviour',
- {
-        methods: {
-            initialized: bind('Renderer'),
-            // Render before a component
-            //beforeRender,
-            // Render after a component
-            afterRender,
-            // This is the internally declared component that will do the render
-            Renderer,
-        },
-    },
- true
-)</code></pre>
 
 
 
@@ -192,6 +273,8 @@ be used to access the behaviour definition while coding the implementation.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -204,18 +287,66 @@ be used to access the behaviour definition while coding the implementation.</p>
 
         <tr>
             
-                <td class="name"><code>props</code></td>
+                <td class="name"><code>message</code></td>
             
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+
+
+            
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>the names or function to bind</p></td>
+            <td class="description last"><p>the name of the message to send</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the parameter for the method</p></td>
         </tr>
 
     
@@ -241,10 +372,226 @@ be used to access the behaviour definition while coding the implementation.</p>
 
         
 <div class="param-desc">
-    <p>Binding function</p>
+    <p>the result of calling the method on all of the behaviours</p>
 </div>
 
 
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">*</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="sendMessageAsync"><span class="type-signature"></span>sendMessageAsync<span class="signature">(message, &hellip;params<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_fields.js.html">plugins-dynamic/awe-library/fields.js</a>, <a href="plugins-dynamic_awe-library_fields.js.html#line41">line 41</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Call the specified function on any methods attached
+to behaviours on the document and return a promise for the value</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the name of the message to send</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the parameter for the method</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a promise for the result of calling the method on all of the behaviours</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;*></span>
+
+
+    </dd>
+</dl>
 
     
 
