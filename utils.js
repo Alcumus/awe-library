@@ -538,6 +538,7 @@ export function logErrorOnLongCall(fn, delay = 3000) {
 
 /**
  * @callback DeepFieldPredicate
+ * @global
  * @description a callback that decides if there is a deep field list
  * for a particular target
  * @param {FieldDefinition} target
@@ -546,6 +547,7 @@ export function logErrorOnLongCall(fn, delay = 3000) {
 
 /**
  * @callback DeepFieldFunction
+ * @global
  * @description a callback that is provided with information on a
  * definition and reacts by setting addBaseField and addLinkField properties
  * to indicate how the question/field should be treated.
