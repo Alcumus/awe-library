@@ -1,0 +1,29 @@
+{
+  "name": "awe-library",
+  "version": "1.0.0",
+  "description": "awe-library",
+  "main": "bind.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "document": "rm -rf ./docs && jsdoc -c ./doc.conf.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alcumus/awe-library.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alcumus/awe-library/issues"
+  },
+  "homepage": "https://github.com/Alcumus/awe-library#readme",
+  "devDependencies": {
+    "docdash": "^1.2.0",
+    "dts-generator": "^3.0.0",
+    "jsdoc": "^3.6.5",
+    "tsd-jsdoc": "^2.5.0"
+  }
+}

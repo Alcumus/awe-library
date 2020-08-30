@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>dynamic/awe-library/fields - awe-library</title>
+    
+    
+    
+    
+    
+    <meta property="og:title" content="awe-library"/>
+    <meta property="og:type" content="docs"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="awe-library"/>
+    <meta property="og:url" content=""/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-common_offline-data-service.html">common/offline-data-service</a><ul class='methods'><li data-type='method'><a href="module-common_offline-data-service.html#.del">del</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.get">get</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.hydrateDocument">hydrateDocument</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.list">list</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.prepareDocument">prepareDocument</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.set">set</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.useRecord">useRecord</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.useRecordOrCreate">useRecordOrCreate</a></li><li data-type='method'><a href="module-common_offline-data-service.html#~getCount">getCount</a></li></ul></li><li><a href="module-common_offline-data-service_records.html">common/offline-data-service/records</a><ul class='methods'><li data-type='method'><a href="module-common_offline-data-service_records.html#.getRecords">getRecords</a></li><li data-type='method'><a href="module-common_offline-data-service_records.html#.useRecords">useRecords</a></li><li data-type='method'><a href="module-common_offline-data-service_records.html#.useRecordsForType">useRecordsForType</a></li><li data-type='method'><a href="module-common_offline-data-service_records.html#.useStreamedResults">useStreamedResults</a></li><li data-type='method'><a href="module-common_offline-data-service_records.html#.useStreamedResultsForType">useStreamedResultsForType</a></li></ul></li><li><a href="module-common_use-async.html">common/use-async</a><ul class='methods'><li data-type='method'><a href="module-common_use-async.html#.useCachedAsync">useCachedAsync</a></li><li data-type='method'><a href="module-common_use-async.html#.useCurrent">useCurrent</a></li><li data-type='method'><a href="module-common_use-async.html#.useCurrentState">useCurrentState</a></li><li data-type='method'><a href="module-common_use-async.html#~useAsync">useAsync</a></li></ul></li><li><a href="module-dynamic_awe-library_bind.html">dynamic/awe-library/bind</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_bind.html#.bind">bind</a></li></ul></li><li><a href="module-dynamic_awe-library_document-type-context.html">dynamic/awe-library/document-type-context</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_document-type-context.html#.useDocumentTypeContext">useDocumentTypeContext</a></li></ul></li><li><a href="module-dynamic_awe-library_fields.html">dynamic/awe-library/fields</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_fields.html#.getFieldList">getFieldList</a></li><li data-type='method'><a href="module-dynamic_awe-library_fields.html#.getTypeFromField">getTypeFromField</a></li><li data-type='method'><a href="module-dynamic_awe-library_fields.html#.useFieldList">useFieldList</a></li><li data-type='method'><a href="module-dynamic_awe-library_fields.html#.useQuestion">useQuestion</a></li><li data-type='method'><a href="module-dynamic_awe-library_fields.html#~sendMessage">sendMessage</a></li></ul></li><li><a href="module-dynamic_awe-library_generic-list-entry.html">dynamic/awe-library/generic-list-entry</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_generic-list-entry.html#.genericListEntry">genericListEntry</a></li></ul></li><li><a href="module-dynamic_awe-library_lookup-fields.html">dynamic/awe-library/lookup-fields</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_lookup-fields.html#.lookup">lookup</a></li></ul></li><li><a href="module-dynamic_awe-library_query.html">dynamic/awe-library/query</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_query.html#.convertToText">convertToText</a></li><li data-type='method'><a href="module-dynamic_awe-library_query.html#.Query">Query</a></li><li data-type='method'><a href="module-dynamic_awe-library_query.html#.QueryCascade">QueryCascade</a></li></ul></li><li><a href="module-dynamic_awe-library_question-type-def.html">dynamic/awe-library/question-type-def</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_question-type-def.html#.questionTypeDef">questionTypeDef</a></li><li data-type='method'><a href="module-dynamic_awe-library_question-type-def.html#~allTypes">allTypes</a></li></ul></li><li><a href="module-dynamic_awe-library_use-types.html">dynamic/awe-library/use-types</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.getPublishedVersionOfType">getPublishedVersionOfType</a></li><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.getTypeAndInitialise">getTypeAndInitialise</a></li><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.useApps">useApps</a></li><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.useType">useType</a></li><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.useTypeList">useTypeList</a></li><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.useTypes">useTypes</a></li></ul></li><li><a href="module-dynamic_awe-library_utils.html">dynamic/awe-library/utils</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.basicField">basicField</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.behaviour">behaviour</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.classification">classification</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.decorate">decorate</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.decorateFields">decorateFields</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.deepFields">deepFields</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.eventSource">eventSource</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.extractFieldName">extractFieldName</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.fieldBelongsLocally">fieldBelongsLocally</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.fieldNameIs">fieldNameIs</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.getFields">getFields</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.getStates">getStates</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.getTypeFor">getTypeFor</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.hints">hints</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.isNotBlank">isNotBlank</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.isStandardField">isStandardField</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.isStoredInRecord">isStoredInRecord</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.legalDbCharacters">legalDbCharacters</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.legalFieldNameCharacters">legalFieldNameCharacters</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.logErrorOnLongCall">logErrorOnLongCall</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.optionLabel">optionLabel</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.questionCaption">questionCaption</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.questionType">questionType</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.returnValue">returnValue</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.tab">tab</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.tabs">tabs</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.topLevelField">topLevelField</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.trackComponent">trackComponent</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.unique">unique</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.use">use</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.useField">useField</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.useFields">useFields</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.useGroupByFields">useGroupByFields</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.useTables">useTables</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.whenQuestionHasHint">whenQuestionHasHint</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.whenQuestionMatches">whenQuestionMatches</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.whenQuestionTypeIs">whenQuestionTypeIs</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.whenTrackComponentIs">whenTrackComponentIs</a></li></ul></li></ul><h3>Interfaces</h3><ul><li><a href="BehaviourDefinition.html">BehaviourDefinition</a></li><li><a href="DeepFieldDefinition.html">DeepFieldDefinition</a></li><li><a href="Document.html">Document</a></li><li><a href="DocumentDefinition.html">DocumentDefinition</a></li><li><a href="DocumentRecord.html">DocumentRecord</a></li><li><a href="FieldDefinition.html">FieldDefinition</a></li><li><a href="HintList.html">HintList</a></li><li><a href="ListOptions.html">ListOptions</a></li><li><a href="module-dynamic_awe-library_document-type-context-IDocumentTypeContext.html">IDocumentTypeContext</a></li><li><a href="module-dynamic_awe-library_fields-BehaviourKeys.html">BehaviourKeys</a></li><li><a href="module-dynamic_awe-library_lookup-fields-FieldLookup.html">FieldLookup</a></li><li><a href="module-dynamic_awe-library_query-QueryApi.html">QueryApi</a></li><li><a href="module-dynamic_awe-library_query-QueryCascadeApi.html">QueryCascadeApi</a></li><li><a href="module-dynamic_awe-library_query-QueryDefinition.html">QueryDefinition</a></li><li><a href="module-dynamic_awe-library_query-RefreshFunction.html">RefreshFunction</a></li><li><a href="module-dynamic_awe-library_use-types-DocumentRecord.html">DocumentRecord</a></li><li><a href="PropertySheetComponents.html">PropertySheetComponents</a></li><li><a href="QuestionTypeDef.html">QuestionTypeDef</a></li><li><a href="TableDefinition.html">TableDefinition</a></li><li><a href="TrackComponentDefinition.html">TrackComponentDefinition</a></li><li><a href="WhereDefinition.html">WhereDefinition</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DeepFieldDictionary">DeepFieldDictionary</a></li><li><a href="global.html#HintFunction">HintFunction</a></li><li><a href="global.html#HintPredicate">HintPredicate</a></li><li><a href="global.html#QuestionPredicateFunction">QuestionPredicateFunction</a></li><li><a href="global.html#RetrieveFunction">RetrieveFunction</a></li><li><a href="global.html#TabPredicate">TabPredicate</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">dynamic/awe-library/fields</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    		
+	    <h3 class="subsection-title">Interfaces</h3>		
+	
+	    <dl>		
+	        <dt><a href="module-dynamic_awe-library_fields-BehaviourKeys.html">BehaviourKeys</a></dt>		
+	        <dd></dd>		
+	    </dl>		
+	
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getFieldList"><span class="type-signature">(static) </span>getFieldList<span class="signature">(source)</span><span class="type-signature"> &rarr; {Promise.&lt;Array.&lt;<a href="FieldDefinition.html">FieldDefinition</a>>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_fields.js.html">plugins-dynamic/awe-library/fields.js</a>, <a href="plugins-dynamic_awe-library_fields.js.html#line103">line 103</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Returns a list of fields associated with the source provided.
+The source may be an existing field list, a type definition or the
+string ID of a type.  The result is a list of the associated fields
+available on the type.</p>
+<p>The results include fields in related tables.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="DocumentDefinition.html">DocumentDefinition</a></span>
+|
+
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Array.&lt;<a href="FieldDefinition.html">FieldDefinition</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the source to retrieve fields from</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a promise for an array of field definitions</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Array.&lt;<a href="FieldDefinition.html">FieldDefinition</a>>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getTypeFromField"><span class="type-signature">(static) </span>getTypeFromField<span class="signature">(field)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="DocumentDefinition.html">DocumentDefinition</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_fields.js.html">plugins-dynamic/awe-library/fields.js</a>, <a href="plugins-dynamic_awe-library_fields.js.html#line53">line 53</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Returns a document type associated with a field definition.</p>
+<p>Both topics and lookup fields have related types, this returns
+the type to which they refer.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>field</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="FieldDefinition.html">FieldDefinition</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the field to return the value of</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a promise for the document definition</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;<a href="DocumentDefinition.html">DocumentDefinition</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".useFieldList"><span class="type-signature">(static) </span>useFieldList<span class="signature">(sourceFields<span class="signature-attributes">opt</span>, type<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="FieldDefinition.html">FieldDefinition</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_fields.js.html">plugins-dynamic/awe-library/fields.js</a>, <a href="plugins-dynamic_awe-library_fields.js.html#line126">line 126</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Provides a hook to access all of the fields of a type or
+a list of existing fields, the result includes field in related
+tables.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>sourceFields</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="FieldDefinition.html">FieldDefinition</a>></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>a list of source fields</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type"><a href="DocumentDefinition.html">DocumentDefinition</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>a type to retrieve the fields from</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>returns the list of fields (or an empty array until available)</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="FieldDefinition.html">FieldDefinition</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".useQuestion"><span class="type-signature">(static) </span>useQuestion<span class="signature">(question, document)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_fields.js.html">plugins-dynamic/awe-library/fields.js</a>, <a href="plugins-dynamic_awe-library_fields.js.html#line149">line 149</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Retrieves the definition of a question based on a &quot;property path&quot;
+string that may dive into related tables. e.g. manager.primarySite.name</p>
+<p>The call returns the question definition AND the associated document</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>question</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>property path of the question</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>document</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="DocumentDefinition.html">DocumentDefinition</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the document to which the first part of the property path syntax belongs</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the question and document looked up as two members of an array</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~sendMessage"><span class="type-signature">(inner) </span>sendMessage<span class="signature">(message, &hellip;params<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {*}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_fields.js.html">plugins-dynamic/awe-library/fields.js</a>, <a href="plugins-dynamic_awe-library_fields.js.html#line25">line 25</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>instances</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">BehaviourKeys</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>an object containing the instances of behaviours associated with a type, the key is the behaviour name and the value is an array of instances of that behaviour</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<div class="description usertext">
+    <p>The behaviours associated with a type</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the name of the message to send</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the parameter for the method</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the result of calling the method on all of the behaviours</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">*</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Sun Aug 30 2020 12:58:11 GMT+0100 (British Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>

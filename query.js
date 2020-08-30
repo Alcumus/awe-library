@@ -1,3 +1,7 @@
+/**
+ * @module dynamic/awe-library/query
+ */
+
 import PropTypes from 'prop-types'
 import React from 'react'
 import Box from '@material-ui/core/Box'
@@ -39,6 +43,20 @@ const useStyles = makeStyles( ( theme ) => ({
     },
 }))
 
+/**
+ * @interface QueryCascadeApi
+ * @description the parameters passed to a QueryCascade component. Other properties
+ * are passed on to the Query components used
+ * @property {string} field - the name of the field in which to store the definition
+ * @property {React.Component} [children] - additional content to render for each entry
+ */
+
+/**
+ * A cascade of query definitions.  The principle is that a record
+ * included in an earlier query is not available to subsequent queries.
+ * @param {QueryCascadeApi} props
+ * @returns {React.Component}
+ */
 export function QueryCascade({ field, children, ...props }) {
     const { target, refresh } = useBoundContext()
     Object.set(target, field, Object.get(target, field, true) || [])
@@ -92,6 +110,19 @@ export function QueryCascade({ field, children, ...props }) {
     }
 }
 
+/**
+ * @interface QueryDefinition
+ * A definition of a query for the Query component, allows
+ * processing of queries down to sub levels and uses a MongoDb
+ * style method of storage
+ */
+
+/**
+ * Provided with a query definition from a Query component, this
+ * function creates a human readable definition of the query
+ * @param {QueryDefinition} where - the query to process
+ * @returns {string} a human readable version of the query
+ */
 export function convertToText(where) {
     const list = where.$or || [where]
     const output = list.map(where => {
@@ -112,6 +143,28 @@ export function convertToText(where) {
     return output.join(' OR ')
 }
 
+/**
+ * @interface RefreshFunction
+ * a function that is used to cause a redraw of part of the UI
+ * @property {string} id - an id for the current refresh of the component
+ * @property () - cause a refresh
+ */
+
+/**
+ * @interface QueryApi
+ * @description the parameters passed to a Query component. Other properties
+ * are passed on to the Material UI TextField used
+ * @property {DocumentDefinition} type - the document or application type on which this query will operate
+ * @property {RefreshFunction} parentRefresh - a function passed that will refresh the parent of the component
+ * @property {Array<FieldDefinition>} [fields] - optional list of fields to use, if omitted it is derived
+ * @property {string} fieldName - the field in which the query is stored
+ */
+
+/**
+ * Defines a query editing UI
+ * @param {QueryApi} props
+ * @returns {React.Component} A query editor
+ */
 export function Query({type, refresh: parentRefresh = noop, fields, field: fieldName = 'where', ...props}) {
     LongQuery.propTypes = {
         ok: PropTypes.any
