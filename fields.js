@@ -19,6 +19,7 @@ import { getTypeAndInitialise } from 'dynamic/awe-library/use-types'
 
 /**
  * @interface BehaviourKeys
+ * @global
  * @description  A lookup map of behaviour name to an array of instances of that behaviour
  */
 
