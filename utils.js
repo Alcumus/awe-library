@@ -65,6 +65,7 @@ export function legalFieldNameCharacters(v = '') {
 
 /**
  * @callback BehaviourPredicate
+ * @global
  * @description Declares a predicate that will determine whether a behaviour should be shown in the UI
  * @param {Array<BehaviourDefinition>} list - the current list of behaviours
  * @param {DocumentDefinition} definition - the current definition of the document or application to which the behaviour may be added
