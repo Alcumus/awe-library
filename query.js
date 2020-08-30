@@ -45,6 +45,7 @@ const useStyles = makeStyles( ( theme ) => ({
 
 /**
  * @interface QueryCascadeApi
+ * @global
  * @description the parameters passed to a QueryCascade component. Other properties
  * are passed on to the Query components used
  * @property {string} field - the name of the field in which to store the definition
@@ -112,6 +113,8 @@ export function QueryCascade({ field, children, ...props }) {
 
 /**
  * @interface QueryDefinition
+ * @global
+
  * A definition of a query for the Query component, allows
  * processing of queries down to sub levels and uses a MongoDb
  * style method of storage
@@ -145,6 +148,7 @@ export function convertToText(where) {
 
 /**
  * @interface RefreshFunction
+ * @global
  * a function that is used to cause a redraw of part of the UI
  * @property {string} id - an id for the current refresh of the component
  * @property () - cause a refresh
@@ -152,6 +156,7 @@ export function convertToText(where) {
 
 /**
  * @interface QueryApi
+ * @global
  * @description the parameters passed to a Query component. Other properties
  * are passed on to the Material UI TextField used
  * @property {DocumentDefinition} type - the document or application type on which this query will operate
