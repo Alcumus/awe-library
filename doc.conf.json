@@ -15,7 +15,8 @@
       "utils.js",
       "../../common/use-async/index.js",
       "../../common/offline-data-service/index.js",
-      "../../common/offline-data-service/records.js"
+      "../../common/offline-data-service/records.js",
+      "../../common/menu/index.js"
     ]
   },
   "opts": {

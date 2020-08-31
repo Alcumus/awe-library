@@ -346,6 +346,7 @@ export function questionType(typesOrFunction) {
 
 /**
  * @callback ConfigFunction
+ * @global
  * @description A function to configure a new instance of a component
  * @param {object} instance - the instance to be configured
  */

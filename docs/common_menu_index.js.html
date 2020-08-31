@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>plugins-dynamic/awe-library/fields.js - awe-library</title>
+    <title>common/menu/index.js - awe-library</title>
     
     
     
@@ -43,7 +43,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">plugins-dynamic/awe-library/fields.js</h1>
+    <h1 class="page-title">common/menu/index.js</h1>
     
 
     
@@ -54,187 +54,168 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @module dynamic/awe-library/fields
+ * @module common/menu
  */
-import { get } from 'common/offline-data-service'
-import { initialize } from 'alcumus-behaviours'
-import { useAsync } from 'common/use-async'
-import { lookup } from 'dynamic/awe-library/lookup-fields'
-import { getTypeAndInitialise } from 'dynamic/awe-library/use-types'
+import events from 'alcumus-local-events'
+import { raw } from 'alcumus-observable-store'
+
+import debounce from 'lodash/debounce'
+import map from 'lodash/map'
+import merge from 'lodash/mergeWith'
+
+import { inPriorityOrder } from '@alcumus/react-ioc-widgets'
+
+import store from 'common/menu/store'
+
+export const menu = store.$menu
+
+export function setMenuItems(menuItems) {
+    menu.$items = raw(
+        map(menuItems, (item, key) => {
+            item.id = item.id || key
+            return raw(item)
+        }).sort(inPriorityOrder)
+    )
+}
+
+export const refresh = debounce(
+    async function refresh() {
+        let menuItems = {}
+        await events.emitAsync('get-menu-items', menuItems)
+        setMenuItems(menuItems)
+    },
+    1,
+    { maxWait: 5 }
+)
+
+let lastUrl = ''
+
+const refreshIfNecessary = debounce(function refreshIfNecessary() {
+    if (window.location.href !== lastUrl) {
+        lastUrl = window.location.href
+        refresh()
+    }
+})
+
+events.on('app.navigate', refresh)
+
+events.on('check-url-redirect', refreshIfNecessary)
+
+setTimeout(() => {
+    refresh()
+}, 10)
+
+export function closeMenu() {
+    menu.$selected = null
+    menu.$showMain = false
+}
+
+function mergeArrayCustomiser(objValue, srcValue) {
+    if (Array.isArray(objValue)) {
+        return objValue.concat(srcValue)
+    }
+}
 
 /**
- * @interface FieldDefinition
+ * @callback IsActiveFunction
  * @global
- * @description A definition of a field/question.  An object implementing this
- * interface may store lots of other information based on its type
+ * @description a function that indicates if a menu should be shown
+ * as active
+ * @param {string} location - the current route
+ * @returns {boolean} true if the menu should be active
+ */
+
+/**
+ * @callback SecurityFunction
+ * @global
+ * @description a function that returns if the current user has permission for an action.
  *
- * @property {string} [name] - the database field that will be updated by this question, blank if not stored
- * @property {string} type - the type of this definition
+ * Frequently one uses the &lt;code>secureRoute('demand', ...)&lt;/code> to
+ * create a function to supply this need.
  */
 
 /**
- * @interface BehaviourKeys
+ * @callback MenuClickFunction
  * @global
- * @description  A lookup map of behaviour name to an array of instances of that behaviour
+ * @description A function called when a menu item is clicked
+ * @param {function():void} hide - a function to call to hide the menu
  */
 
 /**
- * @interface Behaviours
+ * @interface MenuItem
  * @global
- * @description  The behaviours associated with a type
- * @property {BehaviourKeys} instances - an object containing the instances of behaviours associated with a type, the key is the behaviour name and the value is an array of instances of that behaviour
+ * @description A menu item entry
+ * @property {string} title - the title of the item, on the main menu this is a tooltip
+ * @property {React.Component} icon - the icon to use for the menu item
+ * @property {string|IsActiveFunction} [isActive] - either a path that must be included in the route to indicate activity or a function to return if the menu item is active
+ * @property {SecurityFunction} [secure] - a function that returns whether the current user has permission to access the path
+ * @property {MenuClickFunction} [click] - a function to be run when clicking the item
+ * @example
+   {
+ title: 'PowerSearch',
+ icon: &lt;MdSearch />,
+ secure: secureRoute('power-search'),
+ isActive: '/search',
+ click(hide) {
+        navigate('/search')
+        hide()
+   }
+}
  */
 
 /**
- * @function Behaviours#sendMessage
- * @description Call the specified function on any methods attached
- * to behaviours on the document
- * @param {string} message - the name of the message to send
- * @param {...*} [params] - the parameter for the method
- * @returns {*} the result of calling the method on all of the behaviours
- */
-
-/**
- * @function Behaviours#sendMessageAsync
- * @description Call the specified function on any methods attached
- * to behaviours on the document and return a promise for the value
- * @param {string} message - the name of the message to send
- * @param {...*} [params] - the parameter for the method
- * @returns {Promise&lt;*>} a promise for the result of calling the method on all of the behaviours
- */
-
-/**
- * @interface DocumentDefinition
+ * @typedef {Object&lt;string, MenuItem>} MenuItems
+ * @description A dictionary of menu items
  * @global
- * @description The definition of a document or application type
- * @property {Behaviours} behaviours - the behaviours of this document
- * @property {string} name - the name of this definition
- * @property {string} _id - the unique ID of this document or application
  */
 
 /**
- * Returns a document type associated with a field definition.
+ * @callback MenuItemFunction
+ * @global
+ * @description A function that returns menu items
+ * @param {MenuItems} items - the current items
+ * @returns {MenuItems} the items to be added to the menu
+ */
+
+
+/**
+ * Provide a list of menu items.  This is a convenience
+ * function for handling the 'get-menu-items' event.  You
+ * provide a handler that takes the existing items and return
+ * an object containing keys which have unique menu item ids and
+ * values which are an object containing the data for the
+ * menu item to show.
  *
- * Both topics and lookup fields have related types, this returns
- * the type to which they refer.
- *
- * @param {FieldDefinition} field - the field to return the value of
- * @returns {Promise&lt;DocumentDefinition>} a promise for the document definition
+ * menuItems refers to the main left hand icon based menu.  Sub items
+ * can be shown on a menu shown when the top level is selected.  These
+ * sub items can be resolved using the &lt;code>subItems()&lt;/code> function
+ * or by supplying &lt;code>children&lt;/code> to the main menu.
+ * @param {MenuItemFunction} menuItemFn - a function that provides menu items
  */
-export async function getTypeFromField(field) {
-    let type
-    if (field.topic) {
-        const topic = await get(field.topic)
-        const concern = topic.concerns.find((c) => c.name === field.concern[0])
-        if (concern) {
-            type = concern.defaultType
+export function menuItems(menuItemFn) {
+    events.on('get-menu-items', function(event, items) {
+        let result = menuItemFn(items)
+        if (result) {
+            Object.keys(result).forEach((key) => {
+                items[key] = merge(items[key] || {}, result[key], mergeArrayCustomiser)
+            })
         }
-    }
-    if (field.lookupType) {
-        type = field.lookupType
-    }
-    return type
+    })
 }
 
-async function subFields(fields, route = []) {
-    if (route.length > 2) return []
-    const output = []
-    for (let field of fields) {
-        try {
-            let type = await getTypeFromField(field)
-            if (type) {
-                const subType = await get(type)
-                await initialize(subType)
-                const fields = subType
-                    .sendMessage('fields', [])
-                    .filter((f) => !f.name.startsWith('_') &amp;&amp; f.name.length >= 3)
-                output.push({ ...field, name: [...route, field.name].join('.') })
-                output.push(...(await subFields(fields, [...route, field.name])))
-            } else {
-                output.push({ ...field, name: [...route, field.name].join('.') })
-            }
-        } catch (e) {
-            //
-        }
-    }
-    return output
-}
-
-/**
- * Returns a list of fields associated with the source provided.
- * The source may be an existing field list, a type definition or the
- * string ID of a type.  The result is a list of the associated fields
- * available on the type.
- *
- * The results include fields in related tables.
- *
- * @param {DocumentDefinition|string|Array&lt;FieldDefinition>} source - the source to retrieve fields from
- * @returns {Promise&lt;Array&lt;FieldDefinition>>} a promise for an array of field definitions
- */
-export async function getFieldList(source) {
-    if (Array.isArray(source)) {
-        return await subFields(source)
-    }
-    let instance
-    if (source &amp;&amp; typeof source === 'object') {
-        instance = source
-    } else if (source) {
-        instance = await getTypeAndInitialise(source)
-    }
-    if (!instance) return []
-    const fields = instance.sendMessage('fields', [])
-    return await subFields(fields)
-}
-
-/**
- * Provides a hook to access all of the fields of a type or
- * a list of existing fields, the result includes field in related
- * tables.
- * @param {Array&lt;FieldDefinition>} [sourceFields] - a list of source fields
- * @param {string|DocumentDefinition} [type] - a type to retrieve the fields from
- * @returns {Array&lt;FieldDefinition>} returns the list of fields (or an empty array until available)
- */
-export function useFieldList(sourceFields, type) {
-    return useAsync(
-        async () => {
-            return await getFieldList(sourceFields || type)
-        },
-        [],
-        JSON.stringify({
-            type,
-            hasInstance: !!sourceFields &amp;&amp; sourceFields.length,
+export function subMenuItems(parentMenuId, subMenuFn) {
+    events.on(`sub-menu-items.${parentMenuId}`, (event, { parameters: settings }) => {
+        let result = subMenuFn(settings)
+        Object.keys(result).forEach((key) => {
+            settings.children.push(merge({ id: key }, result[key]))
         })
-    )
+    })
 }
 
-/**
- * Retrieves the definition of a question based on a "property path"
- * string that may dive into related tables. e.g. manager.primarySite.name
- *
- * The call returns the question definition AND the associated document
- *
- * @param {string} question - property path of the question
- * @param {DocumentDefinition} document - the document to which the first part of the property path syntax belongs
- * @returns {Array} the question and document looked up as two members of an array
- */
-export function useQuestion(question, document) {
-    return useAsync(
-        async () => {
-            if (typeof question !== 'string') return [question, document]
-            const parts = question.split('.')
-            for (let i = 0; i &lt; parts.length - 1; i++) {
-                const part = parts[i]
-                const field = lookup(document)[part]
-                if (!field) return [null, document]
-                let subType = await getTypeFromField(field)
-                if (!subType) return [null, document]
-                document = await getTypeAndInitialise(subType)
-            }
-            return [lookup(document)[parts[parts.length - 1]], document]
-        },
-        [null, document],
-        question
-    )
+export function subMenuHeader(parentMenuId, subMenuFn) {
+    events.on(`sub-menu-items.${parentMenuId}`, (event, { parameters: settings }) => {
+        settings.header = subMenuFn(settings)
+    })
 }
 </code></pre>
         </article>
