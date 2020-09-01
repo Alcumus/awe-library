@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>WhereDefinition - awe-library</title>
+    <title>common/sortable/index.js - awe-library</title>
     
     
     
@@ -43,106 +43,59 @@
 
 <div id="main">
     
-    <h1 class="page-title">WhereDefinition</h1>
+    <h1 class="page-title">common/sortable/index.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-        WhereDefinition
-        </h2>
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module common/sortable
+ * @description Sortable Material UI components using react-sortable-hoc
+ */
+import React from 'react'
+import { SortableContainer, SortableElement, SortableHandle } from 'alcumus-react-sortable-hoc'
 
-<article>
-    
-        <div class="container-overview">
-        
-            
+import { MdFormatAlignJustify } from 'react-icons/all'
 
-<dl class="details">
+import { Icon, List } from '@material-ui/core'
+import ListItem from '@material-ui/core/ListItem'
 
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_offline-data-service_index.js.html">common/offline-data-service/index.js</a>, <a href="common_offline-data-service_index.js.html#line178">line 178</a>
-    </li></ul></dd>
-    
+function Div({ children, ...props }) {
+    return &lt;div {...props}>{children}&lt;/div>
+}
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-            
-                <div class="description usertext"><p>A mongo db style where clause using
-an object and keys to describe a query</p></div>
-            
-
-            
-        
-        </div>
-    
-
-    
-
-    
-
-    
-    
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+/**
+ * A sortable Material UI List Item
+ * @type {ListItem}
+ */
+export const SortableListItem = SortableElement(ListItem)
+/**
+ * A sortable div
+ * @type {div}
+ */
+export const SortableDiv = SortableContainer(Div)
+/**
+ * A sortable Material UI List
+ * @type {List}
+ */
+export const SortableList = SortableContainer(List)
+/**
+ * A default handle for a sortable item
+ * @type {React.Component}
+ */
+export const Handle = SortableHandle(() => (
+    &lt;Icon style={{ color: '#aaa' }}>
+        &lt;MdFormatAlignJustify />
+    &lt;/Icon>
+))
+</code></pre>
+        </article>
+    </section>
 
 
 

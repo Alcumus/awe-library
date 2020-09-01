@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>common/process/index.js - awe-library</title>
+    
+    
+    
+    
+    
+    <meta property="og:title" content="awe-library"/>
+    <meta property="og:type" content="docs"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="awe-library"/>
+    <meta property="og:url" content=""/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-common_menu.html">common/menu</a><ul class='methods'><li data-type='method'><a href="module-common_menu.html#.menuItems">menuItems</a></li><li data-type='method'><a href="module-common_menu.html#.subMenuHeader">subMenuHeader</a></li><li data-type='method'><a href="module-common_menu.html#.subMenuItems">subMenuItems</a></li></ul></li><li><a href="module-common_offline-data-service.html">common/offline-data-service</a><ul class='methods'><li data-type='method'><a href="module-common_offline-data-service.html#.del">del</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.get">get</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.hydrateDocument">hydrateDocument</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.list">list</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.prepareDocument">prepareDocument</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.set">set</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.useRecord">useRecord</a></li><li data-type='method'><a href="module-common_offline-data-service.html#.useRecordOrCreate">useRecordOrCreate</a></li><li data-type='method'><a href="module-common_offline-data-service.html#~getCount">getCount</a></li></ul></li><li><a href="module-common_offline-data-service_records.html">common/offline-data-service/records</a><ul class='methods'><li data-type='method'><a href="module-common_offline-data-service_records.html#.getRecords">getRecords</a></li><li data-type='method'><a href="module-common_offline-data-service_records.html#.useRecords">useRecords</a></li><li data-type='method'><a href="module-common_offline-data-service_records.html#.useRecordsForType">useRecordsForType</a></li><li data-type='method'><a href="module-common_offline-data-service_records.html#.useStreamedResults">useStreamedResults</a></li><li data-type='method'><a href="module-common_offline-data-service_records.html#.useStreamedResultsForType">useStreamedResultsForType</a></li></ul></li><li><a href="module-common_process.html">common/process</a><ul class='methods'><li data-type='method'><a href="module-common_process.html#.define">define</a></li><li data-type='method'><a href="module-common_process.html#.immediateProcess">immediateProcess</a></li><li data-type='method'><a href="module-common_process.html#.notRunning">notRunning</a></li><li data-type='method'><a href="module-common_process.html#.parameter">parameter</a></li><li data-type='method'><a href="module-common_process.html#.process">process</a></li><li data-type='method'><a href="module-common_process.html#.retrieve">retrieve</a></li><li data-type='method'><a href="module-common_process.html#.send">send</a></li></ul></li><li><a href="module-common_sortable.html">common/sortable</a></li><li><a href="module-common_use-async.html">common/use-async</a><ul class='methods'><li data-type='method'><a href="module-common_use-async.html#.useCachedAsync">useCachedAsync</a></li><li data-type='method'><a href="module-common_use-async.html#.useCurrent">useCurrent</a></li><li data-type='method'><a href="module-common_use-async.html#.useCurrentState">useCurrentState</a></li><li data-type='method'><a href="module-common_use-async.html#~useAsync">useAsync</a></li></ul></li><li><a href="module-common_use-event.html">common/use-event</a><ul class='methods'><li data-type='method'><a href="module-common_use-event.html#.useLocalEvent">useLocalEvent</a></li><li data-type='method'><a href="module-common_use-event.html#.useLocalEventImmediate">useLocalEventImmediate</a></li><li data-type='method'><a href="module-common_use-event.html#.useWindowSize">useWindowSize</a></li></ul></li><li><a href="module-dynamic_awe-library_bind.html">dynamic/awe-library/bind</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_bind.html#.bind">bind</a></li></ul></li><li><a href="module-dynamic_awe-library_document-type-context.html">dynamic/awe-library/document-type-context</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_document-type-context.html#.useDocumentTypeContext">useDocumentTypeContext</a></li></ul></li><li><a href="module-dynamic_awe-library_fields.html">dynamic/awe-library/fields</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_fields.html#.getFieldList">getFieldList</a></li><li data-type='method'><a href="module-dynamic_awe-library_fields.html#.getTypeFromField">getTypeFromField</a></li><li data-type='method'><a href="module-dynamic_awe-library_fields.html#.useFieldList">useFieldList</a></li><li data-type='method'><a href="module-dynamic_awe-library_fields.html#.useQuestion">useQuestion</a></li></ul></li><li><a href="module-dynamic_awe-library_generic-list-entry.html">dynamic/awe-library/generic-list-entry</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_generic-list-entry.html#.genericListEntry">genericListEntry</a></li></ul></li><li><a href="module-dynamic_awe-library_lookup-fields.html">dynamic/awe-library/lookup-fields</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_lookup-fields.html#.lookup">lookup</a></li></ul></li><li><a href="module-dynamic_awe-library_query.html">dynamic/awe-library/query</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_query.html#.convertToText">convertToText</a></li><li data-type='method'><a href="module-dynamic_awe-library_query.html#.Query">Query</a></li><li data-type='method'><a href="module-dynamic_awe-library_query.html#.QueryCascade">QueryCascade</a></li></ul></li><li><a href="module-dynamic_awe-library_question-type-def.html">dynamic/awe-library/question-type-def</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_question-type-def.html#.questionTypeDef">questionTypeDef</a></li><li data-type='method'><a href="module-dynamic_awe-library_question-type-def.html#~allTypes">allTypes</a></li></ul></li><li><a href="module-dynamic_awe-library_use-types.html">dynamic/awe-library/use-types</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.getPublishedVersionOfType">getPublishedVersionOfType</a></li><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.getTypeAndInitialise">getTypeAndInitialise</a></li><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.useApps">useApps</a></li><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.useType">useType</a></li><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.useTypeList">useTypeList</a></li><li data-type='method'><a href="module-dynamic_awe-library_use-types.html#.useTypes">useTypes</a></li></ul></li><li><a href="module-dynamic_awe-library_utils.html">dynamic/awe-library/utils</a><ul class='methods'><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.basicField">basicField</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.behaviour">behaviour</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.classification">classification</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.decorate">decorate</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.decorateFields">decorateFields</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.deepFields">deepFields</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.eventSource">eventSource</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.extractFieldName">extractFieldName</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.fieldBelongsLocally">fieldBelongsLocally</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.fieldNameIs">fieldNameIs</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.getFields">getFields</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.getStates">getStates</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.getTypeFor">getTypeFor</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.hints">hints</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.isNotBlank">isNotBlank</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.isStandardField">isStandardField</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.isStoredInRecord">isStoredInRecord</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.legalDbCharacters">legalDbCharacters</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.legalFieldNameCharacters">legalFieldNameCharacters</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.logErrorOnLongCall">logErrorOnLongCall</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.optionLabel">optionLabel</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.questionCaption">questionCaption</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.questionType">questionType</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.returnValue">returnValue</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.tab">tab</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.tabs">tabs</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.topLevelField">topLevelField</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.trackComponent">trackComponent</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.unique">unique</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.use">use</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.useField">useField</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.useFields">useFields</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.useGroupByFields">useGroupByFields</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.useTables">useTables</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.whenQuestionHasHint">whenQuestionHasHint</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.whenQuestionMatches">whenQuestionMatches</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.whenQuestionTypeIs">whenQuestionTypeIs</a></li><li data-type='method'><a href="module-dynamic_awe-library_utils.html#.whenTrackComponentIs">whenTrackComponentIs</a></li></ul></li></ul><h3>Interfaces</h3><ul><li><a href="BehaviourDefinition.html">BehaviourDefinition</a></li><li><a href="BehaviourKeys.html">BehaviourKeys</a></li><li><a href="Behaviours.html">Behaviours</a><ul class='methods'><li data-type='method'><a href="Behaviours.html#sendMessage">sendMessage</a></li><li data-type='method'><a href="Behaviours.html#sendMessageAsync">sendMessageAsync</a></li></ul></li><li><a href="DeclarationApi.html">DeclarationApi</a><ul class='methods'><li data-type='method'><a href="DeclarationApi.html#after">after</a></li><li data-type='method'><a href="DeclarationApi.html#before">before</a></li><li data-type='method'><a href="DeclarationApi.html#cacheKey">cacheKey</a></li><li data-type='method'><a href="DeclarationApi.html#cacheResult">cacheResult</a></li><li data-type='method'><a href="DeclarationApi.html#cacheRetrieve">cacheRetrieve</a></li><li data-type='method'><a href="DeclarationApi.html#description">description</a></li><li data-type='method'><a href="DeclarationApi.html#important">important</a></li><li data-type='method'><a href="DeclarationApi.html#lruCache">lruCache</a></li><li data-type='method'><a href="DeclarationApi.html#offline">offline</a></li><li data-type='method'><a href="DeclarationApi.html#optional">optional</a></li><li data-type='method'><a href="DeclarationApi.html#required">required</a></li><li data-type='method'><a href="DeclarationApi.html#returns">returns</a></li><li data-type='method'><a href="DeclarationApi.html#timeout">timeout</a></li></ul></li><li><a href="DeepFieldDefinition.html">DeepFieldDefinition</a></li><li><a href="Document.html">Document</a></li><li><a href="DocumentDefinition.html">DocumentDefinition</a></li><li><a href="DocumentRecord.html">DocumentRecord</a></li><li><a href="EventSource.html">EventSource</a><ul class='methods'><li data-type='method'><a href="EventSource.html#addListener">addListener</a></li><li data-type='method'><a href="EventSource.html#removeListener">removeListener</a></li></ul></li><li><a href="FieldDefinition.html">FieldDefinition</a></li><li><a href="HintList.html">HintList</a></li><li><a href="IDocumentTypeContext.html">IDocumentTypeContext</a></li><li><a href="ListOptions.html">ListOptions</a></li><li><a href="MenuItem.html">MenuItem</a></li><li><a href="module-dynamic_awe-library_lookup-fields-FieldLookup.html">FieldLookup</a></li><li><a href="module-dynamic_awe-library_use-types-DocumentRecord.html">DocumentRecord</a></li><li><a href="Process.html">Process</a></li><li><a href="PropertySheetComponents.html">PropertySheetComponents</a></li><li><a href="QueryApi.html">QueryApi</a></li><li><a href="QueryCascadeApi.html">QueryCascadeApi</a></li><li><a href="QueryDefinition.html">QueryDefinition</a></li><li><a href="QuestionTypeDef.html">QuestionTypeDef</a></li><li><a href="RefreshFunction.html">RefreshFunction</a></li><li><a href="SubMenuInfo.html">SubMenuInfo</a></li><li><a href="TableDefinition.html">TableDefinition</a></li><li><a href="TrackComponentDefinition.html">TrackComponentDefinition</a></li><li><a href="WhereDefinition.html">WhereDefinition</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BehaviourPredicate">BehaviourPredicate</a></li><li><a href="global.html#ConfigFunction">ConfigFunction</a></li><li><a href="global.html#DeclarationFunction">DeclarationFunction</a></li><li><a href="global.html#DeepFieldDictionary">DeepFieldDictionary</a></li><li><a href="global.html#DeepFieldFunction">DeepFieldFunction</a></li><li><a href="global.html#DeepFieldPredicate">DeepFieldPredicate</a></li><li><a href="global.html#EventHandler">EventHandler</a></li><li><a href="global.html#HintFunction">HintFunction</a></li><li><a href="global.html#HintPredicate">HintPredicate</a></li><li><a href="global.html#IsActiveFunction">IsActiveFunction</a></li><li><a href="global.html#MenuClickFunction">MenuClickFunction</a></li><li><a href="global.html#MenuItemFunction">MenuItemFunction</a></li><li><a href="global.html#MenuItems">MenuItems</a></li><li><a href="global.html#OfflineProcessor">OfflineProcessor</a></li><li><a href="global.html#Parameter">Parameter</a></li><li><a href="global.html#QuestionPredicateFunction">QuestionPredicateFunction</a></li><li><a href="global.html#RetrieveFunction">RetrieveFunction</a></li><li><a href="global.html#SecurityFunction">SecurityFunction</a></li><li><a href="global.html#SubMenuHeaderProvider">SubMenuHeaderProvider</a></li><li><a href="global.html#SubMenuProvider">SubMenuProvider</a></li><li><a href="global.html#TabPredicate">TabPredicate</a></li><li><a href="global.html#TransformFunction">TransformFunction</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">common/process/index.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module common/process
+ * @description Functions to send server commands
+ */
+import events from 'alcumus-local-events'
+
+import debounce from 'lodash/debounce'
+import get from 'lodash/get'
+import set from 'lodash/set'
+import LRU from 'lru-cache'
+import { generate } from 'shortid'
+import { signOut } from 'utils/authenticationService'
+
+import { ensureArray } from 'common/ensure-array'
+import { raise } from 'common/events'
+import { store } from 'common/global-store'
+import { deviceId, tabId } from 'common/remote-ids'
+import { fetch } from 'common/request'
+import { asyncProp } from 'common/use-async'
+import { get as getItem, set as setItem } from 'common/using-local-storage-key'
+import './monitor'
+
+let context = { parameters: [] }
+
+const instanceId = sessionStorage.getItem('alcumus.instanceId') || (process.env === 'production' ? generate() : '1')
+sessionStorage.setItem('alcumus.instanceId', instanceId)
+
+export let queue = JSON.parse(getItem('_queue') || '[]')
+
+const saveItems = debounce(function saveItems() {
+    setItem('_queue', JSON.stringify(queue))
+}, 50)
+
+events.on('queue-updated', saveItems)
+
+
+/**
+ * @callback TransformFunction
+ * @global
+ * @description A function to transform a value
+ * @param {*} value
+ * @returns {*} The transformed value
+ */
+
+/**
+ * Creates a parameter setting function
+ * @param {string} path - the path of the value to set in the request parameters
+ * @param {TransformFunction} [transform] - a function to transform the value before setting it
+ * @returns {function(*=, object): void} a function to set the parameter
+ */
+export function parameter(path, transform = returnValue) {
+    if (path === 'type') throw new Error('Cannot set the type of a request')
+    return function (value, output) {
+        set(output, path, transform(value))
+    }
+}
+
+function returnValue(value) {
+    return value
+}
+
+function returnId(value) {
+    if (Object.isObject(value)) {
+        return value._id || value.id
+    }
+    return value
+}
+
+/**
+ * @callback Parameter
+ * @global
+ * @description A function that sets a value in the outbound parameters
+ * of the request.
+ *
+ * This is often created by the &lt;code>parameter()&lt;/code> function
+ * @param {*} value - the value to set
+ * @param {object} output - the outbound parameter request
+ */
+
+/**
+ * Declares a server call as an async function that returns a value.
+ *
+ * One specifies the api call to make and a value to extract. The result
+ * is an async function to perform the operation.
+ *
+ * @param {string} type - the name of the command to execute
+ * @param {string} extract - the value to extract from the server result
+ * @param {...Parameter} params - a list of parameters for the function, normally
+ * declared with the &lt;code>parameter()&lt;/code> function
+ * @returns {function(...[*]): Promise&lt;unknown>}
+ * @example
+ * // Declares an acquireLock function that calls 'lock.acquire' which
+ * // takes an 'id' as a parameter and returns the value of 'locked' returned
+ * // by the server
+ *
+ * const acquireLock = retrieve('lock.acquire', 'locked', parameter('id'))
+ *
+ */
+export function retrieve(type, extract, ...params) {
+    return command(type, extract, ...params)
+}
+
+/**
+ * Declares a server call that does not return a value
+ * @param {string} type - the name of the command to execute
+ * @param {...Parameter} params - a list of parameters for the function, normally
+ * declared with the &lt;code>parameter()&lt;/code> function
+ * @returns {function(...[*]): Promise&lt;unknown>}
+ */
+export function send(type, ...params) {
+    return command(type, undefined, ...params)
+}
+
+export function command(type, extract, ...params) {
+    return async function (...parameters) {
+        if (parameters.length &lt; params.length) {
+            throw new Error('Not enough parameters')
+        }
+        let toSend = {}
+        for (let i = 0; i &lt; params.length; i++) {
+            params[i](parameters[i], toSend)
+        }
+        for (let i = params.length; i &lt; parameters.length; i++) {
+            Object.assign(toSend, parameters[i])
+        }
+        if (window.debugProcess) console.info('Process', type, toSend)
+        let result = await process({ ...toSend, type })
+        if (window.debugProcess) console.info('Process Result', type, result)
+        if (extract) {
+            return get(result, `client.${extract}`)
+        } else {
+            return result
+        }
+    }
+}
+
+/**
+ * @interface Process
+ * @global
+ * @description A command to run on the server, the other properties
+ * of this object are parameters for the function being run
+ * @property {string} type - the command to execute on the server
+ * @property {string} [id] - an id for the job, one will be supplied if missing
+ */
+
+/**
+ * Send a command to the server as a post, this will
+ * not return until the results are ready
+ * @param {Array&lt;Process>|Process} itemOrItems - the item or items to process
+ * @returns {Promise&lt;*>} the result of the command
+ */
+export async function immediateProcess(itemOrItems) {
+    // if (store.user$ == null) {
+    //     return new Error('No user')
+    // }
+    itemOrItems = Array.isArray(itemOrItems) ? itemOrItems : [itemOrItems]
+    itemOrItems.forEach((item) => {
+        item.id = item.id || generate()
+        item.instanceId = instanceId
+        item.deviceId = deviceId
+        item.tabId = tabId
+    })
+    events.emit('processing', itemOrItems)
+    let response = await fetch('/api/process', {
+        method: 'POST',
+        body: JSON.stringify(itemOrItems),
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+        },
+    })
+    if (!response.ok) {
+        if (response.status === 403 || response.statusText === 'Unauthorised') {
+            if (store.user$ != null) {
+                await signOut().catch(console.error)
+                if (!window.location.pathname.startsWith('/login')) {
+                    sessionStorage.setItem('intendedDest', window.location.href)
+                    setTimeout(() => (window.location.href = '/login'))
+                }
+            }
+            let e = new Error(response.statusText)
+            e.nonNetwork = true
+            return e
+        }
+        let e = new Error(response.statusText)
+        e.nonNetwork = true
+        return e
+    }
+    let result = await response.json()
+    let { client } = result
+    window.isEmulated = !!client.isEmulated
+    if (client.notifications) {
+        await Promise.all(
+            client.notifications.map(async (notification) => {
+                await events.emitAsync('show-notification', notification)
+            })
+        )
+    }
+    await Promise.all(
+        client.events.map(async (event) => {
+            let params = event.params || []
+            params = Array.isArray(params) ? params : [params]
+            params.push(Date.now())
+            await events.emitAsync(event.event, ...params)
+        })
+    )
+    return result
+}
+
+events.on(`jobDone.**`, (event, packet) => {
+    const { jobId } = packet.message
+    if (running[jobId]) {
+        running[jobId].finished = Date.now()
+        raise('update-jobs', running)
+        setTimeout(() => {
+            delete running[jobId]
+            raise('update-jobs', running)
+        }, 2500)
+    }
+    events.emit(`job.completed.${packet.type}`, packet.message.result.client, packet.type, packet.message.result)
+})
+
+export const running = {}
+
+events.on('auth.login-success', () => {
+    setTimeout(() => {
+        Object.keys(running).forEach((key) => delete running[key])
+        raise('updated-jobs', running)
+    }, 50)
+})
+
+/**
+ * Returns a promise for a time when there are no jobs
+ * running on the server for this client
+ * @returns {Promise&lt;void>}
+ */
+export async function notRunning() {
+    return new Promise((resolve) => {
+        events.on('update-jobs', check)
+        check()
+
+        function check() {
+            if (!Object.isEmpty(running)) return
+            events.off('update-jobs', check)
+            resolve()
+        }
+    })
+}
+
+/**
+ * Queues a job to run on the server
+ * @param {Process} singleItem - the item to process
+ * @param {number} [timeout=300000] - the timeout for the function in m/s default 5 mins
+ * @param {string} [name] - a name to display in the job list for this job
+ * @param {boolean} [important=false] - a flag to indicate that the job is important.
+ * Important jobs are shown in a running list always, other jobs are only
+ * shown in debug mode
+ * @param {boolean} [isAnonymous=false] - flag to indicate that the job should be run as an anonymous user
+ * @returns {Promise&lt;*>} The result of the job after processing on the server
+ */
+export async function process(singleItem, timeout = 60000 * 5, name, important, isAnonymous = false) {
+    singleItem = Array.isArray(singleItem) ? singleItem[0] : singleItem
+    singleItem.$id = singleItem.$id || generate()
+    events.emit('processing', singleItem)
+    // eslint-disable-next-line no-async-promise-executor
+    return new Promise(async (resolve, reject) => {
+        const id = setTimeout(reject, timeout)
+        running[singleItem.$id] = { name, important, start: Date.now(), type: singleItem.type }
+        raise('update-jobs', running)
+        const handler = async (event, packet) => {
+            raise('update-jobs', running)
+            const { result } = packet.message
+            const { client } = result
+            clearTimeout(id)
+            if (window.DEBUG_CALLS) {
+                console.info('Processed', singleItem.type, result)
+            }
+            window.isEmulated = !!client.isEmulated
+            if (client.notifications) {
+                await Promise.all(
+                    client.notifications.map(async (notification) => {
+                        await events.emitAsync('show-notification', notification)
+                    })
+                )
+            }
+            await Promise.all(
+                client.events.map(async (event) => {
+                    let params = event.params || []
+                    params = Array.isArray(params) ? params : [params]
+                    params.push(Date.now())
+                    await events.emitAsync(event.event, ...params)
+                })
+            )
+            resolve(result)
+        }
+        events.once(`jobDone.${singleItem.$id}`, handler)
+        let response = await fetch(
+            `/api/enqueue?type=${singleItem.type}`,
+            {
+                method: 'POST',
+                body: JSON.stringify(singleItem),
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            },
+            isAnonymous
+        )
+        if (window.DEBUG_CALLS) {
+            console.info('Started', singleItem.type, singleItem, response)
+        }
+        if (!response.ok) {
+            events.off(`jobDone.${singleItem.$id}`, handler)
+            delete running[singleItem.$id]
+            raise('update-jobs', running)
+            if (response.status === 403 || response.statusText === 'Unauthorised') {
+                if (store.user$ != null) {
+                    await signOut().catch(console.error)
+                    if (!window.location.pathname.startsWith('/login')) {
+                        sessionStorage.setItem('intendedDest', window.location.href)
+                        setTimeout(() => (window.location.href = '/login'))
+                    }
+                }
+                let e = new Error(response.statusText)
+                e.nonNetwork = true
+                return e
+            }
+            let e = new Error(response.statusText)
+            e.nonNetwork = true
+            reject(e)
+        }
+    })
+}
+
+function stringify(o) {
+    return JSON.stringify(o)
+}
+
+/**
+ * @interface DeclarationApi
+ * @global
+ * @description An api that is used to define server calls.
+ * The order of calls declares the API.
+ *
+ * You may also import these functions directly from common/process.
+ */
+
+/**
+ * @function DeclarationApi#required
+ * @description Declare a required parameter
+ * @param {string} name - the name by which the parameter will be known on the server
+ * @param {TransformFunction} [transform] - a function to transform the value
+ * export const addApp = define('app.types.add', function () {
+    required('name') // First parameter will be known as 'name' in the server
+    optional('definition')
+    returns('id')
+})
+ */
+
+/**
+ * @function DeclarationApi#optional
+ * @description Declare an optional parameter
+ * @param {string} name - the name by which the parameter will be known on the server
+ * @param {TransformFunction} [transform] - a function to transform the value
+ * export const addApp = define('app.types.add', function () {
+    required('name') // First parameter will be known as 'name' in the server
+    optional('definition')
+    returns('id')
+})
+ */
+
+/**
+ * @function DeclarationApi#returns
+ * @description Declare a return value for the function.  If only
+ * one value is returned, it becomes the return value of the generated
+ * server call, if more than one - then the multiple values are
+ * returned in an array.
+ * @param {string} path - the path of the property to retrieve from the server result object
+ * export const addApp = define('app.types.add', function () {
+    required('name') // First parameter will be known as 'name' in the server
+    optional('definition')
+    returns('id') // Returns the result.id property
+})
+ */
+
+/**
+ * @function DeclarationApi#lruCache
+ * @description Declare that calls with the same parameters will
+ * be cached and returned without a server call
+ * @param {number} [count=50] - the number of calls to retain
+ */
+
+/**
+ * @function DeclarationApi#cacheResult
+ * @description Declares a function that will be used to
+ * cache the result of a server call
+ * @param {object} result - the result to be cached
+ * @param {Process} command - the parameters that were sent to create the result
+ */
+
+/**
+ * @function DeclarationApi#cacheRetrieve
+ * @description Declare a function to retrieve a value from a
+ * cache, this allows you to write your own caching functions.
+ * @param {Process} command - the command to retrieve from the cache
+ * @returns {*|null} returns the cached value for the parameters or null
+ */
+
+/**
+ * @function DeclarationApi#before
+ * @description Declare a function to be called before sending the command,
+ * there may be more than one before function.
+ * @param {Process} command - the command that is being sent
+ */
+
+/**
+ * @function DeclarationApi#after
+ * @description Declare a function to be called after retrieving the result,
+ * there may be more than one after function.
+ * @param {object} result - the result that has been retrieved
+ */
+
+/**
+ * @function DeclarationApi#cacheKey
+ * @description Declare a function that will create a cache key from an API packet.
+ * By default the key is all of the parameters in the packet.
+ * @param {Process} command - the command that is being sent
+ * @returns {string} the key for the given command
+ */
+
+/**
+ * @callback OfflineProcessor
+ * @global
+ * @param {Process} command - the command being processed
+ * @returns {Promise&lt;object>} - the result of processing the command offline
+ */
+
+/**
+ * @function DeclarationApi#offline
+ * @description Declare a function that will be used when the app is offline.
+ * @param {OfflineProcessor} fn - the function to be called when the app is offline.
+ */
+
+/**
+ * @function DeclarationApi#important
+ * @description Flags this command as being registered in the "important"
+ * running jobs
+ */
+
+/**
+ * @function DeclarationApi#timeout
+ * @description Declare the timeout for the function call in m/s
+ * @param {number} timeout - the number of m/s that the call should run before timing out
+ */
+
+/**
+ * @function DeclarationApi#description
+ * @description Set a name for the job in the list of running jobs
+ * @param {string|function(Process):string} name - the name of the job that is running for the monitored list
+ */
+
+
+/**
+ * @callback DeclarationFunction
+ * @global
+ * @description A function that uses function calls to
+ * declare an API call to the server
+ * @param {DeclarationApi} api - the api for declaring server calls
+ * @example
+ * export const addApp = define('app.types.add', function () {
+    required('name') // First parameter will be known as 'name' in the server
+    optional('definition')
+    returns('id')
+})
+ */
+
+/**
+ * Define an API call using a richer syntax that allows
+ * for required and optional parameters, outbound and inbound
+ * transformations plus one or more return values.
+ *
+ * @param {string} type - the api process to call
+ * @param {DeclarationFunction} fn - a function that will be
+ * called to create the definition
+ * @returns {function(...[*]): Promise&lt;*>} a function to asynchronously
+ * make the API call
+ */
+export function define(type, fn) {
+    context = {
+        parameters: [],
+        returns: [],
+        transformRequest: [],
+        transformResult: [],
+        type,
+        cacheKey: stringify,
+    }
+    fn({
+        required,
+        optional,
+        returns,
+        lruCache,
+        cacheResult,
+        cacheRetrieve,
+        before,
+        after,
+        cacheKey,
+        offline,
+        important,
+        timeout,
+        description,
+    })
+    const definition = context
+    const result = asyncProp(async (...parameters) => {
+        let toSend = {}
+        for (let i = 0; i &lt; definition.parameters.length; i++) {
+            let hasParameter = parameters.length > i
+            let parameter = definition.parameters[i]
+            let value = parameters[i] || parameter.defaultValue
+            if (!hasParameter &amp;&amp; !parameter.optional) {
+                throw new Error(`Missing parameter '${parameter.name}'`)
+            }
+            parameter.fn(value, toSend)
+        }
+        for (let parameter of parameters.slice(definition.parameters.length)) {
+            Object.assign(toSend, parameter)
+        }
+        if (definition.cacheRetrieve) {
+            const existing = definition.cacheRetrieve(toSend)
+            if (existing) {
+                return existing
+            }
+        }
+        definition.transformRequest.forEach((fn) => (toSend = fn(toSend) || toSend))
+        if (window.debugProcess) console.info('Process', type, toSend)
+        let result
+        if (navigator.onLine) {
+            result = await process({ ...toSend, type }, definition.timeout, definition.name, definition.important)
+        } else {
+            if (definition.offline) {
+                result = definition.offline(toSend)
+            }
+            if (!result) {
+                return result
+            }
+        }
+        if (window.debugProcess) console.info('Process Result', type, result)
+        definition.transformResult.forEach((fn) => (result.client = fn(result.client, toSend) || result.client))
+        const results = definition.returns.map((extract) => get(result, `client.${extract}`))
+        let finalResult = results.length === 1 ? results[0] : results
+        if (definition.cacheResult) {
+            definition.cacheResult(finalResult, toSend)
+        }
+        return finalResult
+    })
+    Object.assign(result, definition)
+    context = { parameters: [] }
+    return result
+}
+
+export function lruCache(number = 50) {
+    let definition = context
+    let cache = (definition.$cache = new LRU(number))
+    definition.cacheRetrieve = (toSend) => {
+        return cache.get(definition.cacheKey(toSend))
+    }
+    definition.cacheResult = (result, toSend) => {
+        cache.set(definition.cacheKey(toSend), result)
+    }
+}
+
+export function timeout(time) {
+    context.timeout = time
+}
+
+export function important() {
+    context.important = true
+}
+
+export function description(name) {
+    context.description = name
+    context.name = name
+}
+
+export function cacheKey(fn) {
+    context.cacheKey = fn
+}
+
+export function cacheResult(fn) {
+    context.cacheResult = fn
+}
+
+export function offline(fn) {
+    context.offline = fn
+}
+
+export function cacheRetrieve(fn) {
+    context.cacheRetrieve = fn
+}
+
+export function before(fn) {
+    context.transformRequest.push(fn)
+}
+
+export function after(fn) {
+    context.transformResult.push(fn)
+}
+
+const reserved = ['id', 'type']
+
+export function required(name, transform = returnValue) {
+    name = name.trim()
+    if (!name) throw new Error('You must specify a parameter name')
+    if (reserved.includes(name)) {
+        throw new Error(`You may not pass a '${name}' parameter, it is reserved. Choose a different name.`)
+    }
+    if (context.parameters.some((p) => p.optional &amp;&amp; !p.defaultValue)) {
+        throw new Error('Optional parameters without defaults must come after required parameters')
+    }
+    const param = { name, fn: parameter(name, transform) }
+    context.parameters.push(param)
+    const result = (value) => (param.defaultValue = value)
+    result.$ = param
+    return result
+}
+
+export function optional(name, transform = returnValue) {
+    name = name.trim()
+    if (!name) throw new Error('You must specify a parameter name')
+    if (reserved.includes(name)) {
+        throw new Error(`You may not pass a '${name}' parameter, it is reserved. Choose a different name.`)
+    }
+    const param = {
+        name,
+        fn: parameter(name, transform),
+        optional: true,
+    }
+    context.parameters.push(param)
+    const result = (value) => {
+        param.defaultValue = value
+        console.warn('Optional values with defaults are treated the same as required parameters with defaults')
+    }
+    result.$ = param
+    return result
+}
+
+export function returns(path) {
+    context.returns.push(...ensureArray(path))
+}
+
+export function document(transform = returnId) {
+    const param = {
+        fn: process,
+        document: true,
+    }
+    context.parameters.push(param)
+    return process
+
+    function process(value, output) {
+        let docs = (output.documents = output.documents || [])
+        docs.push(transform(value))
+        return false
+    }
+}
+
+export function reference(transform = returnId) {
+    const param = {
+        fn: process,
+        reference: true,
+    }
+    context.parameters.push(param)
+    return process
+
+    function process(value, output) {
+        let docs = (output.references = output.references || [])
+        docs.push(transform(value))
+        return false
+    }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Tue Sep 01 2020 21:55:41 GMT+0100 (British Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>

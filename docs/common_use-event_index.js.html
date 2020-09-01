@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>WhereDefinition - awe-library</title>
+    <title>common/use-event/index.js - awe-library</title>
     
     
     
@@ -43,106 +43,268 @@
 
 <div id="main">
     
-    <h1 class="page-title">WhereDefinition</h1>
+    <h1 class="page-title">common/use-event/index.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-        WhereDefinition
-        </h2>
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module common/use-event
+ */
 
-<article>
-    
-        <div class="container-overview">
-        
-            
+import { useEffect, useLayoutEffect } from 'react'
 
-<dl class="details">
+import events from 'alcumus-local-events'
+import decamelize from 'decamelize'
+import { ensureArray } from 'common/ensure-array'
+import { useRefresh } from 'common/useRefresh'
+import { globalWidgets } from 'common/widgets'
+function eventName(name) {
+    let parts = name.split('.')
+    return [decamelize(parts[0], '.'), ...parts.slice(1)].join('.')
+}
+let old, old2, emit, emit2
+window.trackEvents = function () {
+    let myEvents = events
+    old = myEvents.addListener.bind(myEvents)
+    myEvents.addListener = function (...params) {
+        // eslint-disable-next-line no-console
+        console.trace(params[0])
+        old(...params)
+    }
+    emit = myEvents.emit.bind(myEvents)
+    myEvents.emit = function (...params) {
+        // eslint-disable-next-line no-console
+        console.trace('emit ' + params[0])
+        emit(...params)
+    }
+    myEvents = globalWidgets
+    old2 = myEvents.addListener.bind(myEvents)
+    myEvents.addListener = function (...params) {
+        // eslint-disable-next-line no-console
+        console.trace(params[0])
+        old2(...params)
+    }
+    emit2 = myEvents.emit.bind(myEvents)
+    myEvents.emit = function (...params) {
+        // eslint-disable-next-line no-console
+        console.trace('emit ' + params[0])
+        emit2(...params)
+    }
+}
 
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_offline-data-service_index.js.html">common/offline-data-service/index.js</a>, <a href="common_offline-data-service_index.js.html#line178">line 178</a>
-    </li></ul></dd>
-    
+/**
+ * Returns the window size of the current viewport and
+ * refreshes (using debounce) should it change
+ * @returns {{width: number, height: number}}
+ */
+export function useWindowSize() {
+    const refresh = useRefresh()
+    useLocalEvent('resize-vp', refresh)
+    return { width: innerWidth, height: innerHeight }
+}
 
-    
+/**
+ * @callback EventHandler
+ * @global
+ * @description An event handling function
+ * @param {...*} params - the parameters passed to the event
+ * @returns {boolean} - &lt;code>false&lt;/code> to stop further processing of the event
+ */
 
-    
+/**
+ * @interface EventSource
+ * @global
+ * @description A source of events
+ */
 
-    
+/**
+ * @function EventSource#addListener
+ * @description Add an event listener
+ * @param {string} event - name of the event
+ * @param {function} handler - the function to handle the event
+ */
 
-    
+/**
+ * @function EventSource#removeListener
+ * @description Remove an event listener
+ * @param {string} event - name of the event
+ * @param {function} handler - the function that handles the event
+ */
 
-    
+/**
+ * Adds an event handler for an alcumus-local-event sourced event.
+ * The handler does NOT receive the first &lt;code>event&lt;/code> parameter
+ * that would be passed to a normal handler, but may return &lt;code>false&lt;/code>
+ * to prevent any further handling of the event.
+ *
+ * The handler is added in a React useEffect, this may miss immediately
+ * raised events - for that use &lt;code>useLocalEventImmediate&lt;/code>.
+ *
+ * Event names use "." to separate parts and can use "*" to handle
+ * multiple events.
+ *
+ * @param {...string} events - a list of events to be handled
+ * @param {EventHandler} handler - the handler for the event(s)
+ * @param {EventSource} [source=alcumusLocalEvents] - the emitter of the events (e.g. window)
+ */
+export function useLocalEvent(...params) {
+    let pattern = []
+    let source = events
+    let handler
+    for (let i = 0; i &lt; params.length; i++) {
+        let param = params[i]
+        if (typeof param === 'string') {
+            pattern.push(param)
+        } else if (Array.isArray(param)) {
+            pattern.push(...param)
+        } else if (typeof param === 'function') {
+            handler = param
+            source = params[i + 1] || events
+            break
+        }
+    }
+    const fn = useEvent
+    const eventWrapper = (event, ...params) => {
+        let result = (handler || pattern)(...params)
+        if (result === false) event.preventDefault()
+    }
+    if (!handler &amp;&amp; typeof pattern === 'function') {
+        return fn(source, eventName(pattern.name), eventWrapper)
+    }
 
-    
+    fn(source, pattern, eventWrapper)
+}
 
-    
+/**
+ * Adds an event handler for an alcumus-local-event sourced event.
+ * The handler does NOT receive the first &lt;code>event&lt;/code> parameter
+ * that would be passed to a normal handler, but may return &lt;code>false&lt;/code>
+ * to prevent any further handling of the event.
+ *
+ * The handler is added in a React useLayoutEffect, this will catch rapidly
+ * raised events, but causes many additional calls to add and remove
+ * listeners - if you don't need this immediate handling,
+ * use &lt;code>useLocalEvent&lt;/code>.
+ *
+ * Event names use "." to separate parts and can use "*" to handle
+ * multiple events.
+ *
+ * @param {...string} events - a list of events to be handled
+ * @param {EventHandler} handler - the handler for the event(s)
+ * @param {EventSource} [source=alcumusLocalEvents] - the emitter of the events (e.g. window)
+ */export function useLocalEventImmediate(...params) {
+    let pattern = []
+    let source = events
+    let handler
+    for (let i = 0; i &lt; params.length; i++) {
+        let param = params[i]
+        if (typeof param === 'string') {
+            pattern.push(param)
+        } else if (Array.isArray(param)) {
+            pattern.push(...param)
+        } else if (typeof param === 'function') {
+            handler = param
+            source = params[i + 1] || events
+            break
+        }
+    }
+    const fn = useEvent
+    const eventWrapper = (event, ...params) => {
+        let result = (handler || pattern)(...params)
+        if (result === false) event.preventDefault()
+    }
+    if (!handler &amp;&amp; typeof pattern === 'function') {
+        return fn(source, eventName(pattern.name), eventWrapper, useLayoutEffect)
+    }
 
-    
+    fn(source, pattern, eventWrapper, useLayoutEffect)
+}
 
-    
+export function useLocalEventDeferred(pattern, handler, source) {
+    useLocalEvent(pattern, handler.debounce(), source)
+}
+export function useLocalEventAsync(pattern, handler) {
+    const fn = useEventAsync
+    const eventWrapper = async (event, ...params) => {
+        let result = await (handler || pattern)(...params)
+        if (result === false) event.preventDefault()
+    }
+    if (!handler &amp;&amp; typeof pattern === 'function') {
+        return fn(events, eventName(pattern.name), eventWrapper)
+    }
 
-    
+    fn(events, pattern, eventWrapper)
+}
 
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-            
-                <div class="description usertext"><p>A mongo db style where clause using
-an object and keys to describe a query</p></div>
-            
-
-            
-        
-        </div>
-    
-
-    
-
-    
-
-    
-    
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+export function useEvent(emitter, patterns, handler, method = useEffect) {
+    if (!handler) {
+        ;[emitter, patterns, handler] = [events, emitter, patterns]
+    }
+    method(() => {
+        for (let pattern of ensureArray(patterns)) {
+            if (emitter) {
+                if (emitter.on) {
+                    emitter.on(eventName(pattern), runner)
+                } else if (emitter.addEventListener) {
+                    emitter.addEventListener(eventName(pattern), runner)
+                } else {
+                    emitter.addListener(eventName(pattern), runner)
+                }
+            }
+        }
+        return () => {
+            for (let pattern of ensureArray(patterns)) {
+                if (emitter.off) {
+                    emitter.off(eventName(pattern), runner)
+                } else if (emitter.removeEventListener) {
+                    emitter.removeEventListener(eventName(pattern), runner)
+                } else {
+                    emitter.removeListener(eventName(pattern), runner)
+                }
+            }
+        }
+    })
+    function runner(...params) {
+        handler(...params)
+    }
+}
+export function useEventAsync(emitter, patterns, handler) {
+    if (!handler) {
+        ;[emitter, patterns, handler] = [events, emitter, patterns]
+    }
+    let runner = async (...params) => {
+        await handler(...params)
+    }
+    useEffect(() => {
+        for (let pattern of ensureArray(patterns)) {
+            if (emitter) {
+                if (emitter.addEventListener) {
+                    emitter.addEventListener(eventName(pattern), runner)
+                } else {
+                    emitter.addListener(eventName(pattern), runner)
+                }
+            }
+        }
+        return () => {
+            for (let pattern of ensureArray(patterns)) {
+                if (emitter.removeEventListener) {
+                    emitter.removeEventListener(eventName(pattern), runner)
+                } else {
+                    emitter.removeListener(eventName(pattern), runner)
+                }
+            }
+        }
+    })
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

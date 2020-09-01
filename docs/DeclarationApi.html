@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>dynamic/awe-library/query - awe-library</title>
+    <title>DeclarationApi - awe-library</title>
     
     
     
@@ -43,7 +43,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">dynamic/awe-library/query</h1>
+    <h1 class="page-title">DeclarationApi</h1>
     
 
     
@@ -55,6 +55,9 @@
 
 <header>
     
+        <h2>
+        DeclarationApi
+        </h2>
         
     
 </header>
@@ -63,6 +66,55 @@
     
         <div class="container-overview">
         
+            
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line339">line 339</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext"><p>An api that is used to define server calls.
+The order of calls declares the API.</p>
+<p>You may also import these functions directly from common/process.</p></div>
             
 
             
@@ -92,7 +144,7 @@
 
     
 
-    <h4 class="name" id=".convertToText"><span class="type-signature">(static) </span>convertToText<span class="signature">(where)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="after"><span class="type-signature"></span>after<span class="signature">(result)</span><span class="type-signature"></span></h4>
 
     
 
@@ -104,7 +156,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins-dynamic_awe-library_query.js.html">plugins-dynamic/awe-library/query.js</a>, <a href="plugins-dynamic_awe-library_query.js.html#line129">line 129</a>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line416">line 416</a>
     </li></ul></dd>
     
 
@@ -144,8 +196,8 @@
 
 
 <div class="description usertext">
-    <p>Provided with a query definition from a Query component, this
-function creates a human readable definition of the query</p>
+    <p>Declare a function to be called after retrieving the result,
+there may be more than one after function.</p>
 </div>
 
 
@@ -183,13 +235,13 @@ function creates a human readable definition of the query</p>
 
         <tr>
             
-                <td class="name"><code>where</code></td>
+                <td class="name"><code>result</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="QueryDefinition.html">QueryDefinition</a></span>
+<span class="param-type">object</span>
 
 
             
@@ -199,7 +251,281 @@ function creates a human readable definition of the query</p>
 
             
 
-            <td class="description last"><p>the query to process</p></td>
+            <td class="description last"><p>the result that has been retrieved</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="before"><span class="type-signature"></span>before<span class="signature">(command)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line409">line 409</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Declare a function to be called before sending the command,
+there may be more than one before function.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>command</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Process.html">Process</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the command that is being sent</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cacheKey"><span class="type-signature"></span>cacheKey<span class="signature">(command)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line423">line 423</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Declare a function that will create a cache key from an API packet.
+By default the key is all of the parameters in the packet.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>command</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Process.html">Process</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the command that is being sent</p></td>
         </tr>
 
     
@@ -225,7 +551,7 @@ function creates a human readable definition of the query</p>
 
         
 <div class="param-desc">
-    <p>a human readable version of the query</p>
+    <p>the key for the given command</p>
 </div>
 
 
@@ -251,7 +577,7 @@ function creates a human readable definition of the query</p>
 
     
 
-    <h4 class="name" id=".Query"><span class="type-signature">(static) </span>Query<span class="signature">(props)</span><span class="type-signature"> &rarr; {React.Component}</span></h4>
+    <h4 class="name" id="cacheResult"><span class="type-signature"></span>cacheResult<span class="signature">(result, command)</span><span class="type-signature"></span></h4>
 
     
 
@@ -263,7 +589,7 @@ function creates a human readable definition of the query</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins-dynamic_awe-library_query.js.html">plugins-dynamic/awe-library/query.js</a>, <a href="plugins-dynamic_awe-library_query.js.html#line174">line 174</a>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line393">line 393</a>
     </li></ul></dd>
     
 
@@ -303,7 +629,8 @@ function creates a human readable definition of the query</p>
 
 
 <div class="description usertext">
-    <p>Defines a query editing UI</p>
+    <p>Declares a function that will be used to
+cache the result of a server call</p>
 </div>
 
 
@@ -341,13 +668,13 @@ function creates a human readable definition of the query</p>
 
         <tr>
             
-                <td class="name"><code>props</code></td>
+                <td class="name"><code>result</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="QueryApi.html">QueryApi</a></span>
+<span class="param-type">object</span>
 
 
             
@@ -357,7 +684,167 @@ function creates a human readable definition of the query</p>
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>the result to be cached</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>command</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Process.html">Process</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the parameters that were sent to create the result</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cacheRetrieve"><span class="type-signature"></span>cacheRetrieve<span class="signature">(command)</span><span class="type-signature"> &rarr; {*|null}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line401">line 401</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Declare a function to retrieve a value from a
+cache, this allows you to write your own caching functions.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>command</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Process.html">Process</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the command to retrieve from the cache</p></td>
         </tr>
 
     
@@ -383,7 +870,7 @@ function creates a human readable definition of the query</p>
 
         
 <div class="param-desc">
-    <p>A query editor</p>
+    <p>returns the cached value for the parameters or null</p>
 </div>
 
 
@@ -394,7 +881,10 @@ function creates a human readable definition of the query</p>
     </dt>
     <dd>
         
-<span class="param-type">React.Component</span>
+<span class="param-type">*</span>
+|
+
+<span class="param-type">null</span>
 
 
     </dd>
@@ -409,7 +899,7 @@ function creates a human readable definition of the query</p>
 
     
 
-    <h4 class="name" id=".QueryCascade"><span class="type-signature">(static) </span>QueryCascade<span class="signature">(props)</span><span class="type-signature"> &rarr; {React.Component}</span></h4>
+    <h4 class="name" id="description"><span class="type-signature"></span>description<span class="signature">(name)</span><span class="type-signature"></span></h4>
 
     
 
@@ -421,7 +911,7 @@ function creates a human readable definition of the query</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins-dynamic_awe-library_query.js.html">plugins-dynamic/awe-library/query.js</a>, <a href="plugins-dynamic_awe-library_query.js.html#line61">line 61</a>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line456">line 456</a>
     </li></ul></dd>
     
 
@@ -461,8 +951,7 @@ function creates a human readable definition of the query</p>
 
 
 <div class="description usertext">
-    <p>A cascade of query definitions.  The principle is that a record
-included in an earlier query is not available to subsequent queries.</p>
+    <p>Set a name for the job in the list of running jobs</p>
 </div>
 
 
@@ -500,13 +989,16 @@ included in an earlier query is not available to subsequent queries.</p>
 
         <tr>
             
-                <td class="name"><code>props</code></td>
+                <td class="name"><code>name</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="QueryCascadeApi.html">QueryCascadeApi</a></span>
+<span class="param-type">string</span>
+|
+
+<span class="param-type">function</span>
 
 
             
@@ -516,7 +1008,7 @@ included in an earlier query is not available to subsequent queries.</p>
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>the name of the job that is running for the monitored list</p></td>
         </tr>
 
     
@@ -538,24 +1030,1035 @@ included in an earlier query is not available to subsequent queries.</p>
 
 
 
-<h5>Returns:</h5>
+
+
 
         
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">React.Component</span>
-
-
-    </dd>
-</dl>
+            
 
     
+
+    <h4 class="name" id="important"><span class="type-signature"></span>important<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line444">line 444</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Flags this command as being registered in the &quot;important&quot;
+running jobs</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="lruCache"><span class="type-signature"></span>lruCache<span class="signature">(count<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line386">line 386</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Declare that calls with the same parameters will
+be cached and returned without a server call</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>50</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>the number of calls to retain</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="offline"><span class="type-signature"></span>offline<span class="signature">(fn)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line438">line 438</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Declare a function that will be used when the app is offline.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#OfflineProcessor">OfflineProcessor</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the function to be called when the app is offline.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="optional"><span class="type-signature"></span>optional<span class="signature">(name, transform<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line360">line 360</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Declare an optional parameter</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the name by which the parameter will be known on the server</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>transform</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#TransformFunction">TransformFunction</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>a function to transform the value
+export const addApp = define('app.types.add', function () {
+required('name') // First parameter will be known as 'name' in the server
+optional('definition')
+returns('id')
+})</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="required"><span class="type-signature"></span>required<span class="signature">(name, transform<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line348">line 348</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Declare a required parameter</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the name by which the parameter will be known on the server</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>transform</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#TransformFunction">TransformFunction</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>a function to transform the value
+export const addApp = define('app.types.add', function () {
+required('name') // First parameter will be known as 'name' in the server
+optional('definition')
+returns('id')
+})</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="returns"><span class="type-signature"></span>returns<span class="signature">(path)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line372">line 372</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Declare a return value for the function.  If only
+one value is returned, it becomes the return value of the generated
+server call, if more than one - then the multiple values are
+returned in an array.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the path of the property to retrieve from the server result object
+export const addApp = define('app.types.add', function () {
+required('name') // First parameter will be known as 'name' in the server
+optional('definition')
+returns('id') // Returns the result.id property
+})</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="timeout"><span class="type-signature"></span>timeout<span class="signature">(timeout)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line450">line 450</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Declare the timeout for the function call in m/s</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the number of m/s that the call should run before timing out</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

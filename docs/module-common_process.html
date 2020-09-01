@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>dynamic/awe-library/query - awe-library</title>
+    <title>common/process - awe-library</title>
     
     
     
@@ -43,7 +43,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">dynamic/awe-library/query</h1>
+    <h1 class="page-title">common/process</h1>
     
 
     
@@ -56,6 +56,8 @@
 <header>
     
         
+            
+        
     
 </header>
 
@@ -64,6 +66,85 @@
         <div class="container-overview">
         
             
+                <div class="description usertext"><p>Functions to send server commands</p></div>
+            
+
+            
+                
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             
         
@@ -92,7 +173,7 @@
 
     
 
-    <h4 class="name" id=".convertToText"><span class="type-signature">(static) </span>convertToText<span class="signature">(where)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id=".define"><span class="type-signature">(static) </span>define<span class="signature">(type, fn)</span><span class="type-signature"> &rarr; {function}</span></h4>
 
     
 
@@ -104,7 +185,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins-dynamic_awe-library_query.js.html">plugins-dynamic/awe-library/query.js</a>, <a href="plugins-dynamic_awe-library_query.js.html#line129">line 129</a>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line488">line 488</a>
     </li></ul></dd>
     
 
@@ -144,8 +225,9 @@
 
 
 <div class="description usertext">
-    <p>Provided with a query definition from a Query component, this
-function creates a human readable definition of the query</p>
+    <p>Define an API call using a richer syntax that allows
+for required and optional parameters, outbound and inbound
+transformations plus one or more return values.</p>
 </div>
 
 
@@ -183,171 +265,36 @@ function creates a human readable definition of the query</p>
 
         <tr>
             
-                <td class="name"><code>where</code></td>
+                <td class="name"><code>type</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="QueryDefinition.html">QueryDefinition</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the query to process</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>a human readable version of the query</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
 <span class="param-type">string</span>
 
 
-    </dd>
-</dl>
+            
+            </td>
 
-    
-
-
-
-        
             
 
-    
+            
 
-    <h4 class="name" id=".Query"><span class="type-signature">(static) </span>Query<span class="signature">(props)</span><span class="type-signature"> &rarr; {React.Component}</span></h4>
+            <td class="description last"><p>the api process to call</p></td>
+        </tr>
 
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins-dynamic_awe-library_query.js.html">plugins-dynamic/awe-library/query.js</a>, <a href="plugins-dynamic_awe-library_query.js.html#line174">line 174</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>Defines a query editing UI</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>props</code></td>
+                <td class="name"><code>fn</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="QueryApi.html">QueryApi</a></span>
+<span class="param-type"><a href="global.html#DeclarationFunction">DeclarationFunction</a></span>
 
 
             
@@ -357,7 +304,8 @@ function creates a human readable definition of the query</p>
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>a function that will be
+called to create the definition</p></td>
         </tr>
 
     
@@ -383,7 +331,8 @@ function creates a human readable definition of the query</p>
 
         
 <div class="param-desc">
-    <p>A query editor</p>
+    <p>a function to asynchronously
+make the API call</p>
 </div>
 
 
@@ -394,7 +343,7 @@ function creates a human readable definition of the query</p>
     </dt>
     <dd>
         
-<span class="param-type">React.Component</span>
+<span class="param-type">function</span>
 
 
     </dd>
@@ -409,7 +358,7 @@ function creates a human readable definition of the query</p>
 
     
 
-    <h4 class="name" id=".QueryCascade"><span class="type-signature">(static) </span>QueryCascade<span class="signature">(props)</span><span class="type-signature"> &rarr; {React.Component}</span></h4>
+    <h4 class="name" id=".immediateProcess"><span class="type-signature">(static) </span>immediateProcess<span class="signature">(itemOrItems)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
 
     
 
@@ -421,7 +370,7 @@ function creates a human readable definition of the query</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins-dynamic_awe-library_query.js.html">plugins-dynamic/awe-library/query.js</a>, <a href="plugins-dynamic_awe-library_query.js.html#line61">line 61</a>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line152">line 152</a>
     </li></ul></dd>
     
 
@@ -461,8 +410,8 @@ function creates a human readable definition of the query</p>
 
 
 <div class="description usertext">
-    <p>A cascade of query definitions.  The principle is that a record
-included in an earlier query is not available to subsequent queries.</p>
+    <p>Send a command to the server as a post, this will
+not return until the results are ready</p>
 </div>
 
 
@@ -500,13 +449,16 @@ included in an earlier query is not available to subsequent queries.</p>
 
         <tr>
             
-                <td class="name"><code>props</code></td>
+                <td class="name"><code>itemOrItems</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="QueryCascadeApi.html">QueryCascadeApi</a></span>
+<span class="param-type">Array.&lt;<a href="Process.html">Process</a>></span>
+|
+
+<span class="param-type"><a href="Process.html">Process</a></span>
 
 
             
@@ -516,7 +468,888 @@ included in an earlier query is not available to subsequent queries.</p>
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>the item or items to process</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the result of the command</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;*></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".notRunning"><span class="type-signature">(static) </span>notRunning<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line237">line 237</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Returns a promise for a time when there are no jobs
+running on the server for this client</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;void></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".parameter"><span class="type-signature">(static) </span>parameter<span class="signature">(path, transform<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {function}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line51">line 51</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Creates a parameter setting function</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the path of the value to set in the request parameters</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>transform</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#TransformFunction">TransformFunction</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>a function to transform the value before setting it</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a function to set the parameter</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".process"><span class="type-signature">(static) </span>process<span class="signature">(singleItem, timeout<span class="signature-attributes">opt</span>, name<span class="signature-attributes">opt</span>, important<span class="signature-attributes">opt</span>, isAnonymous<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;*>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line261">line 261</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Queues a job to run on the server</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>singleItem</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Process.html">Process</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>the item to process</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>300000</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>the timeout for the function in m/s default 5 mins</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>a name to display in the job list for this job</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>important</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>a flag to indicate that the job is important.
+Important jobs are shown in a running list always, other jobs are only
+shown in debug mode</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>isAnonymous</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>flag to indicate that the job should be run as an anonymous user</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The result of the job after processing on the server</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;*></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".retrieve"><span class="type-signature">(static) </span>retrieve<span class="signature">(type, extract, &hellip;params)</span><span class="type-signature"> &rarr; {function}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line99">line 99</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Declares a server call as an async function that returns a value.</p>
+<p>One specifies the api call to make and a value to extract. The result
+is an async function to perform the operation.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>// Declares an acquireLock function that calls 'lock.acquire' which
+// takes an 'id' as a parameter and returns the value of 'locked' returned
+// by the server
+
+const acquireLock = retrieve('lock.acquire', 'locked', parameter('id'))</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the name of the command to execute</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>extract</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the value to extract from the server result</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Parameter">Parameter</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>a list of parameters for the function, normally
+declared with the <code>parameter()</code> function</p></td>
         </tr>
 
     
@@ -549,7 +1382,205 @@ included in an earlier query is not available to subsequent queries.</p>
     </dt>
     <dd>
         
-<span class="param-type">React.Component</span>
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".send"><span class="type-signature">(static) </span>send<span class="signature">(type, &hellip;params)</span><span class="type-signature"> &rarr; {function}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line110">line 110</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Declares a server call that does not return a value</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the name of the command to execute</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Parameter">Parameter</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>a list of parameters for the function, normally
+declared with the <code>parameter()</code> function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
 
 
     </dd>

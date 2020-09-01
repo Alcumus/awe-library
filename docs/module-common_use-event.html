@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>WhereDefinition - awe-library</title>
+    <title>common/use-event - awe-library</title>
     
     
     
@@ -43,7 +43,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">WhereDefinition</h1>
+    <h1 class="page-title">common/use-event</h1>
     
 
     
@@ -55,9 +55,6 @@
 
 <header>
     
-        <h2>
-        WhereDefinition
-        </h2>
         
     
 </header>
@@ -68,12 +65,46 @@
         
             
 
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".useLocalEvent"><span class="type-signature">(static) </span>useLocalEvent<span class="signature">(&hellip;events, handler, source<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
 <dl class="details">
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_offline-data-service_index.js.html">common/offline-data-service/index.js</a>, <a href="common_offline-data-service_index.js.html#line178">line 178</a>
+        <a href="common_use-event_index.js.html">common/use-event/index.js</a>, <a href="common_use-event_index.js.html#line101">line 101</a>
     </li></ul></dd>
     
 
@@ -111,14 +142,205 @@
 
 
 
-            
-                <div class="description usertext"><p>A mongo db style where clause using
-an object and keys to describe a query</p></div>
-            
 
-            
+<div class="description usertext">
+    <p>Adds an event handler for an alcumus-local-event sourced event.
+The handler does NOT receive the first <code>event</code> parameter
+that would be passed to a normal handler, but may return <code>false</code>
+to prevent any further handling of the event.</p>
+<p>The handler is added in a React useEffect, this may miss immediately
+raised events - for that use <code>useLocalEventImmediate</code>.</p>
+<p>Event names use &quot;.&quot; to separate parts and can use &quot;*&quot; to handle
+multiple events.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
         
-        </div>
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>events</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>a list of events to be handled</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>handler</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#EventHandler">EventHandler</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>the handler for the event(s)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="EventSource.html">EventSource</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>alcumusLocalEvents</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>the emitter of the events (e.g. window)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".useLocalEventImmediate"><span class="type-signature">(static) </span>useLocalEventImmediate<span class="signature">(&hellip;events, handler, source<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_use-event_index.js.html">common/use-event/index.js</a>, <a href="common_use-event_index.js.html#line146">line 146</a>
+    </li></ul></dd>
     
 
     
@@ -126,15 +348,324 @@ an object and keys to describe a query</p></div>
     
 
     
-    
-    
-
-     
 
     
 
     
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Adds an event handler for an alcumus-local-event sourced event.
+The handler does NOT receive the first <code>event</code> parameter
+that would be passed to a normal handler, but may return <code>false</code>
+to prevent any further handling of the event.</p>
+<p>The handler is added in a React useLayoutEffect, this will catch rapidly
+raised events, but causes many additional calls to add and remove
+listeners - if you don't need this immediate handling,
+use <code>useLocalEvent</code>.</p>
+<p>Event names use &quot;.&quot; to separate parts and can use &quot;*&quot; to handle
+multiple events.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>events</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>a list of events to be handled</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>handler</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#EventHandler">EventHandler</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>the handler for the event(s)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="EventSource.html">EventSource</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>alcumusLocalEvents</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>the emitter of the events (e.g. window)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".useWindowSize"><span class="type-signature">(static) </span>useWindowSize<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_use-event_index.js.html">common/use-event/index.js</a>, <a href="common_use-event_index.js.html#line51">line 51</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Returns the window size of the current viewport and
+refreshes (using debounce) should it change</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
     
 
     

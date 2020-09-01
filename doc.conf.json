@@ -16,7 +16,10 @@
       "../../common/use-async/index.js",
       "../../common/offline-data-service/index.js",
       "../../common/offline-data-service/records.js",
-      "../../common/menu/index.js"
+      "../../common/menu/index.js",
+      "../../common/process/index.js",
+      "../../common/sortable/index.js",
+      "../../common/use-event/index.js"
     ]
   },
   "opts": {
