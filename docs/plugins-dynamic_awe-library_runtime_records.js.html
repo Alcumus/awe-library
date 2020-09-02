@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>DeepFieldDefinition - awe-library</title>
+    <title>plugins-dynamic/awe-library/runtime/records.js - awe-library</title>
     
     
     
@@ -43,272 +43,95 @@
 
 <div id="main">
     
-    <h1 class="page-title">DeepFieldDefinition</h1>
+    <h1 class="page-title">plugins-dynamic/awe-library/runtime/records.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-        DeepFieldDefinition
-        </h2>
-        
-    
-</header>
-
-<article>
-    
-        <div class="container-overview">
-        
-            
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins-dynamic_awe-library_utils.js.html">plugins-dynamic/awe-library/utils.js</a>, <a href="plugins-dynamic_awe-library_utils.js.html#line527">line 527</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>path</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the path to the current target, this is like property syntax but split into an array on '.'</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>target</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="FieldDefinition.html">FieldDefinition</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the current target of the deep field request</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>dictionary</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#DeepFieldDictionary">DeepFieldDictionary</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>a dictionary of all property paths to their definitions (including '.') - this is automatically populated from base fields</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>linkFields</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#DeepFieldDictionary">DeepFieldDictionary</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>a dictionary of all property paths to their definitions (including '.') - this is automatically populated from link fields</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>addBaseField</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>set this to true to add the current target as a base field</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>addLinkField</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>set this to true to add the current target as a link field (it's value is the ID of a linked record)</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-            
-                <div class="description usertext"><p>An object which describes the deep field data for a FieldDefinition</p></div>
-            
-
-            
-        
-        </div>
-    
-
-    
-
-    
-
-    
-    
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module dynamic/awe-library/runtime/records
+ */
+import { get, list } from 'common/offline-data-service'
+import { initialize } from 'common/offline-data-service/behaviour-cache'
+import { updateDocument } from 'dynamic/awe-library/runtime/lib/get-instance'
+import useAsync from 'common/use-async'
+
+/**
+ * @typedef RecordResults
+ * @type {array}
+ * @property {Array&lt;Document>} 0 - the items retrieved
+ * @property {Array&lt;FieldDefinition>} 1 - the field definitions
+ */
+
+/**
+ * A function to retrieve records from a type.  The documents
+ * retrieved are automatically updated by replaying local
+ * changes.
+ *
+ * @param {string|DocumentDefinition} type - the type whose records should be retrieved
+ * @param {WhereDefinition} [query] - a query to apply
+ * @param {number} [skip] - the number of records to skip
+ * @param {number} [take] - the number of records to return
+ * @param {ListOptions} [options] - options to provide
+ * @returns {Promise&lt;RecordResults>} a promise for the matching records and field definitions in the type
+ */
+export const getRecords = async (type, query, skip, take, options) => {
+    if (!type) return []
+    let lookupType = await getType(type)
+    await initialize(lookupType)
+    let fields = lookupType.sendMessage('fields', [])
+    const where = Object.assign({}, query)
+    let items = (
+        await list(lookupType.database, lookupType.table, where, {
+            ...options,
+            skip,
+            take,
+        })
+    ).map((d) => d.data)
+    items.loaded = true
+    await updateDocument(items)
+    return [items, fields]
+}
+
+/**
+ * A hook function to retrieve records from a type.  The documents
+ * retrieved are automatically updated by replaying local
+ * changes. Returns [[], []] until valid results are available
+ *
+ * @param {string|DocumentDefinition} type - the type whose records should be retrieved
+ * @param {WhereDefinition} [query] - a query to apply
+ * @param {number} [skip] - the number of records to skip
+ * @param {number} [take] - the number of records to return
+ * @param {ListOptions} [options] - options to provide
+ * @returns {RecordResults} The records and field definitions
+ */export function useRecordsOfType(type, query, skip, take, options) {
+    return useAsync(
+        async () => {
+            return await getRecords(type, query, skip, take, options)
+        },
+        [[], []],
+        `${type}-${skip}:${take}!${JSON.stringify(query)}`
+    )
+}
+
+/**
+ * Retrieves a type - we always prefer the server for types
+ * @param {string} id - the id of the type
+ * @returns {Promise&lt;DocumentDefinition>} a promise for the definition
+ */
+export async function getType(id) {
+    if (Object.isObject(id)) return id
+    if (!id) return null
+    return await get(id, true, false, 'server-preferred')
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -320,7 +143,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Wed Sep 02 2020 13:10:47 GMT+0100 (British Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Wed Sep 02 2020 13:10:46 GMT+0100 (British Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

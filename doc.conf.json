@@ -25,7 +25,8 @@
       "runtime/navigate.js",
       "runtime/create-document.js",
       "runtime/app-urls.js",
-      "runtime/button-style.js"
+      "runtime/button-style.js",
+      "runtime/records.js"
     ]
   },
   "opts": {
