@@ -324,7 +324,7 @@ export function useFields(type, deep = false) {
 
 /**
  * Defines a question for AWE, registering it with the UI
- * @param {QuestionTypeDef|function():QuestionTypeDef|Array<QuestionTypeDef>} typesOrFunction - the definition to make
+ * @param {Array<QuestionTypeDef>|QuestionTypeDef|function():QuestionTypeDef} typesOrFunction - the definition to make
  */
 export function questionType(typesOrFunction) {
     events.return('awe.question-types', resolveValueAsFunction(typesOrFunction))
