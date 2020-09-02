@@ -9,6 +9,7 @@ import useAsync from 'common/use-async'
 /**
  * @typedef RecordResults
  * @type {array}
+ * @global
  * @property {Array<Document>} 0 - the items retrieved
  * @property {Array<FieldDefinition>} 1 - the field definitions
  */
