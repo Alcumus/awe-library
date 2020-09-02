@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>ListOptions - awe-library</title>
+    <title>dynamic/awe-library/runtime/app-urls - awe-library</title>
     
     
     
@@ -43,7 +43,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">ListOptions</h1>
+    <h1 class="page-title">dynamic/awe-library/runtime/app-urls</h1>
     
 
     
@@ -55,9 +55,6 @@
 
 <header>
     
-        <h2>
-        ListOptions
-        </h2>
         
     
 </header>
@@ -68,12 +65,46 @@
         
             
 
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".appUrl"><span class="type-signature">(static) </span>appUrl<span class="signature">(appType)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
 <dl class="details">
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_offline-data-service_index.js.html">common/offline-data-service/index.js</a>, <a href="common_offline-data-service_index.js.html#line513">line 513</a>
+        <a href="plugins-dynamic_awe-library_runtime_app-urls.js.html">plugins-dynamic/awe-library/runtime/app-urls.js</a>, <a href="plugins-dynamic_awe-library_runtime_app-urls.js.html#line18">line 18</a>
     </li></ul></dd>
     
 
@@ -110,11 +141,26 @@
 
 
 
-    <h5 class="subsection-title">Properties:</h5>
 
+
+<div class="description usertext">
+    <p>Returns a url given an app type</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
     
 
-<table class="props">
+<table class="params">
     <thead>
     <tr>
         
@@ -124,11 +170,7 @@
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
-        
-        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -140,180 +182,23 @@
 
         <tr>
             
-                <td class="name"><code>skip</code></td>
+                <td class="name"><code>appType</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type"><a href="DocumentDefinition.html">DocumentDefinition</a></span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                    <code>0</code>
-                
-                </td>
-            
 
-            <td class="description last"><p>the number of records to skip</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>take</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the number of records to take</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>orderStmt</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>an array of the field names to sort by, if the field name starts with a '-' it will be in descending order</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fields</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>a list of fields to retrieve (online only)</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>audit</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>if true the created and modified dates will be returned (online only)</p>
-<p>that represent the columns to sort on (starting with '-' for descending order)</p></td>
+            <td class="description last"><p>the type to get a url for</p></td>
         </tr>
 
     
@@ -324,13 +209,61 @@
 
 
 
-            
-                <div class="description usertext"><p>The options when retrieving a list</p></div>
-            
 
-            
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
         
-        </div>
+<div class="param-desc">
+    <p>a unique id for a document</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".guaranteedAppUrl"><span class="type-signature">(static) </span>guaranteedAppUrl<span class="signature">(appType)</span><span class="type-signature"> &rarr; {Promise.&lt;string>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_app-urls.js.html">plugins-dynamic/awe-library/runtime/app-urls.js</a>, <a href="plugins-dynamic_awe-library_runtime_app-urls.js.html#line31">line 31</a>
+    </li></ul></dd>
     
 
     
@@ -338,15 +271,298 @@
     
 
     
-    
-    
-
-     
 
     
 
     
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Returns a url given an app type, ensuring that the document exists</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>appType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="DocumentDefinition.html">DocumentDefinition</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the type to get a url for</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a promise for a unique id for a document</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;string></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".useAppUrl"><span class="type-signature">(static) </span>useAppUrl<span class="signature">(typeId)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_app-urls.js.html">plugins-dynamic/awe-library/runtime/app-urls.js</a>, <a href="plugins-dynamic_awe-library_runtime_app-urls.js.html#line50">line 50</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>A hook to get a url for an application which is guaranteed to
+exist</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>typeId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the type for which a url is required</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>an empty string until an app url is generated</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
     
 
     

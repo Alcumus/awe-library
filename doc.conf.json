@@ -23,7 +23,9 @@
       "runtime/query.js",
       "runtime/utils.js",
       "runtime/navigate.js",
-      "runtime/create-document.js"
+      "runtime/create-document.js",
+      "runtime/app-urls.js",
+      "runtime/button-style.js"
     ]
   },
   "opts": {

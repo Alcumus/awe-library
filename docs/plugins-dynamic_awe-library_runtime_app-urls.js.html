@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>ListOptions - awe-library</title>
+    <title>plugins-dynamic/awe-library/runtime/app-urls.js - awe-library</title>
     
     
     
@@ -43,318 +43,79 @@
 
 <div id="main">
     
-    <h1 class="page-title">ListOptions</h1>
+    <h1 class="page-title">plugins-dynamic/awe-library/runtime/app-urls.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-        ListOptions
-        </h2>
-        
-    
-</header>
-
-<article>
-    
-        <div class="container-overview">
-        
-            
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_offline-data-service_index.js.html">common/offline-data-service/index.js</a>, <a href="common_offline-data-service_index.js.html#line513">line 513</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>skip</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>0</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>the number of records to skip</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>take</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the number of records to take</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>orderStmt</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>an array of the field names to sort by, if the field name starts with a '-' it will be in descending order</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fields</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>a list of fields to retrieve (online only)</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>audit</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>if true the created and modified dates will be returned (online only)</p>
-<p>that represent the columns to sort on (starting with '-' for descending order)</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-            
-                <div class="description usertext"><p>The options when retrieving a list</p></div>
-            
-
-            
-        
-        </div>
-    
-
-    
-
-    
-
-    
-    
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module dynamic/awe-library/runtime/app-urls
+ */
+import { currentUser } from 'common/User'
+import { ensure } from 'dynamic/awe-library/runtime/create-document'
+import { useCachedAsync } from 'common/use-async'
+import { handle } from 'common/events'
+import { getType } from 'dynamic/awe-library/runtime/records'
+
+export let knownUrls = {}
+handle('sign-in-event', () => (knownUrls = {}))
+
+/**
+ * Returns a url given an app type
+ * @param {DocumentDefinition} appType - the type to get a url for
+ * @returns {string} a unique id for a document
+ */
+export function appUrl(appType) {
+    let id = `${currentUser()}:${appType.database}/${appType.table}`
+    if (!knownUrls[id]) {
+        knownUrls[id] = ensure(id, appType).catch(console.error)
+    }
+    return id
+}
+
+/**
+ * Returns a url given an app type, ensuring that the document exists
+ * @param {DocumentDefinition} appType - the type to get a url for
+ * @returns {Promise&lt;string>} a promise for a unique id for a document
+ */
+export async function guaranteedAppUrl(appType) {
+    let id = `${currentUser()}:${appType.database}/${appType.table}`
+    // eslint-disable-next-line no-console
+    console.log('guaranteed app url', id)
+    if (!knownUrls[id]) {
+        let promise = (knownUrls[id] = ensure(id, appType))
+        await promise
+    } else {
+        await knownUrls[id]
+    }
+    return id
+}
+
+/**
+ * A hook to get a url for an application which is guaranteed to
+ * exist
+ * @param {string} typeId - the type for which a url is required
+ * @returns {string} an empty string until an app url is generated
+ */
+export function useAppUrl(typeId) {
+    return useCachedAsync(
+        'getUrl',
+        async () => {
+            let type = await getType(typeId)
+            return await guaranteedAppUrl(type)
+        },
+        '',
+        typeId
+    )
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

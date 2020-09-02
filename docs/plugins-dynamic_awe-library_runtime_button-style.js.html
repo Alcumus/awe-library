@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>ListOptions - awe-library</title>
+    <title>plugins-dynamic/awe-library/runtime/button-style.js - awe-library</title>
     
     
     
@@ -43,318 +43,60 @@
 
 <div id="main">
     
-    <h1 class="page-title">ListOptions</h1>
+    <h1 class="page-title">plugins-dynamic/awe-library/runtime/button-style.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-        ListOptions
-        </h2>
-        
-    
-</header>
-
-<article>
-    
-        <div class="container-overview">
-        
-            
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_offline-data-service_index.js.html">common/offline-data-service/index.js</a>, <a href="common_offline-data-service_index.js.html#line513">line 513</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>skip</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>0</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>the number of records to skip</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>take</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the number of records to take</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>orderStmt</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>an array of the field names to sort by, if the field name starts with a '-' it will be in descending order</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fields</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>a list of fields to retrieve (online only)</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>audit</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>if true the created and modified dates will be returned (online only)</p>
-<p>that represent the columns to sort on (starting with '-' for descending order)</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-            
-                <div class="description usertext"><p>The options when retrieving a list</p></div>
-            
-
-            
-        
-        </div>
-    
-
-    
-
-    
-
-    
-    
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module dynamic/awe-library/runtime/button-style
+ *
+ */
+import { makeStyles } from '@material-ui/core'
+import { logParams } from 'common/logCall'
+
+/**
+ *
+ * @function useButtonStyle
+ * @description A hook, that passed the definition of a question
+ * including a button definition, will return the necessary styles.
+ * @param {FieldDefinition} field - a field including a button
+ * @returns classes including 'button' which is to be used to
+ * style the button
+ */
+
+export const useButtonStyle = makeStyles( ( theme ) => {
+
+    return {
+        button: {
+            lineHeight: 1,
+            marginLeft: '0 !important',
+            paddingTop: `${theme.spacing( 2 )}px !important`,
+            paddingBottom: `${theme.spacing( 2 )}px !important`,
+            backgroundColor: logParams( ( props ) => `${props.backgroundColor || 'transparent'} !important`, false ),
+            backgroundImage: logParams( ( props ) => props.backgroundImage &amp;&amp; `url(${props.backgroundImage}) !important` ),
+            backgroundPosition: logParams( ( props ) => props.backgroundPosition ),
+            width: logParams( ( props ) => props.width ),
+            height: logParams( ( props ) => props.height ),
+            backgroundSize: 'cover',
+            color: logParams( ( props ) => `${props.color || theme.palette.primary.main} !important` ),
+            '&amp;:hover': {
+                backgroundColor: logParams( ( props ) => `${props.backgroundColor || `${theme.palette.primary.main}20`} !important` )
+            },
+        },
+        double: {
+            fontSize: '200%'
+        }
+    }
+})
+</code></pre>
+        </article>
+    </section>
 
 
 
