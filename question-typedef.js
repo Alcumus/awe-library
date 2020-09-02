@@ -31,7 +31,7 @@ export const lookupTypes = memoize(
  * All properties are NOT fully documented below.
  *
  * @property {boolean} stored - is === false when this type is not stored. Note falsey is NOT enough, it must be explicitly boolean false
- * @property {string} group - the group for the question in the ui, organises the ui into sections
+ * @property {string} [group=""] - the group for the question in the ui, organises the ui into sections
  * The groups can be: "control", "layout", "create", "display" - no group puts
  * the question in the data capture section.
  * @property {JSX.Element} icon - an icon to use for the question
