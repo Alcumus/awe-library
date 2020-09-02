@@ -31,9 +31,20 @@ export const lookupTypes = memoize(
  * All properties are NOT fully documented below.
  *
  * @property {boolean} stored - is === false when this type is not stored. Note falsey is NOT enough, it must be explicitly boolean false
- * @property icon - an icon to use for the question
- * @property {string} caption - the caption to use
+ * @property {string} group - the group for the question in the ui, organises the ui into sections
+ * The groups can be: "control", "layout", "create", "display" - no group puts
+ * the question in the data capture section.
+ * @property {JSX.Element} icon - an icon to use for the question
+ * @property {function(instance):string} [caption] - a function to extract a caption for the question for display in the editor
  * @property {ConfigFunction} [config] - a config function to initialise an instance
+ * @property {string} value - the type of the question
+ * @property {string} label - the label to use for the question in lists
+ * @property {string} color - the colour to use for the question icon
+ * @property {string} description - a long description of the function of the question
+ * @property {boolean} isSearchable - set to <code>false</code> to disable searching on the field or <code>true</code> to allow it
+ * @property {boolean} [notRequired=false] - set to true if the field type cannot be required
+ * @property {boolean} [stored=true] - must be <code>false</code> not falsey to disable storing the question (an instance doesn't have a name in this case)
+ *
  */
 
 /**

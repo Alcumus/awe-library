@@ -128,6 +128,8 @@
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -159,6 +161,10 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last"><p>is === false when this type is not stored. Note falsey is NOT enough, it must be explicitly boolean false</p></td>
         </tr>
@@ -167,31 +173,7 @@
 
         <tr>
             
-                <td class="name"><code>icon</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>an icon to use for the question</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>caption</code></td>
+                <td class="name"><code>group</code></td>
             
 
             <td class="type">
@@ -212,8 +194,82 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last"><p>the caption to use</p></td>
+            <td class="description last"><p>the group for the question in the ui, organises the ui into sections
+The groups can be: &quot;control&quot;, &quot;layout&quot;, &quot;create&quot;, &quot;display&quot; - no group puts
+the question in the data capture section.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>icon</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">JSX.Element</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>an icon to use for the question</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>caption</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>a function to extract a caption for the question for display in the editor</p></td>
         </tr>
 
     
@@ -243,8 +299,251 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last"><p>a config function to initialise an instance</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>the type of the question</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>label</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>the label to use for the question in lists</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>color</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>the colour to use for the question icon</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>description</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>a long description of the function of the question</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>isSearchable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>set to <code>false</code> to disable searching on the field or <code>true</code> to allow it</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>notRequired</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>set to true if the field type cannot be required</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>stored</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>true</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>must be <code>false</code> not falsey to disable storing the question (an instance doesn't have a name in this case)</p></td>
         </tr>
 
     
@@ -299,7 +598,7 @@ is stored, the icon etc.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Wed Sep 02 2020 09:22:03 GMT+0100 (British Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Wed Sep 02 2020 09:29:45 GMT+0100 (British Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
