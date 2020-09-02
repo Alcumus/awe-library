@@ -33,6 +33,7 @@ export const lookupTypes = memoize(
  * @property {boolean} stored - is === false when this type is not stored. Note falsey is NOT enough, it must be explicitly boolean false
  * @property icon - an icon to use for the question
  * @property {string} caption - the caption to use
+ * @property {ConfigFunction} [config] - a config function to initialise an instance
  */
 
 /**

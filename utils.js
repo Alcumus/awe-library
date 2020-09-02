@@ -323,9 +323,8 @@ export function useFields(type, deep = false) {
 }
 
 /**
- * Retrieves the typedef of a field/question from its type string
- * @param {string|function(): string|Array<string>|function(): Array<string>} typesOrFunction - the type or types of
- * which we should retrieve the definitions
+ * Defines a question for AWE, registering it with the UI
+ * @param {QuestionTypeDef|function():QuestionTypeDef|Array<QuestionTypeDef>} typesOrFunction - the definition to make
  */
 export function questionType(typesOrFunction) {
     events.return('awe.question-types', resolveValueAsFunction(typesOrFunction))
