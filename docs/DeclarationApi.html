@@ -156,7 +156,7 @@ The order of calls declares the API.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line432">line 432</a>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line433">line 433</a>
     </li></ul></dd>
     
 
@@ -293,7 +293,7 @@ there may be more than one after function.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line425">line 425</a>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line426">line 426</a>
     </li></ul></dd>
     
 
@@ -430,7 +430,7 @@ there may be more than one before function.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line439">line 439</a>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line440">line 440</a>
     </li></ul></dd>
     
 
@@ -567,7 +567,7 @@ By default the key is all of the parameters in the packet.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line397">line 397</a>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line398">line 398</a>
     </li></ul></dd>
     
 
@@ -704,7 +704,7 @@ cache the result of a server call</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line411">line 411</a>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line412">line 412</a>
     </li></ul></dd>
     
 
@@ -841,7 +841,7 @@ cache, this allows you to write your own caching functions.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line478">line 478</a>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line479">line 479</a>
     </li></ul></dd>
     
 
@@ -980,7 +980,7 @@ cache, this allows you to write your own caching functions.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line466">line 466</a>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line467">line 467</a>
     </li></ul></dd>
     
 
@@ -1068,7 +1068,7 @@ running jobs</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line390">line 390</a>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line391">line 391</a>
     </li></ul></dd>
     
 
@@ -1225,7 +1225,7 @@ be cached and returned without a server call</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line460">line 460</a>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line461">line 461</a>
     </li></ul></dd>
     
 
@@ -1783,6 +1783,15 @@ returned in an array.</p>
 
 
 
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>export const addApp = define('app.types.add', function ({required, optional, returns}) {
+    required('name') // First parameter will be known as 'name' in the server
+    optional('definition')
+    returns('id') // Returns the result.id property
+})</code></pre>
+
+
 
 
     <h5>Parameters:</h5>
@@ -1826,12 +1835,7 @@ returned in an array.</p>
 
             
 
-            <td class="description last"><p>the path of the property to retrieve from the server result object
-export const addApp = define('app.types.add', function ({required, optional, returns}) {
-required('name') // First parameter will be known as 'name' in the server
-optional('definition')
-returns('id') // Returns the result.id property
-})</p></td>
+            <td class="description last"><p>the path of the property to retrieve from the server result object</p></td>
         </tr>
 
     
@@ -1873,7 +1877,7 @@ returns('id') // Returns the result.id property
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line472">line 472</a>
+        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line473">line 473</a>
     </li></ul></dd>
     
 
@@ -2012,7 +2016,7 @@ returns('id') // Returns the result.id property
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Wed Sep 02 2020 13:13:52 GMT+0100 (British Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Wed Sep 02 2020 14:33:24 GMT+0100 (British Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
