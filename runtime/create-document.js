@@ -1,4 +1,6 @@
-//
+/**
+ * @module dynamic/awe-library/runtime/create-document
+ */
 import { createDocument } from 'common/create-document'
 import events from 'alcumus-local-events'
 import { cacheLocalOnly, get, set } from 'common/offline-data-service'

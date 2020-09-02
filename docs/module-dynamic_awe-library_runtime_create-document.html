@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Process - awe-library</title>
+    <title>dynamic/awe-library/runtime/create-document - awe-library</title>
     
     
     
@@ -43,7 +43,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Process</h1>
+    <h1 class="page-title">dynamic/awe-library/runtime/create-document</h1>
     
 
     
@@ -55,9 +55,6 @@
 
 <header>
     
-        <h2>
-        Process
-        </h2>
         
     
 </header>
@@ -68,12 +65,46 @@
         
             
 
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".createDocumentOfType"><span class="type-signature">(static) </span>createDocumentOfType<span class="signature">(parent<span class="signature-attributes">opt</span>, typeId, context<span class="signature-attributes">opt</span>, fromRaw<span class="signature-attributes">opt</span>, id<span class="signature-attributes">opt</span>, props<span class="signature-attributes">opt</span>, alwaysCreate<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="Document.html">Document</a>>}</span></h4>
+
+    
+
+
+
+
 <dl class="details">
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_process_index.js.html">common/process/index.js</a>, <a href="common_process_index.js.html#line137">line 137</a>
+        <a href="plugins-dynamic_awe-library_runtime_create-document.js.html">plugins-dynamic/awe-library/runtime/create-document.js</a>, <a href="plugins-dynamic_awe-library_runtime_create-document.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -110,11 +141,26 @@
 
 
 
-    <h5 class="subsection-title">Properties:</h5>
 
+
+<div class="description usertext">
+    <p>Creates an object provided with a document type</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
     
 
-<table class="props">
+<table class="params">
     <thead>
     <tr>
         
@@ -128,6 +174,8 @@
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -138,7 +186,46 @@
 
         <tr>
             
-                <td class="name"><code>type</code></td>
+                <td class="name"><code>parent</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Document.html">Document</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>null</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>the parent of the document being created</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>typeId</code></td>
             
 
             <td class="type">
@@ -155,12 +242,96 @@
                 
 
                 
+
+                
                 </td>
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last"><p>the command to execute on the server</p></td>
+            <td class="description last"><p>the id of the document type to create</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>{}</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>default context (used by context fields) for the document being created</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fromRaw</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>if true use the latest version of the document, not the active published version</p></td>
         </tr>
 
     
@@ -186,12 +357,97 @@
                 
 
                 
+
+                
                 </td>
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last"><p>an id for the job, one will be supplied if missing</p></td>
+            <td class="description last"><p>if supplied use the id for the document, otherwise generate one</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>props</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>{}</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>any props to immediately set on the document</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>alwaysCreate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>documents are often not really created before the first submission, setting true
+here makes the document create immediately</p></td>
         </tr>
 
     
@@ -202,14 +458,61 @@
 
 
 
-            
-                <div class="description usertext"><p>A command to run on the server, the other properties
-of this object are parameters for the function being run</p></div>
-            
 
-            
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
         
-        </div>
+<div class="param-desc">
+    <p>a promise for the created document</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;<a href="Document.html">Document</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".ensure"><span class="type-signature">(static) </span>ensure<span class="signature">(id, type)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_create-document.js.html">plugins-dynamic/awe-library/runtime/create-document.js</a>, <a href="plugins-dynamic_awe-library_runtime_create-document.js.html#line79">line 79</a>
+    </li></ul></dd>
     
 
     
@@ -217,15 +520,164 @@ of this object are parameters for the function being run</p></div>
     
 
     
-    
-    
-
-     
 
     
 
     
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Ensure that a document has been created with an id and a given
+type.  This is predominantly used for applications whose
+id is the user id (they have their own unique copy of the data)</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the id that must exist</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="DocumentDefinition.html">DocumentDefinition</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the type that the id is part of</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a promise that is resolved when the id is known to exist</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;void></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
     
 
     
