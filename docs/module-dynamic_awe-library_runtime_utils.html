@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>common/use-async - awe-library</title>
+    <title>dynamic/awe-library/runtime/utils - awe-library</title>
     
     
     
@@ -43,7 +43,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">common/use-async</h1>
+    <h1 class="page-title">dynamic/awe-library/runtime/utils</h1>
     
 
     
@@ -83,18 +83,12 @@
     
 
     
-
-    
-        <h3 class="subsection-title">Methods</h3>
+        <h3 class="subsection-title">Members</h3>
 
         
             
+<h4 class="name" id=".properties"><span class="type-signature">(static, constant) </span>properties<span class="type-signature"> :Object</span></h4>
 
-    
-
-    <h4 class="name" id=".useCachedAsync"><span class="type-signature">(static) </span>useCachedAsync<span class="signature">(purpose, promiseProducingFunction, defaultValue<span class="signature-attributes">opt</span>, refId<span class="signature-attributes">opt</span>, runId<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {*}</span></h4>
-
-    
 
 
 
@@ -104,7 +98,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_use-async_index.js.html">common/use-async/index.js</a>, <a href="common_use-async_index.js.html#line146">line 146</a>
+        <a href="plugins-dynamic_awe-library_runtime_utils.js.html">plugins-dynamic/awe-library/runtime/utils.js</a>, <a href="plugins-dynamic_awe-library_runtime_utils.js.html#line121">line 121</a>
     </li></ul></dd>
     
 
@@ -144,15 +138,91 @@
 
 
 <div class="description usertext">
-    <p>A hook to use async data, with additional caching.  This
-caching is designed to reduce flicker in the UI.  The
-specific async is given a name and the results will
-be cached globally and be supplied as the initial result
-when it is used again.  Data may then be refreshed depending
-on a separate run id.</p>
-<p>useCachedAsync needs handling with care so that you don't
-accidentally use cached data from a different purpose. When
-used appropriately it makes the UI much more responsive.</p>
+    <p>Default properties that can be set for periods of time
+or used as a bag of configuration</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".cleanLabel"><span class="type-signature">(static) </span>cleanLabel<span class="signature">(label)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_utils.js.html">plugins-dynamic/awe-library/runtime/utils.js</a>, <a href="plugins-dynamic_awe-library_runtime_utils.js.html#line100">line 100</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Creates a label from a field name type</p>
 </div>
 
 
@@ -163,22 +233,1657 @@ used appropriately it makes the UI much more responsive.</p>
 
 
 
-    <h5>Example</h5>
+
+
+    <h5>Parameters:</h5>
     
-    <pre class="prettyprint"><code>export function useRecordsForType(type, where, sort, options) {
-    return useCachedAsync(
-        'getRecords', // purpose of the async
-        async () => { // function to get the records
-            if (!type) return []
-            const typeDef = Object.isObject(type) ? type : await get(type)
-            await initialize(typeDef)
-            await raiseAsync('update-records', [typeDef])
-            return getRecords(typeDef?.database, typeDef?.table, {}, sort, options)
-        },
-        [], // default value if no cache
-        JSON.stringify({ type, where, sort, options }) // unique cache key when added to purpose
-    )
-}</code></pre>
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>label</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the label to check</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the cleaned label</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".delay"><span class="type-signature">(static) </span>delay<span class="signature">(ms)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_utils.js.html">plugins-dynamic/awe-library/runtime/utils.js</a>, <a href="plugins-dynamic_awe-library_runtime_utils.js.html#line110">line 110</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Returns a promise for a delay in milliseconds</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ms</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the number of milliseconds to wait for</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a promise that will be satisfied when the delay expires</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;void></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".extractFieldName"><span class="type-signature">(static) </span>extractFieldName<span class="signature">(field)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_utils.js.html">plugins-dynamic/awe-library/runtime/utils.js</a>, <a href="plugins-dynamic_awe-library_runtime_utils.js.html#line66">line 66</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Extracts the name of a field</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>field</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="FieldDefinition.html">FieldDefinition</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the name</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".fieldNameIs"><span class="type-signature">(static) </span>fieldNameIs<span class="signature">(name)</span><span class="type-signature"> &rarr; {function}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_utils.js.html">plugins-dynamic/awe-library/runtime/utils.js</a>, <a href="plugins-dynamic_awe-library_runtime_utils.js.html#line89">line 89</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Returns a predicate function that checks if a field name
+is equal to the supplied value</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the name to check for</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a predicate function that checks for the name</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getFields"><span class="type-signature">(static) </span>getFields<span class="signature">(type)</span><span class="type-signature"> &rarr; {Promise.&lt;Array.&lt;<a href="FieldDefinition.html">FieldDefinition</a>>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_utils.js.html">plugins-dynamic/awe-library/runtime/utils.js</a>, <a href="plugins-dynamic_awe-library_runtime_utils.js.html#line46">line 46</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Get all of the fields associated with a document (not only visible ones)</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Document.html">Document</a></span>
+|
+
+<span class="param-type"><a href="DocumentDefinition.html">DocumentDefinition</a></span>
+|
+
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the type to check</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the fields associated with the document</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Array.&lt;<a href="FieldDefinition.html">FieldDefinition</a>>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getLabelFor"><span class="type-signature">(static) </span>getLabelFor<span class="signature">(question)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_utils.js.html">plugins-dynamic/awe-library/runtime/utils.js</a>, <a href="plugins-dynamic_awe-library_runtime_utils.js.html#line193">line 193</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Retrieves the label for a question, this uses the user supplied label or generates one</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>question</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="FieldDefinition.html">FieldDefinition</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the question whose label is required</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the label to use</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".goto"><span class="type-signature">(static) </span>goto<span class="signature">(id, cb<span class="signature-attributes">opt</span>, navigate<span class="signature-attributes">opt</span>, location<span class="signature-attributes">opt</span>, modes<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="global.html#NavigationFunction">NavigationFunction</a>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_utils.js.html">plugins-dynamic/awe-library/runtime/utils.js</a>, <a href="plugins-dynamic_awe-library_runtime_utils.js.html#line244">line 244</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>embed</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">EmbedFunction</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>call to embed the document in a modal</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<div class="description usertext">
+    <p>creates a navigation function to a document id</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the id of the document to navigate to</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>a callback that is invoked if the goto is called</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>navigate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>a navigate function to use as an override</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>location</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>an object to override the standard location with</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>modes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Mode></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>an array of &quot;modes&quot; to set, this allows
+the conditional elements of the target document to be activated or
+deactivation</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the function to navigate to the document</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#NavigationFunction">NavigationFunction</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".isNotBlank"><span class="type-signature">(static) </span>isNotBlank<span class="signature">(fieldOrName)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_utils.js.html">plugins-dynamic/awe-library/runtime/utils.js</a>, <a href="plugins-dynamic_awe-library_runtime_utils.js.html#line58">line 58</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Returns whether an item with a name is blank or if the parameter
+is a string, tests that it is not blank</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldOrName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type"><a href="FieldDefinition.html">FieldDefinition</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>true if the name or string is not blank</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".process"><span class="type-signature">(static) </span>process<span class="signature">(value, date)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_utils.js.html">plugins-dynamic/awe-library/runtime/utils.js</a>, <a href="plugins-dynamic_awe-library_runtime_utils.js.html#line204">line 204</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Processes a field value and if its a date, show the date as relative or a formatted
+value</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the value to format</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>date</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>should the value be potentially treated as a date</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A formatted value</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".setForTime"><span class="type-signature">(static) </span>setForTime<span class="signature">(property, value, obj<span class="signature-attributes">opt</span>, time<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {function}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_utils.js.html">plugins-dynamic/awe-library/runtime/utils.js</a>, <a href="plugins-dynamic_awe-library_runtime_utils.js.html#line131">line 131</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Sets a value in an object for a period of time</p>
+</div>
+
+
+
+
+
+
+
 
 
 
@@ -212,7 +1917,7 @@ used appropriately it makes the UI much more responsive.</p>
 
         <tr>
             
-                <td class="name"><code>purpose</code></td>
+                <td class="name"><code>property</code></td>
             
 
             <td class="type">
@@ -240,51 +1945,14 @@ used appropriately it makes the UI much more responsive.</p>
                 </td>
             
 
-            <td class="description last"><p>this should be a unique string to cache
-data of a particular type</p></td>
+            <td class="description last"><p>the property to set</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>promiseProducingFunction</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the function
-that will retrieve the async data</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>defaultValue</code></td>
+                <td class="name"><code>value</code></td>
             
 
             <td class="type">
@@ -299,8 +1967,6 @@ that will retrieve the async data</p></td>
             
                 <td class="attributes">
                 
-                    &lt;optional><br>
-                
 
                 
 
@@ -314,20 +1980,20 @@ that will retrieve the async data</p></td>
                 </td>
             
 
-            <td class="description last"><p>a value to use when there is no cached data</p></td>
+            <td class="description last"><p>the value to set on the property</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>refId</code></td>
+                <td class="name"><code>obj</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">object</span>
 
 
             
@@ -348,26 +2014,25 @@ that will retrieve the async data</p></td>
             
                 <td class="default">
                 
-                    <code>standard</code>
+                    <code>properties</code>
                 
                 </td>
             
 
-            <td class="description last"><p>an id that indicates the cache key to use, this should
-is used in conjunction with <code>purpose</code> to create a cache key</p></td>
+            <td class="description last"><p>the object on which to set the value</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>runId</code></td>
+                <td class="name"><code>time</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">number</span>
 
 
             
@@ -388,12 +2053,12 @@ is used in conjunction with <code>purpose</code> to create a cache key</p></td>
             
                 <td class="default">
                 
+                    <code>750</code>
+                
                 </td>
             
 
-            <td class="description last"><p>an id that indicates that even if the keys match
-that the function should be run again and the data updated when
-it is available</p></td>
+            <td class="description last"><p>the time to set the value for in ms</p></td>
         </tr>
 
     
@@ -419,8 +2084,7 @@ it is available</p></td>
 
         
 <div class="param-desc">
-    <p>the results of the function, the cached value or the default value
-as appropriate</p>
+    <p>A function to retrieve the value at the present moment</p>
 </div>
 
 
@@ -431,7 +2095,7 @@ as appropriate</p>
     </dt>
     <dd>
         
-<span class="param-type">*</span>
+<span class="param-type">function</span>
 
 
     </dd>
@@ -446,7 +2110,7 @@ as appropriate</p>
 
     
 
-    <h4 class="name" id=".useCurrent"><span class="type-signature">(static) </span>useCurrent<span class="signature">(fn)</span><span class="type-signature"> &rarr; {function}</span></h4>
+    <h4 class="name" id=".topLevelField"><span class="type-signature">(static) </span>topLevelField<span class="signature">(field)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
 
     
 
@@ -458,7 +2122,7 @@ as appropriate</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_use-async_index.js.html">common/use-async/index.js</a>, <a href="common_use-async_index.js.html#line69">line 69</a>
+        <a href="plugins-dynamic_awe-library_runtime_utils.js.html">plugins-dynamic/awe-library/runtime/utils.js</a>, <a href="plugins-dynamic_awe-library_runtime_utils.js.html#line76">line 76</a>
     </li></ul></dd>
     
 
@@ -498,10 +2162,8 @@ as appropriate</p>
 
 
 <div class="description usertext">
-    <p>A hook that allows you to create a function
-that will be nulled when the current component
-unmounts.  Calling the function after an unmount
-will be a noop.</p>
+    <p>A filter that tests a field and returns true if the field is
+at the top level of a chain</p>
 </div>
 
 
@@ -539,13 +2201,16 @@ will be a noop.</p>
 
         <tr>
             
-                <td class="name"><code>fn</code></td>
+                <td class="name"><code>field</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">string</span>
+|
+
+<span class="param-type"><a href="FieldDefinition.html">FieldDefinition</a></span>
 
 
             
@@ -555,7 +2220,7 @@ will be a noop.</p>
 
             
 
-            <td class="description last"><p>the function to be wrapped</p></td>
+            <td class="description last"><p>the field to be tested</p></td>
         </tr>
 
     
@@ -581,8 +2246,7 @@ will be a noop.</p>
 
         
 <div class="param-desc">
-    <p>a version of the function that is a
-noop after the component unmounts</p>
+    <p>true if the field tested is a top level field</p>
 </div>
 
 
@@ -593,7 +2257,7 @@ noop after the component unmounts</p>
     </dt>
     <dd>
         
-<span class="param-type">function</span>
+<span class="param-type">boolean</span>
 
 
     </dd>
@@ -608,7 +2272,7 @@ noop after the component unmounts</p>
 
     
 
-    <h4 class="name" id=".useCurrentState"><span class="type-signature">(static) </span>useCurrentState<span class="signature">(&hellip;params<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    <h4 class="name" id=".useFieldDefinition"><span class="type-signature">(static) </span>useFieldDefinition<span class="signature">(type, field)</span><span class="type-signature"> &rarr; {<a href="FieldDefinition.html">FieldDefinition</a>}</span></h4>
 
     
 
@@ -620,7 +2284,7 @@ noop after the component unmounts</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_use-async_index.js.html">common/use-async/index.js</a>, <a href="common_use-async_index.js.html#line88">line 88</a>
+        <a href="plugins-dynamic_awe-library_runtime_utils.js.html">plugins-dynamic/awe-library/runtime/utils.js</a>, <a href="plugins-dynamic_awe-library_runtime_utils.js.html#line160">line 160</a>
     </li></ul></dd>
     
 
@@ -660,10 +2324,8 @@ noop after the component unmounts</p>
 
 
 <div class="description usertext">
-    <p>A hook that does the equivalent of React.useState, however
-if the component unmounts, the set function of the
-state will be a noop.  Helps with asyncs that later try to
-update a component that has been unmounted.</p>
+    <p>A hook that given a type and a field name, returns the field definition
+of the field, returns null before it is resolved.</p>
 </div>
 
 
@@ -689,8 +2351,6 @@ update a component that has been unmounted.</p>
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
         
 
@@ -703,35 +2363,52 @@ update a component that has been unmounted.</p>
 
         <tr>
             
-                <td class="name"><code>params</code></td>
+                <td class="name"><code>type</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">*</span>
+<span class="param-type"><a href="DocumentDefinition.html">DocumentDefinition</a></span>
+|
+
+<span class="param-type"><a href="Document.html">Document</a></span>
+|
+
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
 
-                
+            
 
+            <td class="description last"><p>the type to retrieve the value for</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>field</code></td>
+            
+
+            <td class="type">
+            
                 
-                    &lt;repeatable><br>
-                
-                </td>
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
             
 
             
 
-            <td class="description last"><p>parameters passed to useState</p></td>
+            <td class="description last"><p>the name of the field to retrieve (its stored name)</p></td>
         </tr>
 
     
@@ -758,7 +2435,7 @@ update a component that has been unmounted.</p>
         
 <div class="param-desc">
     <ul>
-<li>the same as React useState</li>
+<li>the definition of the field</li>
 </ul>
 </div>
 
@@ -770,7 +2447,7 @@ update a component that has been unmounted.</p>
     </dt>
     <dd>
         
-<span class="param-type">Array</span>
+<span class="param-type"><a href="FieldDefinition.html">FieldDefinition</a></span>
 
 
     </dd>
@@ -785,7 +2462,7 @@ update a component that has been unmounted.</p>
 
     
 
-    <h4 class="name" id="~useAsync"><span class="type-signature">(inner) </span>useAsync<span class="signature">(promiseProducingFunction, defaultValue<span class="signature-attributes">opt</span>, refId<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {*}</span></h4>
+    <h4 class="name" id=".useLoaded"><span class="type-signature">(static) </span>useLoaded<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="global.html#CheckFunction">CheckFunction</a>}</span></h4>
 
     
 
@@ -797,7 +2474,7 @@ update a component that has been unmounted.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_use-async_index.js.html">common/use-async/index.js</a>, <a href="common_use-async_index.js.html#line189">line 189</a>
+        <a href="plugins-dynamic_awe-library_runtime_utils.js.html">plugins-dynamic/awe-library/runtime/utils.js</a>, <a href="plugins-dynamic_awe-library_runtime_utils.js.html#line30">line 30</a>
     </li></ul></dd>
     
 
@@ -837,7 +2514,9 @@ update a component that has been unmounted.</p>
 
 
 <div class="description usertext">
-    <p>A hook to retrieve data from an async function.</p>
+    <p>Returns a function that can be used to check if a component
+is still mounted.</p>
+<p>This  is useful in async functions</p>
 </div>
 
 
@@ -848,162 +2527,6 @@ update a component that has been unmounted.</p>
 
 
 
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>const fields = useAsync(
- async () => {
-            const type = await getType(target.actionType)
-            await initialize(type)
-            return type.sendMessage('fields', [])
-        },
- [],
- target.actionType
- )</code></pre>
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>promiseProducingFunction</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the async function to run</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>defaultValue</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>null</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>a default value to use until the function returns</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>refId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>standard</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>a value that indicates the resource and if it doesn't match, causes the function to run again</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -1024,7 +2547,8 @@ update a component that has been unmounted.</p>
 
         
 <div class="param-desc">
-    <p>the result of the function or the default value as appropriate</p>
+    <p>a function that returns <code>true</code>
+if the component is still mounted.</p>
 </div>
 
 
@@ -1035,7 +2559,7 @@ update a component that has been unmounted.</p>
     </dt>
     <dd>
         
-<span class="param-type">*</span>
+<span class="param-type"><a href="global.html#CheckFunction">CheckFunction</a></span>
 
 
     </dd>

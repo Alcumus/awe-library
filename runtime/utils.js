@@ -1,3 +1,6 @@
+/**
+ * @module dynamic/awe-library/runtime/utils
+ */
 import React, { useEffect, useRef } from 'react'
 
 import { generate } from 'shortid'
