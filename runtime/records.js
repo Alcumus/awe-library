@@ -27,7 +27,7 @@ import useAsync from 'common/use-async'
  * @param {ListOptions} [options] - options to provide
  * @returns {Promise<RecordResults>} a promise for the matching records and field definitions in the type
  */
-export const getRecords = async (type, query, skip, take, options) => {
+export async function getRecords(type, query, skip, take, options)  {
     if (!type) return []
     let lookupType = await getType(type)
     await initialize(lookupType)
