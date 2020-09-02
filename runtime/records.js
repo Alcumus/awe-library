@@ -14,6 +14,8 @@ import useAsync from 'common/use-async'
  */
 
 /**
+ * @function getRecords
+ * @description
  * A function to retrieve records from a type.  The documents
  * retrieved are automatically updated by replaying local
  * changes.
