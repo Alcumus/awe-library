@@ -73,7 +73,7 @@ export async function createDocumentOfType(parent, typeId, context = {}, fromRaw
  * type.  This is predominantly used for applications whose
  * id is the user id (they have their own unique copy of the data)
  * @param {string} id - the id that must exist
- * @param {DocumentDefinition} type - the type that the id is part of
+ * @param {DocumentDefinition} type - the type that the id is to be created for
  * @returns {Promise<void>} a promise that is resolved when the id is known to exist
  */
 export async function ensure(id, type) {
