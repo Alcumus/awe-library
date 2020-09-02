@@ -76,12 +76,12 @@ export function legalFieldNameCharacters(v = '') {
  * @interface BehaviourDefinition
  * @global
  * @description the definition of a behaviour for the UI
- * @param {string} behaviour - the unique name of the behaviour
- * @param {string} caption - a caption to use when displaying the behaviour
- * @param {string} [description] - a longer text description of the behaviour
- * @param {React.Component} Icon - an icon to use for the behaviour
- * @param {string} color - a colour to use for the behaviour
- * @param {Object} [register] - the code to register for the behaviour - if omitted this should be registered directly with Alcumus Behaviours
+ * @property {string} behaviour - the unique name of the behaviour
+ * @property {string} caption - a caption to use when displaying the behaviour
+ * @property {string} [description] - a longer text description of the behaviour
+ * @property {React.Component} Icon - an icon to use for the behaviour
+ * @property {string} color - a colour to use for the behaviour
+ * @property {Object} [register] - the code to register for the behaviour - if omitted this should be registered directly with Alcumus Behaviours
  */
 
 /**
