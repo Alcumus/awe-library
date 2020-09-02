@@ -21,7 +21,9 @@
       "../../common/sortable/index.js",
       "../../common/use-event/index.js",
       "runtime/query.js",
-      "runtime/utils.js"
+      "runtime/utils.js",
+      "runtime/navigate.js",
+      "runtime/create-document.js"
     ]
   },
   "opts": {

@@ -6,6 +6,18 @@ import { showNotification } from 'common/modal'
 import { getActiveClient } from 'common/global-store/api'
 import { getType } from 'dynamic/awe-library/runtime/records'
 
+/**
+ * Creates an object provided with a document type
+ * @param {Document} [parent=null] - the parent of the document being created
+ * @param {string} typeId - the id of the document type to create
+ * @param {object} [context={}] - default context (used by context fields) for the document being created
+ * @param {boolean} [fromRaw=false] - if true use the latest version of the document, not the active published version
+ * @param {string} [id] - if supplied use the id for the document, otherwise generate one
+ * @param {object} [props={}] - any props to immediately set on the document
+ * @param {boolean} [alwaysCreate=false] - documents are often not really created before the first submission, setting true
+ * here makes the document create immediately
+ * @returns {Promise<Document>} a promise for the created document
+ */
 export async function createDocumentOfType(parent, typeId, context = {}, fromRaw, id, props = {}, alwaysCreate) {
     try {
         let versionId
@@ -54,6 +66,14 @@ export async function createDocumentOfType(parent, typeId, context = {}, fromRaw
     }
 }
 
+/**
+ * Ensure that a document has been created with an id and a given
+ * type.  This is predominantly used for applications whose
+ * id is the user id (they have their own unique copy of the data)
+ * @param {string} id - the id that must exist
+ * @param {DocumentDefinition} type - the type that the id is part of
+ * @returns {Promise<void>} a promise that is resolved when the id is known to exist
+ */
 export async function ensure(id, type) {
     let current = await get(id)
     if (!current) {

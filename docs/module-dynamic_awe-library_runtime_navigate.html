@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>common/offline-data-service/records.js - awe-library</title>
+    <title>dynamic/awe-library/runtime/navigate - awe-library</title>
     
     
     
@@ -43,285 +43,274 @@
 
 <div id="main">
     
-    <h1 class="page-title">common/offline-data-service/records.js</h1>
+    <h1 class="page-title">dynamic/awe-library/runtime/navigate</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * @module common/offline-data-service/records
- */
+        
+    
+</header>
 
-import React, { useContext, useRef, useState } from 'react'
-import { useRefresh } from 'common/useRefresh'
-import { get, list, useRecord } from 'common/offline-data-service/index'
-import { raiseAsync } from 'common/events'
-import { useCachedAsync } from 'common/use-async'
-import { initialize } from 'common/offline-data-service/behaviour-cache'
-import { uiReady } from 'common/ui-ready'
-import { generate } from 'shortid'
-import { useLocalEvent } from 'common/use-event'
+<article>
+    
+        <div class="container-overview">
+        
+            
 
-const loadingIndicator = { _loading: true }
+            
+        
+        </div>
+    
 
-export const StreamingContext = React.createContext(generate())
+    
 
-function _useStreamedResults(database, table, where = {}, sort) {
-    const context = useContext(StreamingContext)
-    const cacheKey = `${database}:${table}:${context}`
-    const lastUpdate = useRef(Date.now())
+    
 
-    const refresh = useRefresh().debounce(250)
-    const key = `${database}:${table}:${JSON.stringify(where)}-${lastUpdate.current}`
+    
+    
+    
 
-    let [state, update] = useState(configure)
-    state.refresh = refresh
-    useLocalEvent('data.updated.*', refreshWhenThisTable)
-    if (!database || !table) {
-        return Object.assign(() => [], { state })
-    }
-    if (state.key !== key) {
-        state = configure(state)
-        update(state)
-    }
-    state.retrieve.state = state
-    return state.retrieve
+     
 
-    function refreshWhenThisTable(id) {
-        if (!id) return
-        const [, source] = id.split(':')
-        const [updatedDb, updatedTb] = source.split('/')
-        if (updatedDb === database &amp;&amp; updatedTb === table) {
-            lastUpdate.current = Date.now()
-            refresh()
-        }
-    }
+    
 
-    function configure(previous) {
-        const defaultCache = previous?.cache ?? new Map()
-        const cache = new Map()
-        const retrieving = new Set()
-        const state = {
-            key,
-            database,
-            table,
-            queried: false,
-            where,
-            cache,
-            retrieving,
-            blank: true,
-            maxStack: [],
-            maxRetrieving: Infinity,
-            maxRow: Infinity,
-            retrieve,
-            defaultCache,
-            cacheKey,
-        }
-        return state
+    
 
-        function retrieve(first, last) {
-            const output = []
-            const retrieve = []
-            for (let r = first; r &lt; last; r++) {
-                if (!(r >= state.maxRow || r &lt; 0)) {
-                    if (r > state.maxRetrieving) {
-                        state.getMore = true
-                    }
-                    if (cache.has(r)) {
-                        output.push(cache.get(r))
-                    } else {
-                        if (!retrieving.has(r)) {
-                            retrieve.push(r)
-                            retrieving.add(r)
-                        }
-                        output.push(defaultCache.get(r) || loadingIndicator)
-                    }
-                }
-            }
-            if (retrieve.length) {
-                let start = retrieve[0]
-                let end = retrieve[retrieve.length - 1]
-                let take = end - start + 1
-                queryFor(start, end, take).catch(console.error)
-            }
-            return output.compact()
-        }
+    
+        <h3 class="subsection-title">Methods</h3>
 
-        async function queryFor(start, end) {
-            await uiReady()
-            state.maxStack.push(state.maxRetrieving || state.maxRow)
-            state.maxRetrieving = Math.min(end, state.maxRetrieving)
-            sort = Array.isArray(sort) &amp;&amp; sort.length === 0 ? undefined : sort || undefined
-            const take = end - start + 1
-            let results = (
-                await list(state.database, state.table, state.where, {
-                    skip: start,
-                    take,
-                    orderStmt: sort,
-                })
-            ).map('data')
-            state.queried = true
-            let rows = results.length
-            await raiseAsync('update-records', results)
-            results = results.filter((f) => !f.$invalid &amp;&amp; !f._deleted)
-            results.processed = true
-            state.maxRetrieving = state.maxStack.pop()
-            let r
-            for (r = 0; r &lt; results.length; r++) {
-                const result = results[r]
-                cache.set(start + r, result)
-                defaultCache.set(start + r, result)
-            }
-            if (rows &lt; take - 4) {
-                state.maxRow = Math.min(state.maxRow, start + results.length)
-            }
-            if (state.getMore) {
-                let first = Math.min(end + 1, state.maxRow)
-                let last = Math.min(end + 1 + (end - start + 1), state.maxRow)
-                state.getMore = false
-                if (first !== last) {
-                    queryFor(first, last, last - first + 1).catch(console.error)
-                }
-            }
-            state.refresh()
-        }
-    }
-}
+        
+            
 
-/**
- * @function RetrieveFunction
- * @global
- * @description A function that retrieves records. This is
- * returned from the streaming functions and reacts to the
- * current state of retrieval.  Initially it will retrieve
- * dummy records, of the number requested, later it will
- * be populated with real values and will truncate if there
- * aren't enough.
- * @param {number} first - the first record to retrieve
- * @param {number} count - the number of records to retrieve
- * @returns {Array&lt;Document>} an array of records
- */
+    
 
-/**
- * A hook that given a type definition or ID, creates a function that streams
- * records from that database type
- * @param {string|DocumentDefinition} type - the type to get records from
- * @param {WhereDefinition} [where={}] - the query to apply
- * @param {Array&lt;string>} [sort] - the sort fields for the records
- * @param {function(Document):boolean} [filter] - an additional filter applied
- * to retrieved records
- * @returns {RetrieveFunction} the function to get the records
- */
-export function useStreamedResultsForType(type, where, sort, filter) {
-    const typeDef = useRecord(type, true)
-    return useStreamedResults(typeDef?.database, typeDef?.table, where, sort, filter)
-}
+    <h4 class="name" id=".navigateToDocument"><span class="type-signature">(static) </span>navigateToDocument<span class="signature">(documentOrId, navigate<span class="signature-attributes">opt</span>, location<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
-/**
- * A hook that given a database and table, creates a function that streams
- * records
- * @param {string} database - the database for the table
- * @param {string} table - the table to stream records from
- * @param {WhereDefinition} [where={}] - the query to apply
- * @param {Array&lt;string>} [sort] - the sort fields for the records
- * @param {function(Document):boolean} [filter] - an additional filter applied
- * to retrieved records
- * @returns {RetrieveFunction} the function to get the records
- */
-export function useStreamedResults(database, table, where = {}, sort, filter) {
-    const retrieve = _useStreamedResults(database, table, where, sort)
-    return filter ? filterRetrieve : retrieve
+    
 
-    function filterRetrieve(first, last) {
-        if (!retrieve.state.cache) return []
-        const values = Array.from(retrieve.state.cache.values())
-        if (!values.length) {
-            retrieve(first, last)
-            if (!retrieve.state.queried) {
-                return Array.from({ length: last - first + 1 }, (_, row) =>
-                    retrieve.state.defaultCache.get(first + row)
-                ).compact(true)
-            }
-            return []
-        }
-        let scan = values.filter(filter).slice(first, last)
-        if (scan.length !== first - last) {
-            retrieve(last, (last - first - scan.length) * 2 + last)
-        }
-        return scan
-    }
-}
 
-/**
- * Gets records for a type definition or ID
- * @param {string|DocumentDefinition} type - the type to get records from
- * @param {WhereDefinition} [where={}] - the query to apply
- * @param {Array&lt;string>} [sort] - the sort fields for the records
- * @param {ListOptions} [options={}] - options for the retrieval
- * @returns {Array&lt;Document>} retrieves the documents or [] until available
- */
-export function useRecordsForType(type, where, sort, options) {
-    return useCachedAsync(
-        'getRecords',
-        async () => {
-            if (!type) return []
-            const typeDef = Object.isObject(type) ? type : await get(type)
-            await initialize(typeDef)
-            await raiseAsync('update-records', [typeDef])
-            return getRecords(typeDef?.database, typeDef?.table, {}, sort, options)
-        },
-        [],
-        JSON.stringify({ type, where, sort, options })
-    )
-}
 
-/**
- * A hook to get records for a database and table
- * @param {string} database - the database for the table
- * @param {string} table - the table to stream records from
- * @param {WhereDefinition} [where={}] - the query to apply
- * @param {Array&lt;string>} [sort] - the sort fields for the records
- * @param {ListOptions} [options={}] - options for the retrieval
- * @returns {Array&lt;Document>} retrieves the documents or [] until available
- */
-export function useRecords(database, table, where, sort, options) {
-    return useCachedAsync(
-        'getRecords',
-        async () => {
-            return getRecords(database, table, where, sort, options)
-        },
-        [],
-        JSON.stringify({ database, table, where, sort, options })
-    )
-}
 
-/**
- * Gets records for a database and table
- * @param {string} database - the database for the table
- * @param {string} table - the table to stream records from
- * @param {WhereDefinition} [where={}] - the query to apply
- * @param {Array&lt;string>} [sort] - the sort fields for the records
- * @param {ListOptions} [options={}] - options for the retrieval
- * @returns {Promise&lt;Array&lt;Document>>} a promise for the documents
- */
-export async function getRecords(database, table, where, sort, options = {}) {
-    const canSort = !Array.isArray(sort) || sort.length
-    await uiReady()
-    const results = (await list(database, table, where, { orderStmt: canSort ? sort : undefined, ...options })).map(
-        'data'
-    )
-    results.processed = true
-    await raiseAsync('update-records', results)
-    return results
-}
-</code></pre>
-        </article>
-    </section>
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_navigate.js.html">plugins-dynamic/awe-library/runtime/navigate.js</a>, <a href="plugins-dynamic_awe-library_runtime_navigate.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Navigate to a document or id immediately</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>documentOrId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type"><a href="Document.html">Document</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the document to navigate to</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>navigate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>an override for the standard navigation</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>location</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>an override for the standard location</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>common/offline-data-service/records.js - awe-library</title>
+    <title>plugins-dynamic/awe-library/runtime/create-document.js - awe-library</title>
     
     
     
@@ -43,7 +43,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">common/offline-data-service/records.js</h1>
+    <h1 class="page-title">plugins-dynamic/awe-library/runtime/create-document.js</h1>
     
 
     
@@ -53,271 +53,114 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * @module common/offline-data-service/records
+            <pre class="prettyprint source linenums"><code>//
+import { createDocument } from 'common/create-document'
+import events from 'alcumus-local-events'
+import { cacheLocalOnly, get, set } from 'common/offline-data-service'
+import { showNotification } from 'common/modal'
+import { getActiveClient } from 'common/global-store/api'
+import { getType } from 'dynamic/awe-library/runtime/records'
+
+/**
+ * Creates an object provided with a document type
+ * @param {Document} [parent=null] - the parent of the document being created
+ * @param {string} typeId - the id of the document type to create
+ * @param {object} [context={}] - default context (used by context fields) for the document being created
+ * @param {boolean} [fromRaw=false] - if true use the latest version of the document, not the active published version
+ * @param {string} [id] - if supplied use the id for the document, otherwise generate one
+ * @param {object} [props={}] - any props to immediately set on the document
+ * @param {boolean} [alwaysCreate=false] - documents are often not really created before the first submission, setting true
+ * here makes the document create immediately
+ * @returns {Promise&lt;Document>} a promise for the created document
  */
-
-import React, { useContext, useRef, useState } from 'react'
-import { useRefresh } from 'common/useRefresh'
-import { get, list, useRecord } from 'common/offline-data-service/index'
-import { raiseAsync } from 'common/events'
-import { useCachedAsync } from 'common/use-async'
-import { initialize } from 'common/offline-data-service/behaviour-cache'
-import { uiReady } from 'common/ui-ready'
-import { generate } from 'shortid'
-import { useLocalEvent } from 'common/use-event'
-
-const loadingIndicator = { _loading: true }
-
-export const StreamingContext = React.createContext(generate())
-
-function _useStreamedResults(database, table, where = {}, sort) {
-    const context = useContext(StreamingContext)
-    const cacheKey = `${database}:${table}:${context}`
-    const lastUpdate = useRef(Date.now())
-
-    const refresh = useRefresh().debounce(250)
-    const key = `${database}:${table}:${JSON.stringify(where)}-${lastUpdate.current}`
-
-    let [state, update] = useState(configure)
-    state.refresh = refresh
-    useLocalEvent('data.updated.*', refreshWhenThisTable)
-    if (!database || !table) {
-        return Object.assign(() => [], { state })
-    }
-    if (state.key !== key) {
-        state = configure(state)
-        update(state)
-    }
-    state.retrieve.state = state
-    return state.retrieve
-
-    function refreshWhenThisTable(id) {
-        if (!id) return
-        const [, source] = id.split(':')
-        const [updatedDb, updatedTb] = source.split('/')
-        if (updatedDb === database &amp;&amp; updatedTb === table) {
-            lastUpdate.current = Date.now()
-            refresh()
+export async function createDocumentOfType(parent, typeId, context = {}, fromRaw, id, props = {}, alwaysCreate) {
+    try {
+        let versionId
+        const type = await getType(typeId)
+        if (!type) {
+            console.info('Could not retrieve type', typeId)
+            return null
         }
-    }
+        let version
+        if (fromRaw || !type.currentVersion) {
+            delete type.versions
+            delete type.currentVersion
+            version = type
+            type.__version = `raw-${Date.now()}`
+        } else {
+            versionId = type.currentVersion[window.mode || 'live']
+            version = JSON.parse(type.versions.find((v) => v.name === versionId).content)
 
-    function configure(previous) {
-        const defaultCache = previous?.cache ?? new Map()
-        const cache = new Map()
-        const retrieving = new Set()
-        const state = {
-            key,
-            database,
-            table,
-            queried: false,
-            where,
-            cache,
-            retrieving,
-            blank: true,
-            maxStack: [],
-            maxRetrieving: Infinity,
-            maxRow: Infinity,
-            retrieve,
-            defaultCache,
-            cacheKey,
+            type.__version = versionId
         }
-        return state
-
-        function retrieve(first, last) {
-            const output = []
-            const retrieve = []
-            for (let r = first; r &lt; last; r++) {
-                if (!(r >= state.maxRow || r &lt; 0)) {
-                    if (r > state.maxRetrieving) {
-                        state.getMore = true
-                    }
-                    if (cache.has(r)) {
-                        output.push(cache.get(r))
-                    } else {
-                        if (!retrieving.has(r)) {
-                            retrieve.push(r)
-                            retrieving.add(r)
-                        }
-                        output.push(defaultCache.get(r) || loadingIndicator)
-                    }
-                }
-            }
-            if (retrieve.length) {
-                let start = retrieve[0]
-                let end = retrieve[retrieve.length - 1]
-                let take = end - start + 1
-                queryFor(start, end, take).catch(console.error)
-            }
-            return output.compact()
+        const newDocument = await createDocument(version, undefined, id)
+        newDocument._version = type.__version
+        newDocument._parent = parent?._id
+        Object.assign(newDocument, props)
+        if (type.defaultState) {
+            newDocument.behaviours.state = type.defaultState
         }
 
-        async function queryFor(start, end) {
-            await uiReady()
-            state.maxStack.push(state.maxRetrieving || state.maxRow)
-            state.maxRetrieving = Math.min(end, state.maxRetrieving)
-            sort = Array.isArray(sort) &amp;&amp; sort.length === 0 ? undefined : sort || undefined
-            const take = end - start + 1
-            let results = (
-                await list(state.database, state.table, state.where, {
-                    skip: start,
-                    take,
-                    orderStmt: sort,
-                })
-            ).map('data')
-            state.queried = true
-            let rows = results.length
-            await raiseAsync('update-records', results)
-            results = results.filter((f) => !f.$invalid &amp;&amp; !f._deleted)
-            results.processed = true
-            state.maxRetrieving = state.maxStack.pop()
-            let r
-            for (r = 0; r &lt; results.length; r++) {
-                const result = results[r]
-                cache.set(start + r, result)
-                defaultCache.set(start + r, result)
-            }
-            if (rows &lt; take - 4) {
-                state.maxRow = Math.min(state.maxRow, start + results.length)
-            }
-            if (state.getMore) {
-                let first = Math.min(end + 1, state.maxRow)
-                let last = Math.min(end + 1 + (end - start + 1), state.maxRow)
-                state.getMore = false
-                if (first !== last) {
-                    queryFor(first, last, last - first + 1).catch(console.error)
-                }
-            }
-            state.refresh()
+        newDocument.sendMessage('setContext', context)
+        if (context.initialize) {
+            context.initialize(newDocument)
         }
+        if (alwaysCreate || type.createOnNew) {
+            newDocument.$created = true
+            events.once(`shouldload.${newDocument._id}`, (_, props) => {
+                props.change = false
+            })
+            await set(newDocument, true)
+        } else {
+            cacheLocalOnly(newDocument)
+        }
+        return newDocument
+    } catch (e) {
+        console.error(e)
+        showNotification('Error: cannot create document')
     }
 }
 
 /**
- * @function RetrieveFunction
- * @global
- * @description A function that retrieves records. This is
- * returned from the streaming functions and reacts to the
- * current state of retrieval.  Initially it will retrieve
- * dummy records, of the number requested, later it will
- * be populated with real values and will truncate if there
- * aren't enough.
- * @param {number} first - the first record to retrieve
- * @param {number} count - the number of records to retrieve
- * @returns {Array&lt;Document>} an array of records
+ * Ensure that a document has been created with an id and a given
+ * type.  This is predominantly used for applications whose
+ * id is the user id (they have their own unique copy of the data)
+ * @param {string} id - the id that must exist
+ * @param {DocumentDefinition} type - the type that the id is part of
+ * @returns {Promise&lt;void>} a promise that is resolved when the id is known to exist
  */
-
-/**
- * A hook that given a type definition or ID, creates a function that streams
- * records from that database type
- * @param {string|DocumentDefinition} type - the type to get records from
- * @param {WhereDefinition} [where={}] - the query to apply
- * @param {Array&lt;string>} [sort] - the sort fields for the records
- * @param {function(Document):boolean} [filter] - an additional filter applied
- * to retrieved records
- * @returns {RetrieveFunction} the function to get the records
- */
-export function useStreamedResultsForType(type, where, sort, filter) {
-    const typeDef = useRecord(type, true)
-    return useStreamedResults(typeDef?.database, typeDef?.table, where, sort, filter)
-}
-
-/**
- * A hook that given a database and table, creates a function that streams
- * records
- * @param {string} database - the database for the table
- * @param {string} table - the table to stream records from
- * @param {WhereDefinition} [where={}] - the query to apply
- * @param {Array&lt;string>} [sort] - the sort fields for the records
- * @param {function(Document):boolean} [filter] - an additional filter applied
- * to retrieved records
- * @returns {RetrieveFunction} the function to get the records
- */
-export function useStreamedResults(database, table, where = {}, sort, filter) {
-    const retrieve = _useStreamedResults(database, table, where, sort)
-    return filter ? filterRetrieve : retrieve
-
-    function filterRetrieve(first, last) {
-        if (!retrieve.state.cache) return []
-        const values = Array.from(retrieve.state.cache.values())
-        if (!values.length) {
-            retrieve(first, last)
-            if (!retrieve.state.queried) {
-                return Array.from({ length: last - first + 1 }, (_, row) =>
-                    retrieve.state.defaultCache.get(first + row)
-                ).compact(true)
+export async function ensure(id, type) {
+    let current = await get(id)
+    if (!current) {
+        // eslint-disable-next-line no-console
+        console.log('cdot', type._id)
+        let result = await createDocumentOfType(null, type._id, {}, false, id, {}, true)
+        console.info(result)
+    } else if (current.client === getActiveClient() || current._client === getActiveClient()) {
+        // eslint-disable-next-line no-console
+        console.log('upgrade', type._id)
+        try {
+            let versionId = type.currentVersion?.[window.mode || 'live']
+            if (versionId &amp;&amp; versionId !== current._version) {
+                let version = JSON.parse(type.versions.find((v) => v.name === versionId).content)
+                current._behaviours = version._behaviours
+                delete version._behaviours
+                Object.assign(current._settings, version)
+                current._version = versionId
+                await set(current, true, true)
+            } else if (!versionId) {
+                let version = JSON.parse(JSON.stringify(type))
+                current._behaviours = version._behaviours
+                delete version._behaviours
+                Object.assign(current._settings, version)
+                current._version = versionId
+                await set(current, true, true)
             }
-            return []
+        } catch (e) {
+            //Can't upgrade for some reason
+            console.error("Can't upgrade" + e.message)
         }
-        let scan = values.filter(filter).slice(first, last)
-        if (scan.length !== first - last) {
-            retrieve(last, (last - first - scan.length) * 2 + last)
-        }
-        return scan
     }
-}
-
-/**
- * Gets records for a type definition or ID
- * @param {string|DocumentDefinition} type - the type to get records from
- * @param {WhereDefinition} [where={}] - the query to apply
- * @param {Array&lt;string>} [sort] - the sort fields for the records
- * @param {ListOptions} [options={}] - options for the retrieval
- * @returns {Array&lt;Document>} retrieves the documents or [] until available
- */
-export function useRecordsForType(type, where, sort, options) {
-    return useCachedAsync(
-        'getRecords',
-        async () => {
-            if (!type) return []
-            const typeDef = Object.isObject(type) ? type : await get(type)
-            await initialize(typeDef)
-            await raiseAsync('update-records', [typeDef])
-            return getRecords(typeDef?.database, typeDef?.table, {}, sort, options)
-        },
-        [],
-        JSON.stringify({ type, where, sort, options })
-    )
-}
-
-/**
- * A hook to get records for a database and table
- * @param {string} database - the database for the table
- * @param {string} table - the table to stream records from
- * @param {WhereDefinition} [where={}] - the query to apply
- * @param {Array&lt;string>} [sort] - the sort fields for the records
- * @param {ListOptions} [options={}] - options for the retrieval
- * @returns {Array&lt;Document>} retrieves the documents or [] until available
- */
-export function useRecords(database, table, where, sort, options) {
-    return useCachedAsync(
-        'getRecords',
-        async () => {
-            return getRecords(database, table, where, sort, options)
-        },
-        [],
-        JSON.stringify({ database, table, where, sort, options })
-    )
-}
-
-/**
- * Gets records for a database and table
- * @param {string} database - the database for the table
- * @param {string} table - the table to stream records from
- * @param {WhereDefinition} [where={}] - the query to apply
- * @param {Array&lt;string>} [sort] - the sort fields for the records
- * @param {ListOptions} [options={}] - options for the retrieval
- * @returns {Promise&lt;Array&lt;Document>>} a promise for the documents
- */
-export async function getRecords(database, table, where, sort, options = {}) {
-    const canSort = !Array.isArray(sort) || sort.length
-    await uiReady()
-    const results = (await list(database, table, where, { orderStmt: canSort ? sort : undefined, ...options })).map(
-        'data'
-    )
-    results.processed = true
-    await raiseAsync('update-records', results)
-    return results
 }
 </code></pre>
         </article>
