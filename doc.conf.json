@@ -19,7 +19,9 @@
       "../../common/menu/index.js",
       "../../common/process/index.js",
       "../../common/sortable/index.js",
-      "../../common/use-event/index.js"
+      "../../common/use-event/index.js",
+      "runtime/query.js",
+      "runtime/utils.js"
     ]
   },
   "opts": {

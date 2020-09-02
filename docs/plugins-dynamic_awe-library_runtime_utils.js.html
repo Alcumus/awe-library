@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>QueryCascadeApi - awe-library</title>
+    <title>plugins-dynamic/awe-library/runtime/utils.js - awe-library</title>
     
     
     
@@ -43,197 +43,288 @@
 
 <div id="main">
     
-    <h1 class="page-title">QueryCascadeApi</h1>
+    <h1 class="page-title">plugins-dynamic/awe-library/runtime/utils.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-        QueryCascadeApi
-        </h2>
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useRef } from 'react'
 
-<article>
-    
-        <div class="container-overview">
-        
-            
+import { generate } from 'shortid'
+import { noop } from 'common/noop'
+import { getLocation } from 'common/routing'
+import { getActiveClient } from 'common/global-store/api'
+import { initialize } from 'common/offline-data-service/behaviour-cache'
+import { useCachedAsync } from 'common/use-async'
+import { showURLInModal } from 'common/embedded-routes'
+import { getType } from 'dynamic/awe-library/runtime/records'
 
-<dl class="details">
+/**
+ * @callback CheckFunction
+ * @description a function that can be called to perform a defined test
+ * @global
+ * @returns {boolean} true if the check passes
+ */
 
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins-dynamic_awe-library_query.js.html">plugins-dynamic/awe-library/query.js</a>, <a href="plugins-dynamic_awe-library_query.js.html#line46">line 46</a>
-    </li></ul></dd>
-    
+/**
+ * Returns a function that can be used to check if a component
+ * is still mounted.
+ *
+ * This  is useful in async functions
+ * @returns {CheckFunction} a function that returns &lt;code>true&lt;/code>
+ * if the component is still mounted.
+ */
+export function useLoaded() {
+    const ref = useRef({ loaded: true })
+    useEffect(() => {
+        ref.current.loaded = true
+        return () => {
+            ref.current.loaded = false
+        }
+    })
+    return () => ref.current.loaded
+}
 
-    
+/**
+ * Get all of the fields associated with a document (not only visible ones)
+ * @param {Document|DocumentDefinition|string} type - the type to check
+ * @returns {Promise&lt;Array&lt;FieldDefinition>>} the fields associated with the document
+ */
+export async function getFields(type) {
+    let referenceType = typeof type === 'object' ? type : await getType(type)
+    await initialize(referenceType)
+    return referenceType.sendMessage('fields', [])
+}
 
-    
+/**
+ * Returns whether an item with a name is blank or if the parameter
+ * is a string, tests that it is not blank
+ * @param {string|FieldDefinition} fieldOrName
+ * @returns {boolean} true if the name or string is not blank
+ */
+export function isNotBlank(fieldOrName) {
+    return fieldOrName &amp;&amp; !!fieldOrName.trim()
+}
 
-    
+/**
+ * Extracts the name of a field
+ * @param {FieldDefinition} field
+ * @returns {string} the name
+ */export function extractFieldName(field) {
+    return field &amp;&amp; field.name
+}
 
-    
+/**
+ * A filter that tests a field and returns true if the field is
+ * at the top level of a chain
+ * @param {string|FieldDefinition} field - the field to be tested
+ * @returns {boolean} true if the field tested is a top level field
+ */
+export function topLevelField(field) {
+    return (
+        (field &amp;&amp; field.name &amp;&amp; !field.name.includes('.')) ||
+        (field &amp;&amp; typeof field === 'string' &amp;&amp; field.includes('.'))
+    )
+}
 
-    
+/**
+ * Returns a predicate function that checks if a field name
+ * is equal to the supplied value
+ * @param {string} name - the name to check for
+ * @returns {function} a predicate function that checks for the name
+ */
+export function fieldNameIs(name) {
+    return function (f) {
+        return f &amp;&amp; f.name === name
+    }
+}
 
-    
+/**
+ * Creates a label from a field name type
+ * @param {string} label - the label to check
+ * @returns {string} the cleaned label
+ */
+export function cleanLabel(label = '') {
+    label = label.split('.').reverse().join(' of ')
+    return label.replace(/^\$/, '').spacify().titleize()
+}
 
-    
+/**
+ * Returns a promise for a delay in milliseconds
+ * @param {number} ms - the number of milliseconds to wait for
+ * @returns {Promise&lt;void>} a promise that will be satisfied when the delay expires
+ */
+export function delay(ms) {
+    return new Promise(function (resolve) {
+        setTimeout(resolve, Math.max(0, ms))
+    })
+}
 
-    
+/**
+ * Default properties that can be set for periods of time
+ * or used as a bag of configuration
+ * @type {{}}
+ */
+export const properties = {}
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>field</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>the name of the field in which to store the definition</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>children</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">React.Component</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>additional content to render for each entry</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
+/**
+ * Sets a value in an object for a period of time
+ * @param {string} property - the property to set
+ * @param {*} value - the value to set on the property
+ * @param {object} [obj=properties] - the object on which to set the value
+ * @param {number} [time=750] - the time to set the value for in ms
+ * @returns {function} A function to retrieve the value at the present moment
+ */
+export function setForTime(
+    property = 'default',
+    value,
+    obj = properties,
+    time = 750
+) {
+    const id = generate()
+    obj[property] = value
+    obj[`${property}_setter`] = id
+    setTimeout(() => {
+        if (obj[`${property}_setter`] === id) {
+            delete obj[property]
+            delete obj[`${property}_setter`]
+        }
+    }, time)
+    return () => {
+        return obj[property]
+    }
+}
 
 
-            
-                <div class="description usertext"><p>the parameters passed to a QueryCascade component. Other properties
-are passed on to the Query components used</p></div>
-            
+/**
+ * A hook that given a type and a field name, returns the field definition
+ * of the field, returns null before it is resolved.
+ *
+ * @param {DocumentDefinition|Document|string} type - the type to retrieve the value for
+ * @param {string} field - the name of the field to retrieve (its stored name)
+ * @returns {FieldDefinition} - the definition of the field
+ */
+export function useFieldDefinition(type, field) {
+    return useCachedAsync(
+        'fieldDef',
+        async () => {
+            const referenceType = await getType(type)
+            if (!referenceType) return null
+            const { result: fields } = await referenceType.sendMessage(
+                'allQuestions',
+                'all',
+                []
+            )
+            return fields.concat(referenceType.sendMessage('getFields', [])).find(fieldNameIs(field))
+        },
+        null,
+        { type, field }
+    )
+}
 
-            
-        
-        </div>
-    
+export function createDefaultQuery(...parts) {
+    return {
+        $and: [...notDeletedAndCurrentClient(), ...parts.compact(true)],
+    }
+}
 
-    
+export function notDeletedAndCurrentClient() {
+    return [NOT_DELETED, { client: getActiveClient() }]
+}
 
-    
+/**
+ * Retrieves the label for a question, this uses the user supplied label or generates one
+ * @param {FieldDefinition} question - the question whose label is required
+ * @returns {string} the label to use
+ */
+export function getLabelFor(question) {
+    return question.inputLabel || (question.name || '').spacify().titleize()
+}
 
-    
-    
-    
+/**
+ * Processes a field value and if its a date, show the date as relative or a formatted
+ * value
+ * @param {*} value - the value to format
+ * @param {boolean} date - should the value be potentially treated as a date
+ * @returns {string} A formatted value
+ */
+export function process(value, date) {
+    if (typeof value !== 'string') return value
+    if (date &amp;&amp; isDate(value)) {
+        const date = new Date(value)
+        return date.hoursAgo() &lt; 12
+            ? `${date.short()} (${date.relative()})`
+            : date.short()
+    }
+    return ('' + value).spacify().titleize()
+}
 
-     
+function isDate(value) {
+    try {
+        let test = new Date(value)
+        if (+test === value) return true
+        return test.toISOString() === value
+    } catch (e) {
+        return false
+    }
+}
 
-    
+/**
+ * @callback NavigationFunction
+ * @global
+ * @description A function that navigates to a document
+ * @param {...*} params - parameters to be passed to the callback function used in the specification
+ */
 
-    
+/**
+ * @description creates a navigation function to a document id
+ * @param {string} id - the id of the document to navigate to
+ * @param {function} [cb] - a callback that is invoked if the goto is called
+ * @param {function} [navigate] - a navigate function to use as an override
+ * @param {object} [location] - an object to override the standard location with
+ * @param {Array&lt;Mode>} [modes] - an array of "modes" to set, this allows
+ * the conditional elements of the target document to be activated or
+ * deactivation
+ * @property {EmbedFunction} embed - call to embed the document in a modal
+ * @returns {NavigationFunction} the function to navigate to the document
+ */
+export function goto(id, cb = noop, navigate, location, modes = []) {
+    let modeString = modes.map(mode => `${encodeURIComponent(mode.mode)}=${encodeURIComponent(mode.value)}`).join('&amp;')
+    return function (...params) {
+        navigate = navigate || getLocation().navigate
+        location = location || getLocation().location
 
-    
+        navigate(`/sys/${encodeURIComponent(id)}?${modeString}`, {
+            state: { returnTo: location.href, previous: location.state },
+        })
+        cb(...params)
+    }
+}
 
-    
+goto.callback = function (cb, navigate, location, modes = []) {
+    return (id) => goto(id, cb, navigate, location, modes)
+}
 
-    
-</article>
+goto.embed = function(options, modes) {
+    let modeString = modes.map(mode=>`${encodeURIComponent(mode.mode)}=${encodeURIComponent(mode.value)}`).join('&amp;')
+    return (id)=>{
+        return function() {
+            return showURLInModal(`/sys/${encodeURIComponent(id)}?${modeString}`, options)
+        }
+    }
+}
 
-</section>
+export const NOT_DELETED = {
+    $or: [{ _deleted: null }, { _deleted: 0 }, { _deleted: false }],
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>QueryCascadeApi - awe-library</title>
+    <title>AND - awe-library</title>
     
     
     
@@ -43,7 +43,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">QueryCascadeApi</h1>
+    <h1 class="page-title">AND</h1>
     
 
     
@@ -56,7 +56,9 @@
 <header>
     
         <h2>
-        QueryCascadeApi
+            <span class="ancestors"><a href="module-dynamic_awe-library_runtime_query.html">dynamic/awe-library/runtime/query</a>.</span>
+        
+        AND
         </h2>
         
     
@@ -68,12 +70,21 @@
         
             
 
+    
+
+    <h4 class="name" id="AND"><span class="type-signature"></span>new AND<span class="signature">(target<span class="signature-attributes">opt</span>, withSource<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="WhereDefinition.html">WhereDefinition</a>}</span></h4>
+
+    
+
+
+
+
 <dl class="details">
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins-dynamic_awe-library_query.js.html">plugins-dynamic/awe-library/query.js</a>, <a href="plugins-dynamic_awe-library_query.js.html#line46">line 46</a>
+        <a href="plugins-dynamic_awe-library_runtime_query.js.html">plugins-dynamic/awe-library/runtime/query.js</a>, <a href="plugins-dynamic_awe-library_runtime_query.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -110,11 +121,26 @@
 
 
 
-    <h5 class="subsection-title">Properties:</h5>
 
+
+<div class="description usertext">
+    <p>ANDs together two queries</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
     
 
-<table class="props">
+<table class="params">
     <thead>
     <tr>
         
@@ -128,6 +154,8 @@
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -138,42 +166,13 @@
 
         <tr>
             
-                <td class="name"><code>field</code></td>
+                <td class="name"><code>target</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>the name of the field in which to store the definition</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>children</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">React.Component</span>
+<span class="param-type"><a href="WhereDefinition.html">WhereDefinition</a></span>
 
 
             
@@ -186,12 +185,59 @@
                 
 
                 
+
+                
                 </td>
             
 
             
+                <td class="default">
+                
+                    <code>{}</code>
+                
+                </td>
+            
 
-            <td class="description last"><p>additional content to render for each entry</p></td>
+            <td class="description last"><p>the initial where clause</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>withSource</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="WhereDefinition.html">WhereDefinition</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>{}</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>the second where clause</p></td>
         </tr>
 
     
@@ -202,12 +248,42 @@
 
 
 
-            
-                <div class="description usertext"><p>the parameters passed to a QueryCascade component. Other properties
-are passed on to the Query components used</p></div>
-            
 
-            
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the two queries ANDed together</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="WhereDefinition.html">WhereDefinition</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
         
         </div>
     

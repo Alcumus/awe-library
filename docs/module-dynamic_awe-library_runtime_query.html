@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>QueryCascadeApi - awe-library</title>
+    <title>dynamic/awe-library/runtime/query - awe-library</title>
     
     
     
@@ -43,7 +43,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">QueryCascadeApi</h1>
+    <h1 class="page-title">dynamic/awe-library/runtime/query</h1>
     
 
     
@@ -55,9 +55,6 @@
 
 <header>
     
-        <h2>
-        QueryCascadeApi
-        </h2>
         
     
 </header>
@@ -68,12 +65,53 @@
         
             
 
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="module-dynamic_awe-library_runtime_query.AND.html">AND</a></dt>
+            <dd></dd>
+        </dl>
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".useQuery"><span class="type-signature">(static) </span>useQuery<span class="signature">(query, instance)</span><span class="type-signature"> &rarr; {<a href="WhereDefinition.html">WhereDefinition</a>}</span></h4>
+
+    
+
+
+
+
 <dl class="details">
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins-dynamic_awe-library_query.js.html">plugins-dynamic/awe-library/query.js</a>, <a href="plugins-dynamic_awe-library_query.js.html#line46">line 46</a>
+        <a href="plugins-dynamic_awe-library_runtime_query.js.html">plugins-dynamic/awe-library/runtime/query.js</a>, <a href="plugins-dynamic_awe-library_runtime_query.js.html#line32">line 32</a>
     </li></ul></dd>
     
 
@@ -110,11 +148,27 @@
 
 
 
-    <h5 class="subsection-title">Properties:</h5>
 
+
+<div class="description usertext">
+    <p>Resolves a query (which may use {parameters}) using an instance
+creating a final where clause to be used with the database</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
     
 
-<table class="props">
+<table class="params">
     <thead>
     <tr>
         
@@ -123,8 +177,6 @@
 
         <th>Type</th>
 
-        
-        <th>Attributes</th>
         
 
         
@@ -138,60 +190,46 @@
 
         <tr>
             
-                <td class="name"><code>field</code></td>
+                <td class="name"><code>query</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type"><a href="WhereDefinition.html">WhereDefinition</a></span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last"><p>the name of the field in which to store the definition</p></td>
+            <td class="description last"><p>the query to be resolved</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>children</code></td>
+                <td class="name"><code>instance</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">React.Component</span>
+<span class="param-type"><a href="Document.html">Document</a></span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last"><p>additional content to render for each entry</p></td>
+            <td class="description last"><p>the instance to resolve parameters</p></td>
         </tr>
 
     
@@ -202,30 +240,43 @@
 
 
 
-            
-                <div class="description usertext"><p>the parameters passed to a QueryCascade component. Other properties
-are passed on to the Query components used</p></div>
-            
 
-            
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
         
-        </div>
-    
+<div class="param-desc">
+    <p>a where clause with parameters resolved</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="WhereDefinition.html">WhereDefinition</a></span>
+
+
+    </dd>
+</dl>
 
     
 
-    
 
-    
-    
-    
 
-     
-
-    
-
-    
-
+        
     
 
     

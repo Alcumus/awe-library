@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>QueryCascadeApi - awe-library</title>
+    <title>plugins-dynamic/awe-library/runtime/query.js - awe-library</title>
     
     
     
@@ -43,197 +43,62 @@
 
 <div id="main">
     
-    <h1 class="page-title">QueryCascadeApi</h1>
+    <h1 class="page-title">plugins-dynamic/awe-library/runtime/query.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-        QueryCascadeApi
-        </h2>
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module dynamic/awe-library/runtime/query
+ */
+import {useRef} from 'react'
+import {useLocalEvent} from 'common/use-event'
+import {useRefresh} from 'common/useRefresh'
+import {fields, processQuery} from 'common/offline-data-service/query'
 
-<article>
-    
-        <div class="container-overview">
-        
-            
+/**
+ * ANDs together two queries
+ * @param {WhereDefinition} [target={}] - the initial where clause
+ * @param {WhereDefinition} [withSource={}] - the second where clause
+ * @returns {WhereDefinition} the two queries ANDed together
+ * @constructor
+ */
+export function AND(target = {}, withSource = {}) {
+    if (target.$and) {
+        target.$and.push(withSource)
+        return target
+    }
+    const original = {...target}
+    return {$and: [original, withSource].filter((v) => !Object.isEmpty(v))}
+}
 
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins-dynamic_awe-library_query.js.html">plugins-dynamic/awe-library/query.js</a>, <a href="plugins-dynamic_awe-library_query.js.html#line46">line 46</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>field</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>the name of the field in which to store the definition</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>children</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">React.Component</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>additional content to render for each entry</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-            
-                <div class="description usertext"><p>the parameters passed to a QueryCascade component. Other properties
-are passed on to the Query components used</p></div>
-            
-
-            
-        
-        </div>
-    
-
-    
-
-    
-
-    
-    
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+/**
+ * Resolves a query (which may use {parameters}) using an instance
+ * creating a final where clause to be used with the database
+ * @param {WhereDefinition} query - the query to be resolved
+ * @param {Document} instance - the instance to resolve parameters
+ * @returns {WhereDefinition} a where clause with parameters resolved
+ */
+export function useQuery(query, instance) {
+    const refresh = useRefresh()
+    const trackFields = useRef()
+    let cleaned = processQuery(query, instance)
+    trackFields.current = fields
+    useLocalEvent(`question.exit.${instance?._id}`, (question) => {
+        if (trackFields.current[question.name]) {
+            refresh()
+        }
+    })
+    return cleaned
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
