@@ -230,6 +230,45 @@ function isDate(value) {
  */
 
 /**
+ * @callback NavigateFunction
+ * @description Called to navigate to display a document to the user
+ * @param {string} id - the id of the document to navigate to
+ */
+
+/**
+ * @callback EmbedFunction
+ * @global
+ * @description
+ * The embed function is used to create a function that can navigate to
+ * and id and show that document in a modal.
+ * @param {object} options - options to be passed to the modal
+ * @param {Array<Mode>} modes - the modes to associate with the document
+ *
+ * Modes are used by conditional parts of the document definition
+ * (as configured) to show and hide parts of the UI
+ * @returns {NavigateFunction} a function that can be called with
+ * an id to navigate to a document and display it in a modal with the
+ * options and modes selected
+ */
+
+/**
+ * @callback CallbackGotoFunction
+ * @global
+ * @description
+ * This function creates a navigation function that wraps the parameters
+ * of the usual goto to create a function that takes a single id and then
+ * applies the other parameters
+ * @param {function} [cb] - a callback that is invoked if the goto is called
+ * @param {function} [navigate] - a navigate function to use as an override
+ * @param {object} [location] - an object to override the standard location with
+ * @param {Array<Mode>} [modes] - an array of "modes" to set, this allows
+ * the conditional elements of the target document to be activated or
+ * deactivation
+ * @returns {NavigateFunction} a function to navigate to an id and then apply
+ * the other defaults
+ */
+
+/**
  * @description creates a navigation function to a document id
  * @param {string} id - the id of the document to navigate to
  * @param {function} [cb] - a callback that is invoked if the goto is called
@@ -238,7 +277,9 @@ function isDate(value) {
  * @param {Array<Mode>} [modes] - an array of "modes" to set, this allows
  * the conditional elements of the target document to be activated or
  * deactivation
- * @property {EmbedFunction} embed - call to embed the document in a modal
+ * @property {EmbedFunction} embed - call to create a function that can embed documents inside a modal with given modes
+ * @property {CallbackGotoFunction} callback - call to create a function that will create a function that takes a document id and creates
+ * a function that navigates to that document and then calls the callback
  * @returns {NavigationFunction} the function to navigate to the document
  */
 export function goto(id, cb = noop, navigate, location, modes = []) {
