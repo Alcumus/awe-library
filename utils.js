@@ -355,7 +355,7 @@ export function questionType(typesOrFunction) {
  * @global
  * @description a definition for a component that can appear
  * on the tracks of a Chase behaviour
- * @property {React.Component} icon - the icon to use
+ * @property {JSX.Element} icon - the icon to use
  * @property {string} label - the label for the track component in lists
  * @property {string} description - a description of the purpose of the track component
  * @property {ConfigFunction} [config] - a function that can be used to configure a new instance of the component
