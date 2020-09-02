@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>BehaviourDefinition - awe-library</title>
+    <title>Mode - awe-library</title>
     
     
     
@@ -43,7 +43,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">BehaviourDefinition</h1>
+    <h1 class="page-title">Mode</h1>
     
 
     
@@ -56,7 +56,7 @@
 <header>
     
         <h2>
-        BehaviourDefinition
+        Mode
         </h2>
         
     
@@ -73,7 +73,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugins-dynamic_awe-library_utils.js.html">plugins-dynamic/awe-library/utils.js</a>, <a href="plugins-dynamic_awe-library_utils.js.html#line75">line 75</a>
+        <a href="plugins-dynamic_awe-library_runtime_utils.js.html">plugins-dynamic/awe-library/runtime/utils.js</a>, <a href="plugins-dynamic_awe-library_runtime_utils.js.html#line271">line 271</a>
     </li></ul></dd>
     
 
@@ -124,8 +124,6 @@
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
         
 
@@ -138,7 +136,7 @@
 
         <tr>
             
-                <td class="name"><code>behaviour</code></td>
+                <td class="name"><code>mode</code></td>
             
 
             <td class="type">
@@ -151,23 +149,17 @@
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last"><p>the unique name of the behaviour</p></td>
+            <td class="description last"><p>the name of the mode</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>caption</code></td>
+                <td class="name"><code>value</code></td>
             
 
             <td class="type">
@@ -180,136 +172,10 @@
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last"><p>a caption to use when displaying the behaviour</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>description</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>a longer text description of the behaviour</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>Icon</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">React.Component</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>an icon to use for the behaviour</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>color</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>a colour to use for the behaviour</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>register</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>the code to register for the behaviour - if omitted this should be registered directly with Alcumus Behaviours</p></td>
+            <td class="description last"><p>a value for the mode</p></td>
         </tr>
 
     
@@ -321,7 +187,13 @@
 
 
             
-                <div class="description usertext"><p>the definition of a behaviour for the UI</p></div>
+                <div class="description usertext"><p>A mode that can be used by configurators to specify how a document
+should be displayed in different modal states.  For instance,
+we may be tyring to display a document for review or administration
+and so different parts of the UI may be visible.</p>
+<p>A configurer can use queries in conditionals to specify what modes
+must exist for an item to be visible and may also configure the
+modes that a button uses when activating a document.</p></div>
             
 
             
@@ -362,7 +234,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Wed Sep 02 2020 12:31:44 GMT+0100 (British Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Wed Sep 02 2020 12:31:45 GMT+0100 (British Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

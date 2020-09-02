@@ -269,6 +269,22 @@ function isDate(value) {
  */
 
 /**
+ * @interface Mode
+ * @global
+ * @description
+ * A mode that can be used by configurators to specify how a document
+ * should be displayed in different modal states.  For instance,
+ * we may be tyring to display a document for review or administration
+ * and so different parts of the UI may be visible.
+ *
+ * A configurer can use queries in conditionals to specify what modes
+ * must exist for an item to be visible and may also configure the
+ * modes that a button uses when activating a document.
+ * @property {string} mode - the name of the mode
+ * @property {string} value - a value for the mode
+ */
+
+/**
  * @description creates a navigation function to a document id
  * @param {string} id - the id of the document to navigate to
  * @param {function} [cb] - a callback that is invoked if the goto is called
@@ -278,7 +294,7 @@ function isDate(value) {
  * the conditional elements of the target document to be activated or
  * deactivation
  * @property {EmbedFunction} embed - call to create a function that can embed documents inside a modal with given modes
- * @property {CallbackGotoFunction} callback - call to create a function that will create a function that takes a document id and creates
+ * @property {CallbackGotoFunction} callback - call to create a simple navigation function that supplies defaults for the other properties of this call
  * a function that navigates to that document and then calls the callback
  * @returns {NavigationFunction} the function to navigate to the document
  */
