@@ -62,7 +62,7 @@ Value "value"
   / String
 
 Field "field"
-  = _ [a-zA-Z\-]+ { return text(); }
+  = _ [a-zA-Z0-9\-]+ { return text(); }
 
 _ "whitespace"
   = [ \t\n\r]*
