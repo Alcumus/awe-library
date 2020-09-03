@@ -26,7 +26,8 @@
       "runtime/create-document.js",
       "runtime/app-urls.js",
       "runtime/button-style.js",
-      "runtime/records.js"
+      "runtime/records.js",
+      "runtime/contexts.js"
     ]
   },
   "opts": {

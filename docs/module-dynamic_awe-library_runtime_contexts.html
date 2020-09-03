@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>common/offline-data-service/records - awe-library</title>
+    <title>dynamic/awe-library/runtime/contexts - awe-library</title>
     
     
     
@@ -43,7 +43,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">common/offline-data-service/records</h1>
+    <h1 class="page-title">dynamic/awe-library/runtime/contexts</h1>
     
 
     
@@ -56,6 +56,8 @@
 <header>
     
         
+            
+        
     
 </header>
 
@@ -64,6 +66,86 @@
         <div class="container-overview">
         
             
+                <div class="description usertext"><p>This module contains the useful
+contexts for the runtime app environment</p></div>
+            
+
+            
+                
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_contexts.js.html">plugins-dynamic/awe-library/runtime/contexts.js</a>, <a href="plugins-dynamic_awe-library_runtime_contexts.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             
         
@@ -92,7 +174,7 @@
 
     
 
-    <h4 class="name" id=".getRecords"><span class="type-signature">(static) </span>getRecords<span class="signature">(database, table, where<span class="signature-attributes">opt</span>, sort<span class="signature-attributes">opt</span>, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Array.&lt;<a href="Document.html">Document</a>>>}</span></h4>
+    <h4 class="name" id=".useComponentContext"><span class="type-signature">(static) </span>useComponentContext<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="IRuntimeQuestionOptions.html">IRuntimeQuestionOptions</a>}</span></h4>
 
     
 
@@ -104,7 +186,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_offline-data-service_records.js.html">common/offline-data-service/records.js</a>, <a href="common_offline-data-service_records.js.html#line257">line 257</a>
+        <a href="plugins-dynamic_awe-library_runtime_contexts.js.html">plugins-dynamic/awe-library/runtime/contexts.js</a>, <a href="plugins-dynamic_awe-library_runtime_contexts.js.html#line179">line 179</a>
     </li></ul></dd>
     
 
@@ -144,7 +226,9 @@
 
 
 <div class="description usertext">
-    <p>Gets records for a database and table</p>
+    <p>Returns the &quot;options&quot; for the current question, this is
+a set of useful information that contains information
+about suggested layout and padding, errors etc.</p>
 </div>
 
 
@@ -155,221 +239,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>database</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the database for the table</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>table</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the table to stream records from</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>where</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="WhereDefinition.html">WhereDefinition</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>{}</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>the query to apply</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>sort</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the sort fields for the records</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ListOptions.html">ListOptions</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>{}</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>options for the retrieval</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -390,7 +259,7 @@
 
         
 <div class="param-desc">
-    <p>a promise for the documents</p>
+    <p>the options associated</p>
 </div>
 
 
@@ -401,7 +270,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;Array.&lt;<a href="Document.html">Document</a>>></span>
+<span class="param-type"><a href="IRuntimeQuestionOptions.html">IRuntimeQuestionOptions</a></span>
 
 
     </dd>
@@ -416,7 +285,7 @@
 
     
 
-    <h4 class="name" id=".useRecords"><span class="type-signature">(static) </span>useRecords<span class="signature">(database, table, where<span class="signature-attributes">opt</span>, sort<span class="signature-attributes">opt</span>, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="Document.html">Document</a>>}</span></h4>
+    <h4 class="name" id=".useDocumentContext"><span class="type-signature">(static) </span>useDocumentContext<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="IRuntimeDocumentContext.html">IRuntimeDocumentContext</a>}</span></h4>
 
     
 
@@ -428,7 +297,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_offline-data-service_records.js.html">common/offline-data-service/records.js</a>, <a href="common_offline-data-service_records.js.html#line237">line 237</a>
+        <a href="plugins-dynamic_awe-library_runtime_contexts.js.html">plugins-dynamic/awe-library/runtime/contexts.js</a>, <a href="plugins-dynamic_awe-library_runtime_contexts.js.html#line52">line 52</a>
     </li></ul></dd>
     
 
@@ -468,7 +337,8 @@
 
 
 <div class="description usertext">
-    <p>A hook to get records for a database and table</p>
+    <p>Returns the runtime context for the document currently being
+edited or displayed.</p>
 </div>
 
 
@@ -479,221 +349,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>database</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the database for the table</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>table</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the table to stream records from</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>where</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="WhereDefinition.html">WhereDefinition</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>{}</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>the query to apply</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>sort</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the sort fields for the records</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ListOptions.html">ListOptions</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>{}</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>options for the retrieval</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -714,7 +369,7 @@
 
         
 <div class="param-desc">
-    <p>retrieves the documents or [] until available</p>
+    <p>the context for the current document</p>
 </div>
 
 
@@ -725,7 +380,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Array.&lt;<a href="Document.html">Document</a>></span>
+<span class="param-type"><a href="IRuntimeDocumentContext.html">IRuntimeDocumentContext</a></span>
 
 
     </dd>
@@ -740,7 +395,7 @@
 
     
 
-    <h4 class="name" id=".useRecordsForType"><span class="type-signature">(static) </span>useRecordsForType<span class="signature">(type, where<span class="signature-attributes">opt</span>, sort<span class="signature-attributes">opt</span>, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="Document.html">Document</a>>}</span></h4>
+    <h4 class="name" id=".useError"><span class="type-signature">(static) </span>useError<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="ErrorState.html">ErrorState</a>}</span></h4>
 
     
 
@@ -752,7 +407,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_offline-data-service_records.js.html">common/offline-data-service/records.js</a>, <a href="common_offline-data-service_records.js.html#line213">line 213</a>
+        <a href="plugins-dynamic_awe-library_runtime_contexts.js.html">plugins-dynamic/awe-library/runtime/contexts.js</a>, <a href="plugins-dynamic_awe-library_runtime_contexts.js.html#line154">line 154</a>
     </li></ul></dd>
     
 
@@ -792,7 +447,8 @@
 
 
 <div class="description usertext">
-    <p>Gets records for a type definition or ID</p>
+    <p>A hook that returns the current ErrorState for the current question
+and updates as necessary</p>
 </div>
 
 
@@ -803,189 +459,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type"><a href="DocumentDefinition.html">DocumentDefinition</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the type to get records from</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>where</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="WhereDefinition.html">WhereDefinition</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>{}</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>the query to apply</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>sort</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the sort fields for the records</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ListOptions.html">ListOptions</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>{}</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>options for the retrieval</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -1005,10 +478,6 @@
 <h5>Returns:</h5>
 
         
-<div class="param-desc">
-    <p>retrieves the documents or [] until available</p>
-</div>
-
 
 
 <dl class="param-type">
@@ -1017,7 +486,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Array.&lt;<a href="Document.html">Document</a>></span>
+<span class="param-type"><a href="ErrorState.html">ErrorState</a></span>
 
 
     </dd>
@@ -1032,7 +501,7 @@
 
     
 
-    <h4 class="name" id=".useStreamedResults"><span class="type-signature">(static) </span>useStreamedResults<span class="signature">(database, table, where<span class="signature-attributes">opt</span>, sort<span class="signature-attributes">opt</span>, filter<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="global.html#RetrieveFunction">RetrieveFunction</a>}</span></h4>
+    <h4 class="name" id=".useInputProps"><span class="type-signature">(static) </span>useInputProps<span class="signature">(&hellip;ignoreProps)</span><span class="type-signature"> &rarr; {object}</span></h4>
 
     
 
@@ -1044,7 +513,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_offline-data-service_records.js.html">common/offline-data-service/records.js</a>, <a href="common_offline-data-service_records.js.html#line181">line 181</a>
+        <a href="plugins-dynamic_awe-library_runtime_contexts.js.html">plugins-dynamic/awe-library/runtime/contexts.js</a>, <a href="plugins-dynamic_awe-library_runtime_contexts.js.html#line164">line 164</a>
     </li></ul></dd>
     
 
@@ -1084,8 +553,8 @@
 
 
 <div class="description usertext">
-    <p>A hook that given a database and table, creates a function that streams
-records</p>
+    <p>A hook to get the current input props for a React component,
+ignoring contextual/non-component props</p>
 </div>
 
 
@@ -1115,8 +584,6 @@ records</p>
         
 
         
-        <th>Default</th>
-        
 
         <th class="last">Description</th>
     </tr>
@@ -1127,7 +594,7 @@ records</p>
 
         <tr>
             
-                <td class="name"><code>database</code></td>
+                <td class="name"><code>ignoreProps</code></td>
             
 
             <td class="type">
@@ -1146,165 +613,14 @@ records</p>
                 
 
                 
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the database for the table</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>table</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
+                    &lt;repeatable><br>
                 
                 </td>
             
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last"><p>the table to stream records from</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>where</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="WhereDefinition.html">WhereDefinition</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>{}</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>the query to apply</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>sort</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the sort fields for the records</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>filter</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>an additional filter applied
-to retrieved records</p></td>
+            <td class="description last"><p>additional props to ignore</p></td>
         </tr>
 
     
@@ -1330,7 +646,7 @@ to retrieved records</p></td>
 
         
 <div class="param-desc">
-    <p>the function to get the records</p>
+    <p>An object to spread onto a React component</p>
 </div>
 
 
@@ -1341,7 +657,7 @@ to retrieved records</p></td>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#RetrieveFunction">RetrieveFunction</a></span>
+<span class="param-type">object</span>
 
 
     </dd>
@@ -1356,7 +672,7 @@ to retrieved records</p></td>
 
     
 
-    <h4 class="name" id=".useStreamedResultsForType"><span class="type-signature">(static) </span>useStreamedResultsForType<span class="signature">(type, where<span class="signature-attributes">opt</span>, sort<span class="signature-attributes">opt</span>, filter<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="global.html#RetrieveFunction">RetrieveFunction</a>}</span></h4>
+    <h4 class="name" id=".useInstanceContext"><span class="type-signature">(static) </span>useInstanceContext<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="DocumentInstance.html">DocumentInstance</a>}</span></h4>
 
     
 
@@ -1368,7 +684,7 @@ to retrieved records</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_offline-data-service_records.js.html">common/offline-data-service/records.js</a>, <a href="common_offline-data-service_records.js.html#line165">line 165</a>
+        <a href="plugins-dynamic_awe-library_runtime_contexts.js.html">plugins-dynamic/awe-library/runtime/contexts.js</a>, <a href="plugins-dynamic_awe-library_runtime_contexts.js.html#line239">line 239</a>
     </li></ul></dd>
     
 
@@ -1408,8 +724,11 @@ to retrieved records</p></td>
 
 
 <div class="description usertext">
-    <p>A hook that given a type definition or ID, creates a function that streams
-records from that database type</p>
+    <p>Returns the current instance for the edited content of
+the current document.  This contains a <code>instance</code>
+member which is the actual document contents as edited.</p>
+<p>This is very useful to get the current editors view
+of a document in a sub component.</p>
 </div>
 
 
@@ -1420,188 +739,6 @@ records from that database type</p>
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type"><a href="DocumentDefinition.html">DocumentDefinition</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the type to get records from</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>where</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="WhereDefinition.html">WhereDefinition</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>{}</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>the query to apply</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>sort</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the sort fields for the records</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>filter</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>an additional filter applied
-to retrieved records</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -1622,7 +759,7 @@ to retrieved records</p></td>
 
         
 <div class="param-desc">
-    <p>the function to get the records</p>
+    <p>the current instance being edited.</p>
 </div>
 
 
@@ -1633,7 +770,555 @@ to retrieved records</p></td>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#RetrieveFunction">RetrieveFunction</a></span>
+<span class="param-type"><a href="DocumentInstance.html">DocumentInstance</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".useOptions"><span class="type-signature">(static) </span>useOptions<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="IRuntimeQuestionOptions.html">IRuntimeQuestionOptions</a>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_contexts.js.html">plugins-dynamic/awe-library/runtime/contexts.js</a>, <a href="plugins-dynamic_awe-library_runtime_contexts.js.html#line145">line 145</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Returns the &quot;options&quot; for the current question, this is
+a set of useful information that contains information
+about suggested layout and padding, errors etc.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the options associated</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="IRuntimeQuestionOptions.html">IRuntimeQuestionOptions</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".useQuestionContext"><span class="type-signature">(static) </span>useQuestionContext<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="FieldDefinition.html">FieldDefinition</a>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_contexts.js.html">plugins-dynamic/awe-library/runtime/contexts.js</a>, <a href="plugins-dynamic_awe-library_runtime_contexts.js.html#line189">line 189</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>A hook which returns the current question instance being processed.
+This is very useful in support components to avoid significant
+parameter passing.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the currently processed field definition</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="FieldDefinition.html">FieldDefinition</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".useRelatedContext"><span class="type-signature">(static) </span>useRelatedContext<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="IRuntimeRelatedContext.html">IRuntimeRelatedContext</a>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_contexts.js.html">plugins-dynamic/awe-library/runtime/contexts.js</a>, <a href="plugins-dynamic_awe-library_runtime_contexts.js.html#line72">line 72</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>While using a &quot;related repeat&quot; component to repeat some
+child questions for a set of related documents, this provides
+the information about the id of the related child and it's position
+in the list being displayed</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the context of the currently used document</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="IRuntimeRelatedContext.html">IRuntimeRelatedContext</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".useWidth"><span class="type-signature">(static) </span>useWidth<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_contexts.js.html">plugins-dynamic/awe-library/runtime/contexts.js</a>, <a href="plugins-dynamic_awe-library_runtime_contexts.js.html#line81">line 81</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Returns the width currently being used as the max width
+of the current section</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".useWidthBreak"><span class="type-signature">(static) </span>useWidthBreak<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_contexts.js.html">plugins-dynamic/awe-library/runtime/contexts.js</a>, <a href="plugins-dynamic_awe-library_runtime_contexts.js.html#line24">line 24</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>A hook to provide the current media &quot;break&quot;
+for the display.</p>
+<p>Returns cs, md or lg and changes when the display
+is resized</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
 
 
     </dd>

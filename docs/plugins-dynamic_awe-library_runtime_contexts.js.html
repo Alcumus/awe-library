@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>common/offline-data-service/records - awe-library</title>
+    <title>plugins-dynamic/awe-library/runtime/contexts.js - awe-library</title>
     
     
     
@@ -43,1615 +43,260 @@
 
 <div id="main">
     
-    <h1 class="page-title">common/offline-data-service/records</h1>
-    
-
-    
-
-
-
-
-<section>
-
-<header>
-    
-        
-    
-</header>
-
-<article>
-    
-        <div class="container-overview">
-        
-            
-
-            
-        
-        </div>
-    
-
-    
-
-    
-
-    
-    
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id=".getRecords"><span class="type-signature">(static) </span>getRecords<span class="signature">(database, table, where<span class="signature-attributes">opt</span>, sort<span class="signature-attributes">opt</span>, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Array.&lt;<a href="Document.html">Document</a>>>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_offline-data-service_records.js.html">common/offline-data-service/records.js</a>, <a href="common_offline-data-service_records.js.html#line257">line 257</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>Gets records for a database and table</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>database</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the database for the table</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>table</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the table to stream records from</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>where</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="WhereDefinition.html">WhereDefinition</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>{}</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>the query to apply</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>sort</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the sort fields for the records</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ListOptions.html">ListOptions</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>{}</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>options for the retrieval</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>a promise for the documents</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;Array.&lt;<a href="Document.html">Document</a>>></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".useRecords"><span class="type-signature">(static) </span>useRecords<span class="signature">(database, table, where<span class="signature-attributes">opt</span>, sort<span class="signature-attributes">opt</span>, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="Document.html">Document</a>>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_offline-data-service_records.js.html">common/offline-data-service/records.js</a>, <a href="common_offline-data-service_records.js.html#line237">line 237</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>A hook to get records for a database and table</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>database</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the database for the table</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>table</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the table to stream records from</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>where</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="WhereDefinition.html">WhereDefinition</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>{}</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>the query to apply</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>sort</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the sort fields for the records</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ListOptions.html">ListOptions</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>{}</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>options for the retrieval</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>retrieves the documents or [] until available</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;<a href="Document.html">Document</a>></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".useRecordsForType"><span class="type-signature">(static) </span>useRecordsForType<span class="signature">(type, where<span class="signature-attributes">opt</span>, sort<span class="signature-attributes">opt</span>, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="Document.html">Document</a>>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_offline-data-service_records.js.html">common/offline-data-service/records.js</a>, <a href="common_offline-data-service_records.js.html#line213">line 213</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>Gets records for a type definition or ID</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type"><a href="DocumentDefinition.html">DocumentDefinition</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the type to get records from</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>where</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="WhereDefinition.html">WhereDefinition</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>{}</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>the query to apply</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>sort</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the sort fields for the records</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ListOptions.html">ListOptions</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>{}</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>options for the retrieval</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>retrieves the documents or [] until available</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;<a href="Document.html">Document</a>></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".useStreamedResults"><span class="type-signature">(static) </span>useStreamedResults<span class="signature">(database, table, where<span class="signature-attributes">opt</span>, sort<span class="signature-attributes">opt</span>, filter<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="global.html#RetrieveFunction">RetrieveFunction</a>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_offline-data-service_records.js.html">common/offline-data-service/records.js</a>, <a href="common_offline-data-service_records.js.html#line181">line 181</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>A hook that given a database and table, creates a function that streams
-records</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>database</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the database for the table</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>table</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the table to stream records from</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>where</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="WhereDefinition.html">WhereDefinition</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>{}</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>the query to apply</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>sort</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the sort fields for the records</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>filter</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>an additional filter applied
-to retrieved records</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>the function to get the records</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="global.html#RetrieveFunction">RetrieveFunction</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".useStreamedResultsForType"><span class="type-signature">(static) </span>useStreamedResultsForType<span class="signature">(type, where<span class="signature-attributes">opt</span>, sort<span class="signature-attributes">opt</span>, filter<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="global.html#RetrieveFunction">RetrieveFunction</a>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_offline-data-service_records.js.html">common/offline-data-service/records.js</a>, <a href="common_offline-data-service_records.js.html#line165">line 165</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>A hook that given a type definition or ID, creates a function that streams
-records from that database type</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type"><a href="DocumentDefinition.html">DocumentDefinition</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the type to get records from</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>where</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="WhereDefinition.html">WhereDefinition</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>{}</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>the query to apply</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>sort</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>the sort fields for the records</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>filter</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>an additional filter applied
-to retrieved records</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>the function to get the records</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="global.html#RetrieveFunction">RetrieveFunction</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
+    <h1 class="page-title">plugins-dynamic/awe-library/runtime/contexts.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module dynamic/awe-library/runtime/contexts
+ * @description This module contains the useful
+ * contexts for the runtime app environment
+ */
+import React, { createContext, useContext } from 'react'
+import { useWindowSize } from 'common/use-event'
+
+export const ComponentContext = createContext({})
+export const DocumentContext = createContext( { document: null } )
+export const WidthContext = createContext( innerWidth )
+export const RelatedContext = createContext( { number: -1 } )
+export const QuestionContext = React.createContext( {} )
+export const InstanceContext = React.createContext( {} )
+
+/**
+ * A hook to provide the current media "break"
+ * for the display.
+ *
+ * Returns cs, md or lg and changes when the display
+ * is resized
+ * @returns {string}
+ */
+export function useWidthBreak () {
+    const { width } = useWindowSize()
+    let result = 'xs'
+    if (width >= 758) {
+        result = 'md'
+    }
+    if (width >= 1020) {
+        result = 'lg'
+    }
+    return result
+}
+
+/**
+ * @interface IRuntimeDocumentContext
+ * @global
+ * @description vital document context for the
+ * currently running document
+ * @property {Document} document - the currently edited document
+ * @property {object} bag - a bag of key value pairs that can be used
+ * to carry information about the current document around while it
+ * is in memory and/or on screen
+ */
+
+/**
+ * Returns the runtime context for the document currently being
+ * edited or displayed.
+ * @returns {IRuntimeDocumentContext} the context for the current document
+ */
+export function useDocumentContext() {
+    return useContext(DocumentContext)
+}
+
+/**
+ * @interface IRuntimeRelatedContext
+ * @global
+ * @description Information pertaining to the currently displayed
+ * document in a related repeat question
+ * @property {number} number - the index of the item in the list
+ * @property {string} id - the document id of the item
+ */
+
+/**
+ * While using a "related repeat" component to repeat some
+ * child questions for a set of related documents, this provides
+ * the information about the id of the related child and it's position
+ * in the list being displayed
+ * @returns {IRuntimeRelatedContext} the context of the currently used document
+ */
+export function useRelatedContext() {
+    return useContext(RelatedContext)
+}
+
+/**
+ * Returns the width currently being used as the max width
+ * of the current section
+ * @returns {number}
+ */
+export function useWidth() {
+    return useContext(WidthContext)
+}
+
+/**
+ * @interface IRuntimeQuestionOptions
+ * @global
+ * @description Useful options for the current question in
+ * the current context and screen space
+ * @property {string} labelStyle - the label style for the current context 'floating' 'static' etc
+ * @property {boolean} mobile - true if this is a mobile device view
+ * @property {string} theme - mobiscroll theme - defaults to ios
+ * @property {boolean} touchUi - whether this device should provided assistive mobiscroll
+ * components for touch interfaces
+ * @property {string} className - the class name to apply to any container
+ * @property {number} questionPadding - material UI padding units for the question
+ * @property {number} questionAdjust - material UI left/right adjust for margin
+ * @property {string} questionClass - the class to apply to the text of the question associated
+ * @property {number} gridPadding - the padding to use on grids for the current screen state
+ * @property {number} questionSpacing - the suggested vertical spacing between questions in material ui spacing units
+ * @property {number} stack - how many columns should a stacked question occupy
+ * @property {string} currencySymbol - the symbol to use for currency
+ * @property {boolean} helpNumbers - whether a touch pad should be used for numbers
+ * @property {number} boxPadding - the number of material UI spacing units to pad a sub box with
+ * @property {number} embedPadding - the number of material UI spacing units to use when embeding additional form content
+ */
+
+/**
+ * @function IRuntimeQuestionOptions#nonMobile
+ * @description (used internally) call to change to a desktop style view
+ */
+
+/**
+ * @interface ErrorState
+ * @global
+ * @description Describes the error state of a question
+ * @property {boolean} valid - true if the current content is valid
+ * @property {string} errorMessage - an error message to show for the component
+ */
+
+/**
+ * @function IRuntimeQuestionOptions#useError
+ * @description Hook to return the current error state of the question
+ * @returns {ErrorState} the current error state of the question (suitable for
+ * directly applying to a mobiscroll component)
+ */
+
+/**
+ * @function IRuntimeQuestionOptions#props
+ * @description Gets properties to apply to a React component from the options.
+ * Many of the properties of the options are informational and shouldn't
+ * be applied directly to a component.  This function screens out the
+ * ones that shouldn't be applied and provides an object to spread
+ * onto the underlying React component.
+ * @param {...string} omit - a list of additional properties to omit
+ * @returns {object} properties object
+ */
+
+/**
+ * Returns the "options" for the current question, this is
+ * a set of useful information that contains information
+ * about suggested layout and padding, errors etc.
+ * @returns {IRuntimeQuestionOptions} the options associated
+ */
+export function useOptions() {
+    return useContext(ComponentContext)
+}
+
+/**
+ * A hook that returns the current ErrorState for the current question
+ * and updates as necessary
+ * @returns {ErrorState}
+ */
+export function useError() {
+    return useContext(ComponentContext).useError()
+}
+
+/**
+ * A hook to get the current input props for a React component,
+ * ignoring contextual/non-component props
+ * @param {...string} ignoreProps - additional props to ignore
+ * @returns {object} An object to spread onto a React component
+ */
+export function useInputProps(ignoreProps) {
+    const componentContext = useContext( ComponentContext )
+    try {
+        return componentContext.props( ignoreProps )
+    } catch (e) {
+        return {}
+    }
+}
+
+/**
+ * Returns the "options" for the current question, this is
+ * a set of useful information that contains information
+ * about suggested layout and padding, errors etc.
+ * @returns {IRuntimeQuestionOptions} the options associated
+ */
+export function useComponentContext() {
+    return useContext(ComponentContext)
+}
+
+/**
+ * A hook which returns the current question instance being processed.
+ * This is very useful in support components to avoid significant
+ * parameter passing.
+ * @returns {FieldDefinition} the currently processed field definition
+ */
+export function useQuestionContext() {
+    return useContext(QuestionContext)
+}
+
+/**
+ * @interface DocumentInstance
+ * @global
+ * @description This is the document that is being edited by the
+ * user, it contains methods to commit and save the current state
+ * and provides access to the current state of the document
+ * as the user sees it throughout their editing experience.
+ * @property {object} instance - the contents of the document as it is being edited
+ * @property {Document} document - the underlying document
+ *
+ */
+
+/**
+ * @function DocumentInstance#save
+ * @description Saves the current edits to the document instance.
+ * This is what you do during editing, it does not commit the
+ * instance to the server or take any action, just maintains the
+ * current editing state.
+ */
+
+/**
+ * @function DocumentInstance#reset
+ * @description Abandons all current edits to the document and
+ * clears the instance here and on any synchronised devices
+ */
+
+/**
+ * @function DocumentInstance#commit
+ * @description Commits the instance and specifies the
+ * optimistic expected state
+ * @param {string} toState - the expected next state
+ * @param {string} [command=setData] - the command to use to submit the instance
+ * @param {object} [controller] - a controller that can cover storing data in different locations, rarely used
+ * @param {Document} [$create] - a document to create before applying the instance to it
+ */
+
+/**
+ * Returns the current instance for the edited content of
+ * the current document.  This contains a &lt;code>instance&lt;/code>
+ * member which is the actual document contents as edited.
+ *
+ * This is very useful to get the current editors view
+ * of a document in a sub component.
+ *
+ * @returns {DocumentInstance} the current instance being edited.
+ */
+export function useInstanceContext() {
+    return useContext(InstanceContext)
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -1663,7 +308,7 @@ to retrieved records</p></td>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Thu Sep 03 2020 14:55:42 GMT+0100 (British Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Thu Sep 03 2020 14:55:41 GMT+0100 (British Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
