@@ -11,7 +11,6 @@ import {fields, processQuery} from 'common/offline-data-service/query'
  * @param {WhereDefinition} [target={}] - the initial where clause
  * @param {WhereDefinition} [withSource={}] - the second where clause
  * @returns {WhereDefinition} the two queries ANDed together
- * @constructor
  */
 export function AND(target = {}, withSource = {}) {
     if (target.$and) {

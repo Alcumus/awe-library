@@ -8,6 +8,7 @@
   },
   "scripts": {
     "document": "rm -rf ./docs && jsdoc -c ./doc.conf.json",
+    "docandpush": "npm run document && git add . && git commit -am docs && git push",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
