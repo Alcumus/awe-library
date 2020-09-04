@@ -1,8 +1,46 @@
+/**
+ * @module dynamic/awe-library/runtime/topics
+ * @description Access topics for the current context
+ */
+
 import { get, list } from 'common/offline-data-service'
 import { getActiveClient } from 'common/global-store/api'
 import useAsync from 'common/use-async'
 import { initialize } from 'common/offline-data-service/behaviour-cache'
 
+/**
+ * @typedef {Object<string, Relationship>} Relationships
+ * @global
+ * @description A relationship between a topic and another
+ * table
+ */
+
+/**
+ * @interface Concern
+ * @global
+ * @description An element in a topic - for instance a reporting level,
+ * a organisational structure level etc.  This is not the "value"
+ * but a placeholder for a set of values that represent the entities
+ * that make up this concern within a topic.
+ */
+
+/**
+ * @interface Topic
+ * @global
+ * @description Describes a topic in the system
+ * @property {string} _id - the id of the topic
+ * @property {string} _client - the client/app context
+ * @property {string} name - the name of the topic
+ * @property {Array<Concern>} concerns - the concerns within the topic
+ * @property {Relationships} relationships - the relationships between the
+ * topic and the user or other context information
+ *
+ */
+
+/**
+ * Retrieve the topics for the current context
+ * @returns {Promise<Array<Topic>>}
+ */
 export async function getTopics() {
     return (
         await list('hestia', 'topics', {
