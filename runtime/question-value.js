@@ -1,3 +1,6 @@
+/**
+ * @module dynamic/awe-library/runtime/question-value
+ */
 import { useAsync, useCachedAsync } from 'common/use-async'
 import {lookup, lookupAsync} from './lookup'
 import {get} from 'common/offline-data-service'
@@ -32,6 +35,15 @@ async function getSubValue(document, parts) {
     }
 }
 
+/**
+ * Given a document or the instance values of a document, retrieve the value
+ * of a field and the question that created it
+ * @param {Document|object} document - the set of values for the document
+ * @param {string} field - the name of the field to retrieve (can include a property path string)
+ * @returns {Promise.<Array>} A promise for an array with the results, the first element is the value, the second is the question
+ * @example
+ * const [value, question] = await getQuestionValue(document, 'some.field')
+ */
 export async function getQuestionValue(document, field) {
     const parts = field.split('.')
     return await getSubValue(document, parts)
@@ -39,6 +51,16 @@ export async function getQuestionValue(document, field) {
 
 }
 
+/**
+ * A hook to retrieve the value of a question and the question definition.  The definition
+ * is useful for things like choice questions where you might want to look up the label
+ * @param {Document|object} document - the set of values for the document
+ * @param {string} field - the name of the field to retrieve (can include a property path string)
+ * @returns {Array} the first element is the value, the second is the question
+ * @example
+ * const {instance: {instance}} = useInstanceContext()
+ * const [value] = useQuestionValue(instance, 'fieldNameGoesHere')
+ */
 export function useQuestionValue(document, field) {
     return useAsync(async () => {
         return await getQuestionValue(document, field)
@@ -46,6 +68,15 @@ export function useQuestionValue(document, field) {
 }
 
 const parameter = /{([^}]+)}/g
+
+/**
+ * Given a document or instance, populates a string that uses { and } delimited
+ * parameters to embed values from the document.  The document
+ * can be a document value or the instance for the document
+ * @param {Document|object} document - the set of values for the document
+ * @param {string} text - the text to replace
+ * @returns {Promise<string>} A promise for the string with the values replaced
+ */
 export async function getMappedString(document, text) {
     const matches = text.matchAll(parameter)
     let values = {}
@@ -78,6 +109,26 @@ handle('string-process-if', function(info) {
     info.value = (Array.isArray(info.value) && info.value.length > 0) || (!Array.isArray(info.value)  && info.value) ? info.process[1] : info.process[2] || ''
 })
 
+/**
+ * A hook, that given a document or instance, populates a string that uses { and } delimited
+ * parameters to embed values from the document.  The document
+ * can be a document value or the instance for the document.
+ *
+ * The string parameters can have a function and parameters delimited by : the functions are
+ * passed using a string-process-FUNCTIONNAME event and the standard ones are:
+ *
+ * date - that takes a format or long/short/medium (default)
+ * if - which returns the first parameter if the value exists or the second if it does not.
+ *
+ * <code> The date is {someDate:date:short} {someText:Text is} {someText}</code>
+ *
+ * This can be used to embed values in HTML etc.
+ *
+ * @param {Document|object} document - the set of values for the document
+ * @param {string} text - the text to replace
+ * @param {string} refreshId - an id used to indicate that the process should run again
+ * @returns {string} The resulting string having embedded the parameters
+ */
 export function useMappedString(document, text, refreshId='standard') {
     return useCachedAsync('getStringMapping', async ()=>{
         return await getMappedString(document, text)
