@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>EventSource - awe-library</title>
+    <title>dynamic/awe-library/runtime/question-value - awe-library</title>
     
     
     
@@ -43,7 +43,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">EventSource</h1>
+    <h1 class="page-title">dynamic/awe-library/runtime/question-value</h1>
     
 
     
@@ -55,9 +55,6 @@
 
 <header>
     
-        <h2>
-        EventSource
-        </h2>
         
     
 </header>
@@ -66,53 +63,6 @@
     
         <div class="container-overview">
         
-            
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_use-event_index.js.html">common/use-event/index.js</a>, <a href="common_use-event_index.js.html#line65">line 65</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-            
-                <div class="description usertext"><p>A source of events</p></div>
             
 
             
@@ -142,7 +92,7 @@
 
     
 
-    <h4 class="name" id="addListener"><span class="type-signature"></span>addListener<span class="signature">(event, handler)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".getMappedString"><span class="type-signature">(static) </span>getMappedString<span class="signature">(document, text)</span><span class="type-signature"> &rarr; {Promise.&lt;string>}</span></h4>
 
     
 
@@ -154,7 +104,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_use-event_index.js.html">common/use-event/index.js</a>, <a href="common_use-event_index.js.html#line71">line 71</a>
+        <a href="plugins-dynamic_awe-library_runtime_question-value.js.html">plugins-dynamic/awe-library/runtime/question-value.js</a>, <a href="plugins-dynamic_awe-library_runtime_question-value.js.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -194,7 +144,9 @@
 
 
 <div class="description usertext">
-    <p>Add an event listener</p>
+    <p>Given a document or instance, populates a string that uses { and } delimited
+parameters to embed values from the document.  The document
+can be a document value or the instance for the document</p>
 </div>
 
 
@@ -232,7 +184,33 @@
 
         <tr>
             
-                <td class="name"><code>event</code></td>
+                <td class="name"><code>document</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Document.html">Document</a></span>
+|
+
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the set of values for the document</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>text</code></td>
             
 
             <td class="type">
@@ -248,30 +226,7 @@
 
             
 
-            <td class="description last"><p>name of the event</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>handler</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the function to handle the event</p></td>
+            <td class="description last"><p>the text to replace</p></td>
         </tr>
 
     
@@ -293,6 +248,28 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise for the string with the values replaced</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;string></span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -301,7 +278,7 @@
 
     
 
-    <h4 class="name" id="removeListener"><span class="type-signature"></span>removeListener<span class="signature">(event, handler)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".getQuestionValue"><span class="type-signature">(static) </span>getQuestionValue<span class="signature">(document, field)</span><span class="type-signature"> &rarr; {Promise.&lt;Array>}</span></h4>
 
     
 
@@ -313,7 +290,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_use-event_index.js.html">common/use-event/index.js</a>, <a href="common_use-event_index.js.html#line78">line 78</a>
+        <a href="plugins-dynamic_awe-library_runtime_question-value.js.html">plugins-dynamic/awe-library/runtime/question-value.js</a>, <a href="plugins-dynamic_awe-library_runtime_question-value.js.html#line47">line 47</a>
     </li></ul></dd>
     
 
@@ -353,7 +330,205 @@
 
 
 <div class="description usertext">
-    <p>Remove an event listener</p>
+    <p>Given a document or the instance values of a document, retrieve the value
+of a field and the question that created it</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const [value, question] = await getQuestionValue(document, 'some.field')</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>document</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Document.html">Document</a></span>
+|
+
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the set of values for the document</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>field</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the name of the field to retrieve (can include a property path string)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise for an array with the results, the first element is the value, the second is the question</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Array></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".useMappedString"><span class="type-signature">(static) </span>useMappedString<span class="signature">(document, text, refreshId)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_question-value.js.html">plugins-dynamic/awe-library/runtime/question-value.js</a>, <a href="plugins-dynamic_awe-library_runtime_question-value.js.html#line132">line 132</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>A hook, that given a document or instance, populates a string that uses { and } delimited
+parameters to embed values from the document.  The document
+can be a document value or the instance for the document.</p>
+<p>The string parameters can have a function and parameters delimited by : the functions are
+passed using a string-process-FUNCTIONNAME event and the standard ones are:</p>
+<p>date - that takes a format or long/short/medium (default)
+if - which returns the first parameter if the value exists or the second if it does not.</p>
+<p><code> The date is {someDate:date:short} {someText:Text is} {someText}</code></p>
+<p>This can be used to embed values in HTML etc.</p>
 </div>
 
 
@@ -391,7 +566,33 @@
 
         <tr>
             
-                <td class="name"><code>event</code></td>
+                <td class="name"><code>document</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Document.html">Document</a></span>
+|
+
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the set of values for the document</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>text</code></td>
             
 
             <td class="type">
@@ -407,20 +608,20 @@
 
             
 
-            <td class="description last"><p>name of the event</p></td>
+            <td class="description last"><p>the text to replace</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>handler</code></td>
+                <td class="name"><code>refreshId</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">string</span>
 
 
             
@@ -430,7 +631,7 @@
 
             
 
-            <td class="description last"><p>the function that handles the event</p></td>
+            <td class="description last"><p>an id used to indicate that the process should run again</p></td>
         </tr>
 
     
@@ -452,6 +653,219 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The resulting string having embedded the parameters</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".useQuestionValue"><span class="type-signature">(static) </span>useQuestionValue<span class="signature">(document, field)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins-dynamic_awe-library_runtime_question-value.js.html">plugins-dynamic/awe-library/runtime/question-value.js</a>, <a href="plugins-dynamic_awe-library_runtime_question-value.js.html#line64">line 64</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>A hook to retrieve the value of a question and the question definition.  The definition
+is useful for things like choice questions where you might want to look up the label</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const {instance: {instance}} = useInstanceContext()
+const [value] = useQuestionValue(instance, 'fieldNameGoesHere')</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>document</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Document.html">Document</a></span>
+|
+
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the set of values for the document</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>field</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the name of the field to retrieve (can include a property path string)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the first element is the value, the second is the question</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 

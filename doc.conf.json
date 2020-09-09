@@ -27,7 +27,8 @@
       "runtime/app-urls.js",
       "runtime/button-style.js",
       "runtime/records.js",
-      "runtime/contexts.js"
+      "runtime/contexts.js",
+      "runtime/question-value.js"
     ]
   },
   "opts": {
