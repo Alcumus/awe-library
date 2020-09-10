@@ -1,4 +1,4 @@
-import debounce from 'lodash/debounce'
+import debounce from 'lodash-es/debounce'
 import { generate } from 'shortid'
 import {
     documentChangesApply,
