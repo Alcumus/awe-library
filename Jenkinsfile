@@ -60,7 +60,7 @@ pipeline {
       steps {
         container('nodejs') {
           sh "jx step credential -s npm-token -k file -f /builder/home/.npmrc --optional=true"
-          sh "npm install"
+          //sh "npm install"
           //sh "CI=true DISPLAY=:99 npm test"
           zip zipFile: 'build.zip', archive: false, dir:'./'
           sh "ls -la"
