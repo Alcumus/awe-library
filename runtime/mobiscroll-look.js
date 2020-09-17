@@ -1,4 +1,4 @@
-import { Box, Grid, makeStyles } from '@material-ui/core'
+import { Box, Grid, Typography, makeStyles, useTheme } from '@material-ui/core'
 import { mobiscrollStyles } from 'common/mobiscroll-styles'
 import { useComponentContext } from 'dynamic/awe-library/runtime/contexts'
 import React from 'react'
@@ -25,8 +25,9 @@ export const useStyles = makeStyles((theme) => {
     }
 })
 
-export function MobiscrollLook({ float, label, children, error, ml, mr, pl = 1, pr = 1 }) {
+export function MobiscrollLook({ float, label, children, error, ml, mr }) {
     const classes = useStyles({ mobile: innerWidth < 768, error })
+    const { typography } = useTheme()
     const { boxPadding, questionPadding } = useComponentContext()
 
     return (
@@ -35,20 +36,21 @@ export function MobiscrollLook({ float, label, children, error, ml, mr, pl = 1, 
                 minHeight={54}
                 position={'relative'}
                 ml={ml || boxPadding / 2}
-                pt={2}
                 mr={mr || boxPadding / 2}
-                pl={pl}
-                pr={pr}
+                pt={2}
+                pb={2}
+                pl={3}
+                pr={3}
                 className={classes.holder}
             >
                 {!!label && !float && (
-                    <Box pl={1} pb={2} className={classes.inputPlaceholder}>
+                    <Box pb={2} className={classes.inputPlaceholder}>
                         {label}
                     </Box>
                 )}
                 {!!label && !!float && (
-                    <Box pl={1} className={classes.inputLabel}>
-                        {label}
+                    <Box>
+                        <Typography style={typography.body3}>{label}</Typography>
                     </Box>
                 )}
                 <Box
