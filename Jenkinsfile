@@ -2,6 +2,14 @@ pipeline {
   agent {
     label "jenkins-nodejs"
   }
+  options {
+      timeout(time: 1, unit: 'HOURS') 
+      withAWS(profile:'alcumus-jx-artifact-uploader')
+  }
+  triggers {
+        issueCommentTrigger('.*Run build please.*')
+        
+  }  
   environment {
     ORG = 'alcumus'
     APP_NAME = 'awe-library'
@@ -21,6 +29,20 @@ pipeline {
       }
       steps {
         container('nodejs') {
+          script{
+            try{
+              pullRequest.removeLabel('Build Passing')
+            } catch (err){
+              echo "No labels to remove"
+            }
+          }
+          script{
+            try{
+              pullRequest.removeLabel('Build Failed')
+            } catch (err){
+              echo "No labels to remove"
+            }
+          }  
           sh "jx step credential -s npm-token -k file -f /builder/home/.npmrc --optional=true"
           sh "npm install"
           zip zipFile: 'build.zip', archive: false, dir:'./'
@@ -55,5 +77,23 @@ pipeline {
           cleanWs()
           office365ConnectorSend webhookUrl: "$TEAMS_URL"  
         }
+        failure {
+            script {
+                // CHANGE_ID is set only for pull requests, so it is safe to access the pullRequest global variable
+                if (env.CHANGE_ID) {
+                    pullRequest.addLabel('Build Failed')
+                }
+            }
+        }
+      success {
+            script {
+                // CHANGE_ID is set only for pull requests, so it is safe to access the pullRequest global variable
+                if (env.CHANGE_ID) {
+                  pullRequest.addLabel('Build Passing')
+                  def comment = pullRequest.comment('Build and tests passing, Good work!')
+                  pullRequest.review('APPROVE')
+                }
+            }
+        }   
   }
 }
