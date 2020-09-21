@@ -1,14 +1,11 @@
 import { get } from 'common/offline-data-service'
-import {
-    getContext,
-    sendChanges,
-    setContext,
-} from 'dynamic/awe-runner-plugin/lib-runner/api'
+import { getContext, sendChanges, setContext } from 'dynamic/awe-runner-plugin/lib-runner/api'
 import { handle, raiseAsync } from 'common/events'
 
 import { getItem, using } from 'common/using-local-storage-key'
 import { showNotification } from 'common/modal'
 import { initialize } from 'common/offline-data-service/behaviour-cache'
+import { isOnline } from 'common/utils'
 
 export const {
     resetStorage,
@@ -43,11 +40,7 @@ export const {
             }
 
             async documentContextStore(info) {
-                info.context.$refId = await setContext(
-                    info.id,
-                    info.actionId,
-                    info.context
-                )
+                info.context.$refId = await setContext(info.id, info.actionId, info.context)
             }
 
             async resetStorage(id, actionIds = []) {
@@ -77,10 +70,7 @@ export const {
             async documentChangesApply({ id, document }) {
                 if (!document) return
                 await initialize(document)
-                for (let { toState, instance } of await getItem(
-                    `changes-${id}`,
-                    []
-                )) {
+                for (let { toState, instance } of await getItem(`changes-${id}`, [])) {
                     Object.assign(document, instance)
                     delete document.$trackId
                     toState && (await document.behaviours.setState(toState))
@@ -92,9 +82,7 @@ export const {
                 await using(
                     `changes-${id}`,
                     (changes) => {
-                        return changes.filter(
-                            (change) => change.instance.$trackId !== trackId
-                        )
+                        return changes.filter((change) => change.instance.$trackId !== trackId)
                     },
                     []
                 )
@@ -115,14 +103,14 @@ async function changeEnqueue(record) {
 }
 
 handle('hydrate.*', async (document) => {
-    if(!document) return
+    if (!document) return
     await raiseAsync(`documentChangesApply`, { id: document._id, document })
 })
 
 let retry = false
 
 const processQueue = async function processQueue() {
-    if (!navigator.onLine) return
+    if (!isOnline()) return
     if (window.processingQueue) {
         retry = true
         return
@@ -139,7 +127,7 @@ const processQueue = async function processQueue() {
             }
             await using(
                 `awe-send-queue`,
-                async function(queue) {
+                async function (queue) {
                     queue[documentId] = (queue[documentId] || []).filter(
                         (f) => !changes.find((c) => c.$trackId === f.$trackId)
                     )
