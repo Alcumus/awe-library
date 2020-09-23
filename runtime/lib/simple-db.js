@@ -9,7 +9,7 @@ import { handle, raiseAsync } from 'common/events'
 import { usingLocalItem } from 'common/using-local-storage-key'
 import { showNotification } from 'common/modal'
 import { initialize } from 'common/offline-data-service/behaviour-cache'
-import { getLocalItem } from 'dynamic/awe-runner-plugin/lib-runner/local-store'
+import { getLocalItem } from 'dynamic/awe-library/local-store'
 
 export const {
     resetStorage,
