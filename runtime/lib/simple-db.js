@@ -35,7 +35,7 @@ export const {
             }
 
             async documentContextRetrieve(info) {
-                info.context = await getContext(info.id, info.actionId)
+                info.context = await getContext(info.id, info.actionId) || {}
             }
 
             async documentContextRemove(info) {
