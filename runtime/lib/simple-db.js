@@ -81,7 +81,6 @@ export const {
                     `changes-${id}`,
                     []
                 )
-                console.log("Changes", changes)
                 for (let { toState, instance } of changes) {
                     Object.assign(document, instance)
                     delete document.$trackId
