@@ -1,0 +1,38 @@
+{
+  "plugins": [
+    "plugins/markdown",
+    "./node_modules/tsd-jsdoc/dist/plugin"
+  ],
+  "source": {
+    "include": [
+      "bind.js",
+      "document-type-context.js",
+      "fields.js",
+      "lookup-fields.js",
+      "query.js",
+      "question-typedef.js",
+      "use-types.js",
+      "utils.js",
+      "../../common/use-async/index.js",
+      "../../common/offline-data-service/index.js",
+      "../../common/offline-data-service/records.js",
+      "../../common/menu/index.js",
+      "../../common/process/index.js",
+      "../../common/sortable/index.js",
+      "../../common/use-event/index.js",
+      "runtime/query.js",
+      "runtime/utils.js",
+      "runtime/navigate.js",
+      "runtime/create-document.js",
+      "runtime/app-urls.js",
+      "runtime/button-style.js",
+      "runtime/records.js",
+      "runtime/contexts.js",
+      "runtime/question-value.js"
+    ]
+  },
+  "opts": {
+    "template": "./node_modules/tsd-jsdoc/dist",
+    "destination": "./out/"
+  }
+}

@@ -8,8 +8,8 @@
  * This function is often used in behaviours as the definition of the `initialized` method to
  * ensure that the necessary methods of a behaviour are correctly bound to the this so it can
  * be used to access the behaviour definition while coding the implementation.
- * @param props - the names or function to bind
- * @returns Binding function
+ * @param {...any} props - the names or function to bind
+ * @returns {Function} Binding function
  * @example
  register(
  'examplePerQuestionBehaviour',
