@@ -16,3 +16,15 @@ export async function getLocalItem(key, defaultValue) {
 export async function removeLocalItem(key) {
     await raiseAsync('local-store-removeItem', `${prefix}${key}`)
 }
+
+export async function usingLocalItem(key, fn, defaultValue) {
+    let item = await getLocalItem(key)
+    item = item ? item : JSON.parse(JSON.stringify(defaultValue))
+    let result = await Promise.resolve(fn(item))
+    item = result || item
+    if (Object.isEqual(item, defaultValue)) {
+        await removeLocalItem(key)
+    } else {
+        item && (await storeLocalItem(key, item))
+    }
+}
