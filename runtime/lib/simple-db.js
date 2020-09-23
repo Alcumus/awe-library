@@ -1,9 +1,5 @@
 import { get } from 'common/offline-data-service'
-import {
-    getContext,
-    sendChanges,
-    setContext,
-} from 'dynamic/awe-runner-plugin/lib-runner/api'
+import { getContext, sendChanges, setContext } from 'dynamic/awe-runner-plugin/lib-runner/api'
 import { handle, raiseAsync } from 'common/events'
 
 import { showNotification } from 'common/modal'
@@ -42,11 +38,7 @@ export const {
             }
 
             async documentContextStore(info) {
-                info.context.$refId = await setContext(
-                    info.id,
-                    info.actionId,
-                    info.context
-                )
+                info.context.$refId = await setContext(info.id, info.actionId, info.context)
             }
 
             async resetStorage(id, actionIds = []) {
@@ -92,9 +84,7 @@ export const {
                 await usingLocalItem(
                     `changes-${id}`,
                     (changes) => {
-                        return changes.filter(
-                            (change) => change.instance.$trackId !== trackId
-                        )
+                        return changes.filter((change) => change.instance.$trackId !== trackId)
                     },
                     []
                 )
@@ -115,7 +105,7 @@ async function changeEnqueue(record) {
 }
 
 handle('hydrate.*', async (document) => {
-    if(!document) return
+    if (!document) return
     await raiseAsync(`documentChangesApply`, { id: document._id, document })
 })
 
@@ -139,7 +129,7 @@ const processQueue = async function processQueue() {
             }
             await usingLocalItem(
                 `awe-send-queue`,
-                async function(queue) {
+                async function (queue) {
                     queue[documentId] = (queue[documentId] || []).filter(
                         (f) => !changes.find((c) => c.$trackId === f.$trackId)
                     )
