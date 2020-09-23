@@ -6,9 +6,10 @@ import {
 } from 'dynamic/awe-runner-plugin/lib-runner/api'
 import { handle, raiseAsync } from 'common/events'
 
-import { getItem, using } from 'common/using-local-storage-key'
+import { usingLocalItem } from 'common/using-local-storage-key'
 import { showNotification } from 'common/modal'
 import { initialize } from 'common/offline-data-service/behaviour-cache'
+import { getLocalItem } from 'dynamic/awe-runner-plugin/lib-runner/local-store'
 
 export const {
     resetStorage,
@@ -34,12 +35,11 @@ export const {
             }
 
             async documentContextRetrieve(info) {
-                info.context = await getContext(info.id, info.actionId)
+                info.context = await getContext(info.id, info.actionId) || {}
             }
 
             async documentContextRemove(info) {
-                localStorage.removeItem(`${info.id}-${info.actionId}`)
-                setContext(info.id, info.actionId, {})
+                await setContext(info.id, info.actionId, {})
             }
 
             async documentContextStore(info) {
@@ -51,7 +51,7 @@ export const {
             }
 
             async resetStorage(id, actionIds = []) {
-                await using(
+                await usingLocalItem(
                     `changes-${id}`,
                     (changes) => {
                         changes.length = 0
@@ -64,7 +64,7 @@ export const {
             }
 
             async documentChangesStore(record, id) {
-                await using(
+                await usingLocalItem(
                     `changes-${id}`,
                     (changes) => {
                         changes.push(record)
@@ -77,10 +77,11 @@ export const {
             async documentChangesApply({ id, document }) {
                 if (!document) return
                 await initialize(document)
-                for (let { toState, instance } of await getItem(
+                const changes = await getLocalItem(
                     `changes-${id}`,
                     []
-                )) {
+                )
+                for (let { toState, instance } of changes) {
                     Object.assign(document, instance)
                     delete document.$trackId
                     toState && (await document.behaviours.setState(toState))
@@ -89,7 +90,7 @@ export const {
             }
 
             async aweChangeComplete({ id, trackId }) {
-                await using(
+                await usingLocalItem(
                     `changes-${id}`,
                     (changes) => {
                         return changes.filter(
@@ -103,7 +104,7 @@ export const {
     ))
 
 async function changeEnqueue(record) {
-    await using(
+    await usingLocalItem(
         `awe-send-queue`,
         (queue) => {
             let list = (queue[record.id] = queue[record.id] || [])
@@ -132,12 +133,12 @@ const processQueue = async function processQueue() {
     try {
         let documentId
         let queue
-        while ((queue = await getItem(`awe-send-queue`, {})) && (documentId = Object.keys(queue)[0])) {
+        while ((queue = await getLocalItem(`awe-send-queue`, {})) && (documentId = Object.keys(queue)[0])) {
             let changes = queue[documentId] || []
             if (changes.length) {
                 await sendChanges(documentId, changes)
             }
-            await using(
+            await usingLocalItem(
                 `awe-send-queue`,
                 async function(queue) {
                     queue[documentId] = (queue[documentId] || []).filter(
@@ -152,7 +153,7 @@ const processQueue = async function processQueue() {
         console.error(e)
     } finally {
         window.processingQueue = false
-        if (retry) processQueue()
+        if (retry) processQueue().catch(console.error)
     }
 }.debounce(300)
 setTimeout(processQueue, 100)
