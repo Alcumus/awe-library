@@ -11,6 +11,8 @@ const allSeen = {}
 /**
  * Provides a key value pair lookup for document types to their
  * definitions
+ * @function
+ * @returns {Function} the function to call to get the lookup types
  */
 export const lookupTypes = memoize(
     function getTypes () {
@@ -59,9 +61,10 @@ export function questionTypeDef ( type ) {
 }
 
 /**
- * @function allTypes
+ * @function
+ * @name allTypes
  * @description A function to retrieve all current question types
- * @returns [QuestionTypeDef] the currently available questions
+ * @returns {QuestionTypeDef} the currently available questions
  */
 export const allTypes = memoize(
     function allTypes ( document ) {

@@ -7,11 +7,12 @@ import { logParams } from 'common/logCall'
 
 /**
  *
- * @function useButtonStyle
+ * @function
+ * @name useButtonStyle
  * @description A hook, that passed the definition of a question
  * including a button definition, will return the necessary styles.
  * @param {FieldDefinition} field - a field including a button
- * @returns classes including 'button' which is to be used to
+ * @returns {object} classes including 'button' which is to be used to
  * style the button
  */
 
