@@ -42,16 +42,21 @@ import { initialize } from 'common/offline-data-service/behaviour-cache'
  * @returns {Promise<Array<Topic>>}
  */
 export async function getTopics() {
-    return (
-        await list('hestia', 'topics', {
-            $and: [
-                { $or: [{ _deleted: null }, { _deleted: 0 }] },
-                {
-                    $or: [{ _client: 0 }, { _client: null }, { _client: '@WORK' }, { _client: getActiveClient() }],
-                },
-            ],
-        })
-    ).map('data')
+    try {
+        console.log("get topics")
+        return (
+            await list('hestia', 'topics', {
+                $and: [
+                    { $or: [{ _deleted: null }, { _deleted: 0 }] },
+                    {
+                        $or: [{ _client: 0 }, { _client: null }, { _client: '@WORK' }, { _client: getActiveClient() }],
+                    },
+                ],
+            })
+        ).map('data')
+    } finally {
+        console.log("got topics")
+    }
 }
 
 let lastTopics = []
