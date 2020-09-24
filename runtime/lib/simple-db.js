@@ -4,7 +4,7 @@ import { handle, raiseAsync } from 'common/events'
 
 import { showNotification } from 'common/modal'
 import { initialize } from 'common/offline-data-service/behaviour-cache'
-import { getLocalItem, usingLocalItem } from 'dynamic/awe-library/local-store'
+import { getLocalItem, usingLocalItem } from 'common/local-storage/local-store'
 import { isOnline } from 'common/utils'
 
 export const {
