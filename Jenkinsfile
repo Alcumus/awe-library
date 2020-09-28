@@ -57,7 +57,7 @@ pipeline {
       }
       steps {
         container('nodejs') {
-          sh "git checkout jx"
+          sh "git checkout develop"
           sh "git config --global credential.helper store"
           sh "jx step git credentials"
           // so we can retrieve the version in later steps
